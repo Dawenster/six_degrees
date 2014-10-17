@@ -3,6 +3,13 @@ h1
 
 div
   - if user_signed_in?
-    = link_to "Logout", destroy_user_session_path, :method => :delete
+    div
+      = current_user.name
+    div
+      = current_user.email
+    div
+      = image_tag current_user.image
+    div
+      = link_to "Logout", destroy_user_session_path, :method => :delete
   - else
     = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
