@@ -1,7 +1,8 @@
-- if user_signed_in?
-  = link_to "Logout", destroy_user_session_path, :method => :delete
-- else
-  = render "devise/shared/links"
+h1
+  | Wecome to Six Degrees :)
 
 div
-  | Hello!
+  - if user_signed_in?
+    = link_to "Logout", destroy_user_session_path, :method => :delete
+  - else
+    = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
