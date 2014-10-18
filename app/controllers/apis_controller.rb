@@ -1,4 +1,6 @@
 class ApisController < ApplicationController
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  
   def sign_in_via_facebook
     token = params[:access_token]
     permissions = "id,name,picture.type(large),email,first_name,last_name,gender,timezone"
