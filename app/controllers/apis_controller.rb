@@ -1,8 +1,4 @@
 class ApisController < ApplicationController
-  # protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-
-  # before_filter :allow_cors
-
   def sign_in_via_facebook
     token = params[:access_token]
     permissions = "id,name,picture.type(large),email,first_name,last_name,gender,timezone"
@@ -21,16 +17,5 @@ class ApisController < ApplicationController
     respond_to do |format|
       format.json { render :json => user_data }
     end
-  end
-
-  private
-
-  def allow_cors
-    headers["Access-Control-Allow-Origin"] = "*"
-    headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
-    headers["Access-Control-Allow-Headers"] =
-      %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
-
-    head(:ok) if request.request_method == "OPTIONS"
   end
 end
