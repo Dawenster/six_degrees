@@ -22,4 +22,19 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def self.create_user(results)
+    return User.create(
+      :provider => "facebook",
+      :uid => results["id"],
+      :email => results["email"],
+      :name => results["name"],
+      :image => results["picture"]["data"]["url"],
+      :first_name => results["first_name"],
+      :last_name => results["last_name"],
+      :gender => results["gender"],
+      :timezone => results["timezone"],
+      :password => Devise.friendly_token[0,20]
+    )
+  end
 end
