@@ -1,7 +1,7 @@
 class ApisController < ApplicationController
-  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  # protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
 
-  before_filter :allow_cors
+  # before_filter :allow_cors
 
   def sign_in_via_facebook
     token = params[:access_token]
