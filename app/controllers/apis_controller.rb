@@ -1,6 +1,6 @@
 class ApisController < ApplicationController
   def sign_in_via_facebook
-    token = params[:access_token]
+    token = params[:facebook_token]
     permissions = "id,name,picture.type(large),email,first_name,last_name,gender,timezone"
     params_to_send = {
       :fields => permissions,
