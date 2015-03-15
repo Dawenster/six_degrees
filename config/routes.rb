@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   post "sign_in_via_facebook" => "apis#sign_in_via_facebook", as: :sign_in_via_facebook
   
-  resources :dreams
+  resources :dreams, :except => [:new, :edit]
 end
