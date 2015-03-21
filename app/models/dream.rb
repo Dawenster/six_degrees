@@ -1,7 +1,7 @@
 class Dream < ActiveRecord::Base
   belongs_to :user
 
-  validates :description, :dream_type, :user_id, :presence => true
+  validates :description, :dream_type, :user_id, :presence => true, allow_blank: false
 
   def self.dreams_with_user_info
     dreams = []

@@ -1,0 +1,15 @@
+div
+  = simple_form_for @dream, defaults: { input_html: { class: 'form-control' }} do |dream|
+    
+    = dream.input :description, :label => "What is your dream?"
+    br
+    = dream.input :dream_type, :collection => dream_types, :selected => dream_types.first
+    = dream.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
+
+    br
+    - button_text = @dream.id ? "Update dream" : "Create dream"
+    = dream.button :submit, button_text, :class => "btn btn-success"
+
+    - if @dream.id
+      div style="margin-top: 10px;"
+        = link_to "Delete", { :id => @dream.id, :action => :destroy }, :method => :delete, data: { confirm: "Are you sure?  You're about to delete this dream..." }

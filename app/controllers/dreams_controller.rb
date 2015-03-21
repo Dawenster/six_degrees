@@ -1,9 +1,12 @@
 class DreamsController < ApplicationController
   def index
     respond_to do |format|
-      @dreams = Dream.dreams_with_user_info
-      format.json { render :json => @dreams }
+      format.json do
+        dreams = Dream.dreams_with_user_info
+        render :json => dreams
+      end
       format.html do
+        @dreams = Dream.all
         render "index"
       end
     end
@@ -17,32 +20,50 @@ class DreamsController < ApplicationController
   end
 
   def new
-    
+    @dream = Dream.new
   end
 
   def create
     respond_to do |format|
-      dream = Dream.new(dream_params)
-      if dream.save
-        format.json { render :json => { :status => 200, :message => "dream created successfully", :dream => dream } }
+      @dream = Dream.new(dream_params)
+      if @dream.save
+        format.json { render :json => { :status => 200, :message => "dream created successfully", :dream => @dream } }
+        format.html do
+          flash[:notice] = "Dream successfully created."
+          redirect_to dreams_path
+        end
       else
-        format.json { render :json => { :status => 500, :message => dream.errors.full_messages.join(". ") + "." } }
+        dream_errors = @dream.errors.full_messages.join(". ") + "."
+        format.json { render :json => { :status => 500, :message => dream_errors } }
+        format.html do
+          flash.now[:alert] = dream_errors
+          render "new"
+        end
       end
     end
   end
 
   def edit
-    
+    @dream = Dream.find(params[:id])
   end
 
   def update
     respond_to do |format|
-      dream = Dream.find(params[:id])
-      dream.assign_attributes(dream_params)
-      if dream.save
-        format.json { render :json => { :status => 200, :message => "dream updated successfully", :dream => dream } }
+      @dream = Dream.find(params[:id])
+      @dream.assign_attributes(dream_params)
+      if @dream.save
+        format.json { render :json => { :status => 200, :message => "dream updated successfully", :dream => @dream } }
+        format.html do
+          flash[:notice] = "Dream successfully created."
+          redirect_to dreams_path
+        end
       else
-        format.json { render :json => { :status => 500, :message => dream.errors.full_messages.join(". ") + "." } }
+        dream_errors = @dream.errors.full_messages.join(". ") + "."
+        format.json { render :json => { :status => 500, :message => dream_errors } }
+        format.html do
+          flash.now[:alert] = dream_errors
+          render "edit"
+        end
       end
     end
   end

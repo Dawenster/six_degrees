@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
 
   acts_as_token_authentication_handler_for User, fallback_to_devise: false
 
+  helper_method :dream_types
+
+  def dream_types
+    ["Personal", "Professional"]
+  end
+
   protected
 
   def configure_devise_permitted_parameters
