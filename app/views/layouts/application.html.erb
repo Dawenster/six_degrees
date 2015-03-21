@@ -5,10 +5,25 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%= render "layouts/top_nav" %>
+    <%= render "layouts/alerts" %>
+    <% unless params[:action] == 'index' && params[:controller] == 'pages' %>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="main-content">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+    <%= render "layouts/footer" %>
   </body>
 </html>

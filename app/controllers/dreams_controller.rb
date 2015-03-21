@@ -1,8 +1,11 @@
 class DreamsController < ApplicationController
   def index
     respond_to do |format|
-      dreams = Dream.dreams_with_user_info
-      format.json { render :json => dreams }
+      @dreams = Dream.dreams_with_user_info
+      format.json { render :json => @dreams }
+      format.html do
+        render "index"
+      end
     end
   end
 
@@ -11,6 +14,10 @@ class DreamsController < ApplicationController
       dream = Dream.find(params[:id])
       format.json { render :json => dream }
     end
+  end
+
+  def new
+    
   end
 
   def create
@@ -22,6 +29,10 @@ class DreamsController < ApplicationController
         format.json { render :json => { :status => 500, :message => dream.errors.full_messages.join(". ") + "." } }
       end
     end
+  end
+
+  def edit
+    
   end
 
   def update

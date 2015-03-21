@@ -1,0 +1,66 @@
+nav.navbar.navbar-default role="navigation"
+  .navbar-header
+    button.navbar-toggle.collapsed data-target="#navbar-collapse-1" data-toggle="collapse" type="button" 
+      span.sr-only
+        | Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+
+  .navbar-brand.navbar-center
+    a.navbar-brand href="#{root_path}"
+      | Six Degrees
+      
+  #navbar-collapse-1.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a href="#{how_it_works_path}" 
+          | How it works
+        div class="#{'active-underline' if params[:action] == 'how_it_works' && params[:controller] == 'pages'}"
+      li
+        a href="#{dreams_path}" 
+          | Browse
+        div class="#{'active-underline' if params[:action] == 'index' && params[:controller] == 'dreams'}"
+      li
+        a href="#{about_path}" 
+          | About
+        div class="#{'active-underline' if params[:action] == 'about' && params[:controller] == 'pages'}"
+
+    ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        li
+          div
+            a.btn.navbar-btn.btn-success.navbar-action-button href="#{new_dream_path}" style="margin-right: 10px;"
+              | Create dream
+
+        li.navbar-avatar
+          = avatar(current_user)
+
+        li.dropdown
+          a.dropdown-toggle.user-account-dropdown href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+            = current_user.first_name
+            span.caret
+          ul.dropdown-menu
+            li class="#{'highlighted-dropdown' if params[:action] == 'new' && params[:controller] == 'dreams'}"
+              a href="#{new_dream_path}"
+                | Create dream
+            li class="#{'highlighted-dropdown' if params[:action] == 'show' && params[:controller] == 'users'}"
+              a href="#{user_path(current_user)}"
+                | Profile page
+
+            li.divider
+
+            li class="#{'highlighted-dropdown' if params[:action] == 'edit' && params[:controller] == 'registrations'}"
+              a href="#{edit_user_registration_path}"
+                | Account settings
+            li
+              = link_to "Logout", destroy_user_session_path, :method => :delete
+
+      - else
+        li
+          div
+            a.btn.navbar-btn.btn-success.navbar-action-button href="#{new_user_registration_path}"
+              | Sign Up Free
+        li
+          a href="#{new_user_session_path}"
+            | Login

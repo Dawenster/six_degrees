@@ -1,15 +1,17 @@
-h1
-  | Wecome to Six Degrees :)
+.landing-container
+  .landing-title
+    h1
+      .first-line
+        | Dreams fulfilled
+      .for-word
+        | by
+      .last-line
+        | your network
 
-div
-  - if user_signed_in?
-    div
-      = current_user.name
-    div
-      = current_user.email
-    div
-      = image_tag current_user.image
-    div
-      = link_to "Logout", destroy_user_session_path, :method => :delete
-  - else
-    = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+  .landing-browse-all-campaigns
+    - if user_signed_in?
+      = link_to "Create a dream", new_dream_path, :class => "btn btn-info btn-lg"
+    - else
+      = link_to "Create a dream", new_user_registration_path, :class => "btn btn-info btn-lg"
+    .how-it-works-link
+      = link_to "How it works", how_it_works_path

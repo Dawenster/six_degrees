@@ -1,0 +1,40 @@
+@media(max-width:767px) {
+  .landing-container {
+    padding: 10px;
+  }
+}
+
+@media(min-width:768px) {
+  .landing-container {
+    padding: 10%;
+  }
+}
+
+.landing-title {
+  text-align: center;
+  margin: 50px 0px;
+
+  .first-line {
+    font-size: 40px;
+  }
+
+  .for-word {
+    color: grey;
+    margin: 10px 0px;
+    font-family: 'Pacifico', cursive;
+  }
+
+  .last-line {
+    font-size: 30px;
+  }
+}
+
+.landing-browse-all-campaigns {
+  text-align: center;
+  margin: 50px 0px;
+
+  .how-it-works-link {
+    margin-top: 10px;
+  }
+}
+
