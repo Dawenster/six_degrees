@@ -1,0 +1,41 @@
+.how-it-works-page
+  .row
+    .col-xs-12
+      h2.page-title
+        | How it works
+
+  br
+
+  .row
+    .col-xs-12.col-sm-4
+      .panel.panel-success
+        .panel-heading
+          i.fa.fa-pencil
+          | Create dreams
+        .panel-body
+          p
+            | You create a dream...
+
+          = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
+
+    .col-xs-12.col-sm-4
+      .panel.panel-info
+        .panel-heading
+          i.fa.fa-thumbs-o-up
+          | Someone helps you
+        .panel-body
+          p
+            | Some nice person will help...
+
+          = link_to "Browse dreams", dreams_path, :class => "btn btn-info"
+
+    .col-xs-12.col-sm-4
+      .panel.panel-warning
+        .panel-heading
+          i.fa.fa-heart
+          | Awesomeness ensues
+        .panel-body
+          p
+            | Dreams come true...
+
+          = link_to "Create an account", new_user_registration_path, :class => "btn btn-warning"
