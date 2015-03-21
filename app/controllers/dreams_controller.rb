@@ -26,6 +26,7 @@ class DreamsController < ApplicationController
   def create
     respond_to do |format|
       @dream = Dream.new(dream_params)
+      @dream.user_id = current_user.id
       if @dream.save
         format.json { render :json => { :status => 200, :message => "dream created successfully", :dream => @dream } }
         format.html do
