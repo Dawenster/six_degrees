@@ -1,0 +1,13 @@
+span
+  = avatar(current_user)
+- if current_user.uid
+  span.avatar-explanation
+    | Using your Facebook profile image
+- else
+  span.avatar-explanation
+    - if current_user.avatar.exists?
+      | Select another file to update your image
+    - else
+      | No image uploaded yet
+  .avatar-upload-button
+    = f.file_field :avatar

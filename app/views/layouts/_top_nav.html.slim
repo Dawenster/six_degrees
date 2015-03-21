@@ -44,9 +44,6 @@ nav.navbar.navbar-default role="navigation"
             li class="#{'highlighted-dropdown' if params[:action] == 'new' && params[:controller] == 'dreams'}"
               a href="#{new_dream_path}"
                 | Create dream
-            li class="#{'highlighted-dropdown' if params[:action] == 'show' && params[:controller] == 'users'}"
-              a href="#{user_path(current_user)}"
-                | Profile page
 
             li.divider
 

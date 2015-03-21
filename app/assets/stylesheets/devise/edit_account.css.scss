@@ -1,0 +1,29 @@
+.edit-user-avatar {
+  margin: 20px 0px;
+
+  .avatar-explanation {
+    margin-left: 10px;
+    font-style: italic;
+    color: grey;
+  }
+
+  .avatar-upload-button {
+    margin-top: 10px;
+  }
+}
+
+.toggle-section-text-holder {
+  margin: 10px 0px;
+}
+
+.toggle-section-text {
+  color: #428bca;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.delete-credit-card-button {
+  margin-bottom: 20px;
+}

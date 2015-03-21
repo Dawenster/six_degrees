@@ -1,0 +1,1 @@
+angular.module('sixdegrees', ['sixdegrees.controllers'])

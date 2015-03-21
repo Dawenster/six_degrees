@@ -1,0 +1,12 @@
+.row
+  .col-xs-12.col-sm-6
+    .form-group
+      = f.label :first_name
+      = f.text_field :first_name, :autofocus => true, :class => "form-control"
+      = errors_for resource, :first_name
+
+  .col-xs-12.col-sm-6
+    .form-group
+      = f.label :last_name
+      = f.text_field :last_name, :class => "form-control"
+      = errors_for resource, :last_name
