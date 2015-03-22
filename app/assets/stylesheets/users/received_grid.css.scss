@@ -2,9 +2,13 @@
   margin-bottom: 20px;
 }
 
-.received-grid-action-buttons {
-  margin-top: 10px;
+@media(max-width:767px) {
+  .received-grid-action-buttons {
+    margin-top: 10px;
+  }
+}
 
+.received-grid-action-buttons {
   .btn-warning {
     margin-left: 10px;
   }
