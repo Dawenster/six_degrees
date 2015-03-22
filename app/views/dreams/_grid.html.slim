@@ -2,9 +2,9 @@
   .user-section.bg-warning
     - user = dream.user
     span
-      = avatar(user)
+      = link_to avatar(user), activities_path(user)
     span.user-name
-      = user.full_name
+      = link_to user.full_name, activities_path(user)
     .pull-right.edit-icon
       = link_to "<i class='fa fa-edit'></i>".html_safe, edit_dream_path(dream) if dream.user == current_user
   .dream-section

@@ -7,9 +7,9 @@ h3
   .help-received-connection-holder ng-controller="HelpedReceivedGridCtrl"
     - user = connection.user
     span
-      = avatar(user)
+      = link_to avatar(user), activities_path(user)
     span.user-name
-      = "#{user.full_name} offered to help you"
+      = "#{link_to user.full_name, activities_path(user)} offered to help you".html_safe
     .pull-right.hidden-xs
       = render "received_grid_action_buttons", :connection => connection
     blockquote.connection-message
