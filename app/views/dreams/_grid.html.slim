@@ -13,7 +13,7 @@
     h3
       = dream.description
 
-    - if user_signed_in?
+    - if user_signed_in? && dream.user != current_user
       - if dream.helped_by(current_user)
         - connection = dream.connection_by(current_user)
         = "You offered to help #{time_ago_in_words(connection.created_at)} ago"
@@ -35,8 +35,6 @@
             .pull-left.cancel-link ng-click="showConfirm=!showConfirm"
               a
                 | Cancel
-                
-    - elsif dream.user == current_user
 
-    - else user_signed_in?
+    - elsif !user_signed_in?
       = link_to "Help", new_user_registration_path, :class => "btn btn-info dream-help-button"
