@@ -1,7 +1,8 @@
 class Users::ActivitiesController < ApplicationController
   def index
-    @dreams = current_user.dreams
-    @received = current_user.dreams_with_connections
-    @given = current_user.connections
+    @user = User.find(params[:id])
+    @dreams = @user.dreams
+    @received = @user.dreams_with_connections
+    @given = @user.connections
   end
 end

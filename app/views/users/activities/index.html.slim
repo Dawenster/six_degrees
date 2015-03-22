@@ -1,7 +1,9 @@
 .row
   .col-xs-12.col-md-8.col-md-offset-2
+    .large-profile-picture
+      = profile_picture(@user)
     h3.page-title
-      | Activities
+      = "#{@user.full_name}"
 
     .activities-tabs role="tabpanel"
       ul.nav.nav-pills.hidden-xs role="tablist"

@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+  def to_param
+    "#{id}-#{first_name.parameterize.downcase}-#{last_name.parameterize.downcase}"
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
