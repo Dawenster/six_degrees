@@ -5,6 +5,8 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
 
   $("body").on("click", ".send-connection-button", function() {
     var element = $(this)
+    element.attr('disabled','disabled')
+        
     var form = $(this).parents("form")
     var url = form.attr("action")
     var method = form.attr("method")
