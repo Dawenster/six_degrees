@@ -17,4 +17,20 @@
     font-size: 30px;
     color: #5cb85c;
   }
+
+  .show-email-link {
+    cursor: pointer;
+  }
+}
+
+.accepted-holder {
+  .fa-envelope-o {
+    margin-right: 5px;
+  }
+}
+
+@media(min-width:768px) {
+  .accepted-holder {
+    text-align: right;
+  }
 }

@@ -51,6 +51,14 @@ class ConnectionsController < ApplicationController
     end
   end
 
+  def email_display_as_string
+    respond_to do |format|
+      connection = Connection.find(params[:id])
+      email_display = render_to_string(:partial => 'users/activities/display_email.html.slim', :layout => false, :locals => { :connection => connection })
+      format.json { render :json => { :status => 200, :email_display => email_display } }
+    end
+  end
+
   private 
 
   def connection_params

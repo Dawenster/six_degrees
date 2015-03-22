@@ -41,4 +41,21 @@ app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($sco
   function noActionsTaken() {
     return !($scope.accepted || $scope.declined)
   }
+
+  $("body").on("click", ".accept-button", function() {
+    var url = $(this).attr("data-fetch-email-url")
+    var element = $(this)
+    $.ajax({
+      url: url,
+      method: "get"
+    })
+    .done(function(result) {
+      element.parent().parent().find(".display-email-section").html(result.email_display)
+    })
+  });
+
+  $("body").on("click", ".show-email-link", function() {
+    $(this).parent().hide()
+    $(this).parent().siblings(".email-as-text").show()
+  });
 }]);
