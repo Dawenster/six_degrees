@@ -44,8 +44,8 @@ nav.navbar.navbar-default.navbar-fixed-top role="navigation"
             li class="#{'highlighted-dropdown' if params[:action] == 'new' && params[:controller] == 'dreams'}"
               a href="#{activities_path(current_user)}"
                 | Activities
-                span.badge.notification-badge
-                  = current_user.num_connections_received
+                span.badge.notification-badge.received-badge-num
+                  = pending_received_activities(current_user.dreams)
 
             li.divider
 
