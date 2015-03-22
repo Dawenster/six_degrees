@@ -1,0 +1,7 @@
+.dream-icon
+  = "#{dream.icon} #{dream.dream_type}".html_safe
+h3
+  = dream.description
+
+- dream.connections.each do |connection|
+  = connection.initial_message

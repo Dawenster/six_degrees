@@ -1,6 +1,6 @@
 class ConnectionsController < ApplicationController
   def index
-    
+    @dreams = current_user.dreams_with_connections
   end
 
   def create

@@ -70,4 +70,8 @@ class User < ActiveRecord::Base
     num = self.connections_received.count
     return num == 0 ? nil : num
   end
+
+  def dreams_with_connections
+    self.dreams.select{|d| d.connections.any?}
+  end
 end
