@@ -18,8 +18,7 @@ class User < ActiveRecord::Base
                     :styles => { :small => "40x40#", :large => "200x200#" },
                     :s3_credentials => s3_credentials_hash,
                     :bucket => ENV['AWS_BUCKET'],
-                    :default_url => "https://s3-us-west-2.amazonaws.com/six-degrees-app/general/no_profile.png",
-                    :s3_protocol => :https
+                    :default_url => "https://s3-us-west-2.amazonaws.com/six-degrees-app/general/no_profile.png"
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
