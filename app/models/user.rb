@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.image = auth.info.image # assuming the user model has an image
+      user.skip_confirmation!
     end
   end
 
@@ -59,5 +60,14 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def connections_received
+    self.dreams.map{|d| d.connections}.flatten
+  end
+
+  def num_connections_received
+    num = self.connections_received.count
+    return num == 0 ? nil : num
   end
 end

@@ -42,8 +42,10 @@ nav.navbar.navbar-default.navbar-fixed-top role="navigation"
             span.caret
           ul.dropdown-menu
             li class="#{'highlighted-dropdown' if params[:action] == 'new' && params[:controller] == 'dreams'}"
-              a href="#{new_dream_path}"
-                | Create dream
+              a href="#{connections_path}"
+                | Notifications
+                span.badge.notification-badge
+                  = current_user.num_connections_received
 
             li.divider
 
