@@ -63,7 +63,12 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    "#{first_name} #{last_name}"
+    name = "#{first_name} #{last_name}"
+    if name.length > 16
+      return first_name
+    else
+      return name
+    end
   end
 
   def connections_received

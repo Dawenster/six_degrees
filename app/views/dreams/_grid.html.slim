@@ -17,8 +17,9 @@
       - if dream.helped_by(current_user)
         - connection = dream.connection_by(current_user)
         = "You offered to help #{time_ago_in_words(connection.created_at)} ago"
-        blockquote.connection-message
-          = connection.initial_message if !connection.initial_message.blank?
+        - if !connection.initial_message.blank?
+          blockquote.connection-message
+            = connection.initial_message
 
       - else
         = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|

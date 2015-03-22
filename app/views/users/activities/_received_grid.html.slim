@@ -12,7 +12,10 @@ h3
       = "#{link_to user.full_name, activities_path(user)} offered to help you".html_safe
     .pull-right.hidden-xs
       = render "received_grid_action_buttons", :connection => connection
-    blockquote.connection-message
-      = connection.initial_message if !connection.initial_message.blank?
+    - if !connection.initial_message.blank?
+      blockquote.connection-message
+        = connection.initial_message
+    .grid-timestamp
+      = "#{time_ago_in_words(connection.created_at)} ago"
     .visible-xs-block
       = render "received_grid_action_buttons", :connection => connection

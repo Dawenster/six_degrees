@@ -9,8 +9,12 @@ h3
   span
     = link_to avatar(receiver), activities_path(receiver)
   span.user-name
-    - pronoun = current_user_profile_page(@user) ? "You" : @user.full_name
-    = "#{link_to pronoun, activities_path(@user)} offered to help #{link_to receiver.full_name, activities_path(receiver)}".html_safe
+    - giver_pronoun = current_user_profile_page(@user) ? "You" : @user.full_name
+    - receiver_pronoun = (user_signed_in? && receiver == current_user) ? "you" : receiver.full_name
+
+    = "#{link_to giver_pronoun, activities_path(@user)} offered to help #{link_to receiver_pronoun, activities_path(receiver)}".html_safe
   - if current_user_profile_page(@user) && !connection.initial_message.blank?
     blockquote.connection-message
-      = connection.initial_message 
+      = connection.initial_message
+  .grid-timestamp
+      = "#{time_ago_in_words(connection.created_at)} ago"
