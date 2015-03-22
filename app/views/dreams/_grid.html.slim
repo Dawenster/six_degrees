@@ -8,10 +8,10 @@
     .pull-right.edit-icon
       = link_to "<i class='fa fa-edit'></i>".html_safe, edit_dream_path(dream) if dream.user == current_user
   .dream-section
-    h3
-      = dream.description
     .dream-icon
       = "#{dream.icon} #{dream.dream_type}".html_safe
+    h3
+      = dream.description
 
     .btn.btn-info.dream-help-button
       | Help
