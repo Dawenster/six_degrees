@@ -6,7 +6,10 @@ class ConnectionsController < ApplicationController
         @connection.user_id = current_user.id
         if @connection.save
           ConnectionMailer.connection_offered(@connection.id).deliver
-          format.json { render :json => { :status => 200, :message => "connection created successfully", :connection => @connection } }
+
+          connection_display = render_to_string(:partial => 'dreams/connection_offered.html.slim', :layout => false, :locals => { :dream => @connection.dream })
+
+          format.json { render :json => { :status => 200, :message => "connection created successfully", :connection_display => connection_display } }
           format.html do
             flash[:notice] = "Help successfully offered!"
             redirect_to dreams_path

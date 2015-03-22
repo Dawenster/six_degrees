@@ -77,6 +77,14 @@ class DreamsController < ApplicationController
     end
   end
 
+  def connection_offered_as_string
+    respond_to do |format|
+      dream = Dream.find(params[:id])
+      connection_offered_display = render_to_string(:partial => 'dreams/connection_offered.html.slim', :layout => false, :locals => { :dream => dream })
+      format.json { render :json => { :status => 200, :connection_offered_display => connection_offered_display } }
+    end
+  end
+
   private 
 
   def dream_params

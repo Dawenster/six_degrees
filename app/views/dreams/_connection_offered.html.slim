@@ -1,0 +1,5 @@
+- connection = dream.connection_by(current_user)
+= "You offered to help #{time_ago_in_words(connection.created_at)} ago"
+- if !connection.initial_message.blank?
+  blockquote.connection-message
+    = connection.initial_message
