@@ -1,5 +1,7 @@
 .row
   .col-xs-12.col-md-8.col-md-offset-2
+    h3.page-title
+      | Notifications
     - if @dreams.any?
       - @dreams.each do |dream|
         .row
@@ -7,5 +9,5 @@
             = render "grid", :dream => dream
 
     - else
-      h3
-        | No notifications yet!
+      p.no-notifications
+        | No notifications yet... sit tight :)
