@@ -20,6 +20,11 @@ class ConnectionsController < ApplicationController
     end
   end
 
+  def accept_connection
+    connection = Connection.find(params[:id])
+    connection.update_attributes(:accepted => true)
+  end
+
   private 
 
   def connection_params

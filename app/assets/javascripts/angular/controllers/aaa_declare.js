@@ -1,1 +1,1 @@
-angular.module('sixdegrees', ['sixdegrees.controllers'])
+angular.module('sixdegrees', ['sixdegrees.controllers', 'sixdegrees.services'])

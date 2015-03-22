@@ -4,14 +4,15 @@ h3
   = dream.description
 
 - dream.connections.each do |connection|
-  - user = connection.user
-  span
-    = avatar(user)
-  span.user-name
-    = "#{user.full_name} offered to help you"
-  .pull-right.hidden-xs
-    = render "received_grid_action_buttons"
-  blockquote.connection-message
-    = connection.initial_message if !connection.initial_message.blank?
-  .visible-xs-block
-    = render "received_grid_action_buttons"
+  .help-received-connection-holder ng-controller="HelpedReceivedGridCtrl"
+    - user = connection.user
+    span
+      = avatar(user)
+    span.user-name
+      = "#{user.full_name} offered to help you"
+    .pull-right.hidden-xs
+      = render "received_grid_action_buttons", :connection => connection
+    blockquote.connection-message
+      = connection.initial_message if !connection.initial_message.blank?
+    .visible-xs-block
+      = render "received_grid_action_buttons", :connection => connection

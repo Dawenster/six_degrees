@@ -1,3 +1,12 @@
-.received-grid-action-buttons
-  = link_to "Accept", "#", :class => "btn btn-success"
-  = link_to "Decline", "#", :class => "btn btn-warning"
+.received-grid-action-buttons data-status="#{connection.accepted}"
+  a.btn.btn-success ng-click="accepted=!accepted" ng-show="!(accepted || declined)"
+    | Accept
+  a.btn.btn-warning ng-click="declined=!declined" ng-show="!(accepted || declined)"
+    | Decline
+
+  .accepted-holder ng-show="accepted"
+    i.fa.fa-check-circle
+    | Accepted
+
+  .declined-holder ng-show="declined"
+    | Declined
