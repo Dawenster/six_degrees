@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   post "sign_in_via_facebook" => "apis#sign_in_via_facebook", as: :sign_in_via_facebook
   
   resources :dreams
-  resources :connections, :only => [:index, :create], :path => "notifications"
+  resources :connections, :only => [:create]
 
+  get "activities" => "users/activities#index", as: :activities
   get "how-it-works" => "pages#how_it_works", as: :how_it_works
   get "about" => "pages#about", as: :about
 end

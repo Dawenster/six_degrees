@@ -1,0 +1,13 @@
+.dream-icon
+  = "#{dream.icon} #{dream.dream_type}".html_safe
+h3
+  = dream.description
+
+- dream.connections.each do |connection|
+  - user = connection.user
+  span
+    = avatar(user)
+  span.user-name
+    = "#{user.full_name} offered to help you"
+  blockquote.connection-message
+    = connection.initial_message if !connection.initial_message.blank?

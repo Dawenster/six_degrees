@@ -1,8 +1,4 @@
 class ConnectionsController < ApplicationController
-  def index
-    @dreams = current_user.dreams_with_connections
-  end
-
   def create
     respond_to do |format|
       @connection = Connection.new(connection_params)
