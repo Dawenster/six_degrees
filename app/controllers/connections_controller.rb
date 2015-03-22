@@ -1,4 +1,8 @@
 class ConnectionsController < ApplicationController
+  def index
+    
+  end
+
   def create
     respond_to do |format|
       @connection = Connection.new(connection_params)
