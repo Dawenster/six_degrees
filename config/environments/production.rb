@@ -89,8 +89,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'six-degrees-app.herokuapp.com',
-    user_name:            'dstwen@gmail.com',
+    domain:               'timeauction.org',
+    user_name:            'team@timeauction.org',
     password:             ENV['EMAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
