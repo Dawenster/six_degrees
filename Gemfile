@@ -8,6 +8,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'omniauth-facebook'
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'pg'
 gem 'rails', '4.1.1'
 gem 'rest-client'
