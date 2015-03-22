@@ -1,5 +1,6 @@
 class Dream < ActiveRecord::Base
   belongs_to :user
+  mas_many :connections
 
   validates :description, :dream_type, :user_id, :presence => true, allow_blank: false
 
