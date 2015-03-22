@@ -1,0 +1,31 @@
+<div id="fb-root"></div>
+<% if Rails.env.development? %>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '388474124634416',
+        xfbml      : true,
+        version    : 'v2.2'
+      });
+    };
+  </script>
+<% else %>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '388472757967886',
+        xfbml      : true,
+        version    : 'v2.2'
+      });
+    };
+  </script>
+<% end %>
+<script>
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
