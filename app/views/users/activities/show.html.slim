@@ -42,10 +42,10 @@
 
         .tab-pane role="tabpanel" id="given"
           - if @given.any?
-            - @given.each do |given_dream|
+            - @given.each do |given_connection|
               .row
                 .col-xs-12
-                  / = render "received_grid", :dream => given_dream
+                  = render "given_grid", :connection => given_connection
           - else
             - if current_user_profile_page(@user)
               h4.no-activity-yet

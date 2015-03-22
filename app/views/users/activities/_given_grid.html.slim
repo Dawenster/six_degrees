@@ -1,0 +1,16 @@
+- dream = connection.dream
+.dream-icon
+  = "#{dream.icon} #{dream.dream_type}".html_safe
+h3
+  = dream.description
+
+.help-given-connection-holder
+  - receiver = dream.user
+  span
+    = link_to avatar(receiver), activities_path(receiver)
+  span.user-name
+    - pronoun = current_user_profile_page(@user) ? "You" : @user.full_name
+    = "#{link_to pronoun, activities_path(@user)} offered to help #{link_to receiver.full_name, activities_path(receiver)}".html_safe
+  - if current_user_profile_page(@user) && !connection.initial_message.blank?
+    blockquote.connection-message
+      = connection.initial_message 
