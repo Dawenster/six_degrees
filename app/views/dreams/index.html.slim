@@ -1,3 +1,6 @@
-- @dreams.each do |dream|
-  div
-    = dream.description
+.row
+  .col-xs-12.col-md-8.col-md-offset-2
+    - @dreams.each do |dream|
+      .row
+        .col-xs-12
+          = render "grid", :dream => dream

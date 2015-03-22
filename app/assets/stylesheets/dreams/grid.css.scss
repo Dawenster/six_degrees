@@ -1,0 +1,31 @@
+.dream-grid-holder {
+  width: 100%;
+  margin: 30px 0px;
+  border: 1px solid lightgrey;
+
+  .user-section {
+    padding: 30px;
+  }
+
+  .dream-section {
+    padding: 0px 30px 30px 30px;
+  }
+
+  .edit-icon {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+}
+
+.dream-icon {
+  font-size: 14px;
+  color: rgba(0,0,0,0.3);
+}
+
+.user-name {
+  margin-left: 10px;
+}
+
+.dream-help-button {
+  margin-top: 10px;
+}

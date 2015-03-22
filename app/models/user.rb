@@ -39,4 +39,8 @@ class User < ActiveRecord::Base
       :password => Devise.friendly_token[0,20]
     )
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

@@ -13,4 +13,12 @@ class Dream < ActiveRecord::Base
     end
     return dreams
   end
+
+  def icon
+    if dream_type == "Personal"
+      return "<i class='fa fa-heart'></i>"
+    else
+      return "<i class='fa fa-briefcase'></i>"
+    end
+  end
 end

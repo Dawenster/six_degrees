@@ -1,0 +1,17 @@
+.dream-grid-holder
+  .user-section.bg-warning
+    - user = dream.user
+    span
+      = avatar(user)
+    span.user-name
+      = user.full_name
+    .pull-right.edit-icon
+      = link_to "<i class='fa fa-edit'></i>".html_safe, edit_dream_path(dream) if dream.user == current_user
+  .dream-section
+    h3
+      = dream.description
+    .dream-icon
+      = "#{dream.icon} #{dream.dream_type}".html_safe
+
+    .btn.btn-info.dream-help-button
+      | Help
