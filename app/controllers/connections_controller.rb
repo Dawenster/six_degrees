@@ -21,8 +21,27 @@ class ConnectionsController < ApplicationController
   end
 
   def accept_connection
-    connection = Connection.find(params[:id])
-    connection.update_attributes(:accepted => true)
+    respond_to do |format|
+      begin
+        connection = Connection.find(params[:id])
+        connection.update_attributes(:accepted => true)
+        format.json { render :json => { :status => 200, :message => "connection accepted successfully", :connection => connection } }
+      rescue => error
+        format.json { render :json => { :status => 500, :message => error } }
+      end
+    end
+  end
+
+  def decline_connection
+    respond_to do |format|
+      begin
+        connection = Connection.find(params[:id])
+        connection.update_attributes(:accepted => false)
+        format.json { render :json => { :status => 200, :message => "connection declined successfully", :connection => connection } }
+      rescue => error
+        format.json { render :json => { :status => 500, :message => error } }
+      end
+    end
   end
 
   private 

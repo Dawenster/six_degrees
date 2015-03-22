@@ -1,12 +1,14 @@
 .received-grid-action-buttons data-status="#{connection.accepted}"
-  a.btn.btn-success ng-click="accepted=!accepted" ng-show="!(accepted || declined)"
-    | Accept
-  a.btn.btn-warning ng-click="declined=!declined" ng-show="!(accepted || declined)"
-    | Decline
+  .buttons-holder ng-show="showButtons"
+    a.btn.btn-success ng-click="accept('#{accept_connection_path(connection)}')"
+      | Accept
+    a.btn.btn-warning ng-click="decline('#{decline_connection_path(connection)}')"
+      | Decline
 
-  .accepted-holder ng-show="accepted"
-    i.fa.fa-check-circle
-    | Accepted
+  .accepted-holder ng-show="canShow(#{connection.send_status_to_angular('accept')})"
+    span.label.label-success
+      | Accepted
 
-  .declined-holder ng-show="declined"
-    | Declined
+  .declined-holder ng-show="canShow(#{connection.send_status_to_angular('decline')})"
+    span.label.label-warning
+      | Declined

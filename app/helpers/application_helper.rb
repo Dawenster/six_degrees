@@ -40,6 +40,7 @@ module ApplicationHelper
   end
 
   def pending_received_activities(dreams)
-    dreams.map{|r|r.connections}.flatten.select{|r|r.accepted == nil}.count
+    count = dreams.map{|r|r.connections}.flatten.select{|r|r.accepted == nil}.count
+    count == 0 ? nil : count
   end
 end
