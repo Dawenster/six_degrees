@@ -22,4 +22,12 @@ class Dream < ActiveRecord::Base
       return "<i class='fa fa-briefcase'></i>"
     end
   end
+
+  def helped_by(user)
+    self.connections.map{|c|c.user}.include?(user)
+  end
+
+  def connection_by(user)
+    self.connections.select{|c| c.user == user}.first
+  end
 end

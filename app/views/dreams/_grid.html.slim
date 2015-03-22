@@ -1,4 +1,4 @@
-.dream-grid-holder
+.dream-grid-holder ng-controller="DreamGridCtrl"
   .user-section.bg-warning
     - user = dream.user
     span
@@ -13,5 +13,24 @@
     h3
       = dream.description
 
-    .btn.btn-info.dream-help-button
-      | Help
+    - if current_user && dream.helped_by(current_user)
+      - connection = dream.connection_by(current_user)
+      = "You offered to help #{time_ago_in_words(connection.created_at)} ago"
+      blockquote.connection-message
+        = connection.initial_message if !connection.initial_message.blank?
+
+    - else
+      = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
+        .connection-form ng-show="showConfirm"
+            = connection.input :initial_message, :label => "Send a message to #{dream.user.first_name} (optional)"
+            = connection.input :dream_id, :as => :hidden, :input_html => { :value => dream.id }
+
+        .btn.btn-info.dream-help-button ng-click="showConfirm=!showConfirm" ng-show="!showConfirm"
+          | Help
+
+        .confirm-buttons ng-show="showConfirm"
+          .pull-left
+            = connection.button :submit, "Send", :class => "btn btn-info dream-help-button"
+          .pull-left.cancel-link ng-click="showConfirm=!showConfirm"
+            a
+              | Cancel
