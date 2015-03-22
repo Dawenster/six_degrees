@@ -10,7 +10,7 @@ class ConnectionMailer < ActionMailer::Base
     @receiver = @dream.user
 
     @url = activities_url(@receiver)
-    mail(from: @helper.email, to: @receiver.email, subject: "#{@helper.first_name} wants to help with your dream")
+    mail(from: "sixdegrees@gmail.com", to: @receiver.email, subject: "#{@helper.first_name} wants to help with your dream")
   end
 
   def connection_made(connection_id)
