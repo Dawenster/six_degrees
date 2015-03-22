@@ -16,7 +16,7 @@
     - if user_signed_in? && dream.user != current_user
       .offering-dream-section
         - if dream.helped_by(current_user)
-          = render "connection_offered", :dream => dream
+          = render "dreams/connection_offered", :dream => dream
 
         - else
           = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
