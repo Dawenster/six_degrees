@@ -794,7 +794,7 @@ body.outlook p {
                           <td>
                             <h3>Hi <%= @helper.first_name %>,</h3>
                             <p class="lead"><%= link_to @receiver.full_name, activities_url(@receiver) %> has accepted your offer to help on the dream: <%= @dream.description %></p>
-                            <p>Reply to <%= @receiver.email %> or simply reply to this email.</p>
+                            <p>Email <%= mail_to @receiver.email %> to start the conversation.</p>
                             <p style="margin-top: 10px;">
                               Thank you!
                             </p>
