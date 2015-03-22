@@ -15,7 +15,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'simple_form'
 gem 'simple_token_authentication'
 gem 'slim'
-gem 'turbolinks'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 
