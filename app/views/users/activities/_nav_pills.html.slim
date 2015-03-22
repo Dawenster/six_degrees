@@ -1,0 +1,11 @@
+li.active role="presentation"
+  a href="#dreams" aria-controls="dreams" role="tab" data-toggle="pill"
+    | Your dreams
+li role="presentation"
+  a href="#received" aria-controls="received" role="tab" data-toggle="pill"
+    | Help received
+    span.badge
+      = pending_received_activities(@received)
+li role="presentation"
+  a href="#given" aria-controls="given" role="tab" data-toggle="pill"
+    | Help given

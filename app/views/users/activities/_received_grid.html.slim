@@ -9,5 +9,9 @@ h3
     = avatar(user)
   span.user-name
     = "#{user.full_name} offered to help you"
+  .pull-right.hidden-xs
+    = render "received_grid_action_buttons"
   blockquote.connection-message
     = connection.initial_message if !connection.initial_message.blank?
+  .visible-xs-block
+    = render "received_grid_action_buttons"

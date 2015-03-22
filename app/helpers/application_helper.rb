@@ -38,4 +38,8 @@ module ApplicationHelper
       image_tag user.avatar.url(:large), :class => "user-profile-picture"
     end
   end
+
+  def pending_received_activities(dreams)
+    dreams.map{|r|r.connections}.flatten.select{|r|r.accepted == nil}.count
+  end
 end

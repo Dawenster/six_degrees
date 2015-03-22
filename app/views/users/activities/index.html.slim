@@ -4,16 +4,10 @@
       | Activities
 
     .activities-tabs role="tabpanel"
-      ul.nav.nav-pills role="tablist"
-        li.active role="presentation"
-          a href="#dreams" aria-controls="dreams" role="tab" data-toggle="pill"
-            | Your dreams
-        li role="presentation"
-          a href="#received" aria-controls="received" role="tab" data-toggle="pill"
-            | Help received
-        li role="presentation"
-          a href="#given" aria-controls="given" role="tab" data-toggle="pill"
-            | Help given
+      ul.nav.nav-pills.hidden-xs role="tablist"
+        = render "nav_pills"
+      ul.nav.nav-pills.visible-xs-block.nav-stacked role="tablist"
+        = render "nav_pills"
 
       .tab-content
         .tab-pane.active role="tabpanel" id="dreams"
