@@ -24,15 +24,16 @@
 
             = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
 
-        .tab-pane role="tabpanel" id="received"
-          - if @received.any?
-            - @received.each do |received_dream|
-              .row
-                .col-xs-12
-                  = render "received_grid", :dream => received_dream
-          - else
-            h4.no-activity-yet
-              | No help yet... sit tight :)
+        - if current_user_profile_page(@user)
+          .tab-pane role="tabpanel" id="received"
+            - if @received.any?
+              - @received.each do |received_dream|
+                .row
+                  .col-xs-12
+                    = render "received_grid", :dream => received_dream
+            - else
+              h4.no-activity-yet
+                | No help yet... sit tight :)
 
         .tab-pane role="tabpanel" id="given"
           - @given = []

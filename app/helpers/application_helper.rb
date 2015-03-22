@@ -43,4 +43,8 @@ module ApplicationHelper
     count = dreams.map{|r|r.connections}.flatten.select{|r|r.accepted == nil}.count
     count == 0 ? nil : count
   end
+
+  def current_user_profile_page(user)
+    user_signed_in? && user == current_user
+  end
 end
