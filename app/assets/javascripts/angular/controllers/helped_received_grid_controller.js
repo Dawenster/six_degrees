@@ -1,9 +1,12 @@
 var app = angular.module('sixdegrees');
 
 app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($scope, Connections) {
+  $scope.accepted = false
+  $scope.declined = false
+
   $scope.canShow = function(status, id) {
-    if (typeof status === 'undefined') {
-      $scope.showButtons = true;
+    if (typeof status === 'undefined' && noActionsTaken()) {
+      $scope.showButtons = true
     } else {
       return status
     }
@@ -11,13 +14,15 @@ app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($sco
 
   $scope.accept = function(url) {
     Connections.updateStatus(url)
-    $scope.accepted = !$scope.accepted
+    $scope.accepted = true
+    $scope.showButtons = false
     updateBadgeNum()
   }
 
   $scope.decline = function(url) {
     Connections.updateStatus(url)
-    $scope.declined = !$scope.declined
+    $scope.declined = true
+    $scope.showButtons = false
     updateBadgeNum()
   }
 
@@ -31,5 +36,9 @@ app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($sco
         $(badgeNums[i]).text(currentNum - 1)
       }
     };
+  }
+
+  function noActionsTaken() {
+    return !($scope.accepted || $scope.declined)
   }
 }]);

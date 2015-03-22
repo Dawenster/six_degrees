@@ -5,10 +5,10 @@
     a.btn.btn-warning ng-click="decline('#{decline_connection_path(connection)}')"
       | Decline
 
-  .accepted-holder ng-show="canShow(#{connection.send_status_to_angular('accept')})"
+  .accepted-holder ng-show="canShow(#{connection.send_status_to_angular('accept')}) || accepted"
     span.label.label-success
       | Accepted
 
-  .declined-holder ng-show="canShow(#{connection.send_status_to_angular('decline')})"
+  .declined-holder ng-show="canShow(#{connection.send_status_to_angular('decline')}) || declined"
     span.label.label-warning
       | Declined
