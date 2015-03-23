@@ -53,6 +53,11 @@
                 .row
                   .col-xs-12
                     = render "received_grid", :dream => received_dream
+            - elsif @dreams.empty?
+              h4.no-activity-yet
+                | Gotta dream first before you can be helped!
+
+              = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
             - else
               h4.no-activity-yet
                 | No help yet... sit tight :)
