@@ -1,8 +1,6 @@
 var app = angular.module('sixdegrees');
 
 app.controller('DreamGridCtrl', ['$scope', function($scope) {
-  $scope.showConfirm = false
-
   $("body").on("click", ".send-connection-button", function() {
     var element = $(this)
     element.attr('disabled','disabled')
@@ -20,5 +18,17 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
     .done(function(result) {
       element.parents(".offering-dream-section").html(result.connection_display)
     })
+  })
+
+  $("body").on("click", ".dream-help-button", function() {
+    $(this).siblings(".connection-form").toggle()
+    $(this).siblings(".confirm-buttons").toggle()
+    $(this).toggle()
+  })
+
+  $("body").on("click", ".cancel-link", function() {
+    $(this).parent().siblings(".connection-form").toggle()
+    $(this).parent().siblings(".dream-help-button").toggle()
+    $(this).parent().toggle()
   })
 }]);

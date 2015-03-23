@@ -20,18 +20,18 @@
 
         - else
           = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
-            .connection-form ng-show="showConfirm"
+            .connection-form style="display: none;"
               = connection.input :initial_message, :label => "Send a message to #{dream.user.first_name} (optional)"
               = connection.input :dream_id, :as => :hidden, :input_html => { :value => dream.id }
 
-            .btn.btn-info.dream-help-button ng-click="showConfirm=!showConfirm" ng-show="!showConfirm"
+            .btn.btn-info.dream-help-button
               | Help
 
-            .confirm-buttons ng-show="showConfirm"
+            .confirm-buttons style="display: none;"
               .pull-left
                 .btn.btn-info.dream-help-button.send-connection-button
                   | Send
-              .pull-left.cancel-link ng-click="showConfirm=!showConfirm"
+              .pull-left.cancel-link
                 a
                   | Cancel
 
