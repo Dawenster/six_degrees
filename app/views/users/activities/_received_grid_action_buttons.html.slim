@@ -1,16 +1,16 @@
-.received-grid-action-buttons data-status="#{connection.accepted}"
-  .buttons-holder ng-show="showButtons"
-    a.btn.btn-success.accept-button ng-click="accept('#{accept_connection_path(connection)}')" data-fetch-email-url="#{email_display_as_string_path(connection)}"
+.received-grid-action-buttons
+  .buttons-holder class="#{'hide' unless connection.accepted.nil?}"
+    a.btn.btn-success.accept-button ng-click="updateStatus('#{accept_connection_path(connection)}')" data-fetch-email-url="#{email_display_as_string_path(connection)}"
       | Accept
-    a.btn.btn-warning ng-click="decline('#{decline_connection_path(connection)}')"
+    a.btn.btn-warning ng-click="updateStatus('#{decline_connection_path(connection)}')"
       | Decline
 
-  .accepted-holder ng-show="canShow(#{connection.send_status_to_angular('accept')}) || accepted"
+  .accepted-holder class="#{'hide' unless connection.accepted}"
     span.label.label-success
       | Accepted
     .display-email-section
       = render "display_email", :connection => connection if connection.accepted
 
-  .declined-holder ng-show="canShow(#{connection.send_status_to_angular('decline')}) || declined"
+  .declined-holder class="#{'hide' if connection.accepted.nil? || connection.accepted}"
     span.label.label-warning
       | Declined

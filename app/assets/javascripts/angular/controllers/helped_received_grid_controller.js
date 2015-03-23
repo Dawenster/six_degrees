@@ -1,28 +1,8 @@
 var app = angular.module('sixdegrees');
 
 app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($scope, Connections) {
-  $scope.accepted = false
-  $scope.declined = false
-
-  $scope.canShow = function(status, id) {
-    if (typeof status === 'undefined' && noActionsTaken()) {
-      $scope.showButtons = true
-    } else {
-      return status
-    }
-  }
-
-  $scope.accept = function(url) {
+  $scope.updateStatus = function(url) {
     Connections.updateStatus(url)
-    $scope.accepted = true
-    $scope.showButtons = false
-    updateBadgeNum()
-  }
-
-  $scope.decline = function(url) {
-    Connections.updateStatus(url)
-    $scope.declined = true
-    $scope.showButtons = false
     updateBadgeNum()
   }
 
@@ -52,6 +32,15 @@ app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($sco
     .done(function(result) {
       element.parent().parent().find(".display-email-section").html(result.email_display)
     })
+  });
+
+  $("body").on("click", ".buttons-holder a", function() {
+    if ($(this).hasClass("accept-button")) {
+      $(this).parent().siblings(".accepted-holder").removeClass("hide")
+    } else {
+      $(this).parent().siblings(".declined-holder").removeClass("hide")
+    }
+    $(this).parent().hide()
   });
 
   $("body").on("click", ".show-email-link", function() {

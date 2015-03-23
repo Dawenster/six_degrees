@@ -47,7 +47,7 @@
                 = "#{@user.first_name} has not given help to others yet."
 
         - if current_user_profile_page(@user)
-          .tab-pane role="tabpanel" id="received"
+          .tab-pane role="tabpanel" id="received" ng-controller="HelpedReceivedGridCtrl"
             - if @received.any?
               - @received.each do |received_dream|
                 .row

@@ -4,7 +4,7 @@ h3
   = dream.description
 
 - dream.connections.each do |connection|
-  .help-received-connection-holder ng-controller="HelpedReceivedGridCtrl"
+  .help-received-connection-holder
     - user = connection.user
     span
       = link_to avatar(user), activities_path(user)
