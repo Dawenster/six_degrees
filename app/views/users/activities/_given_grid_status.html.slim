@@ -1,0 +1,11 @@
+- if connection.accepted
+  span.label.label-success
+    | Accepted
+
+- elsif connection.accepted.nil?
+  span.label.label-info
+    | Pending
+
+- else
+  span.label.label-warning
+    | Declined

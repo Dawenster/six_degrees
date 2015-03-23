@@ -13,8 +13,12 @@ h3
     - receiver_pronoun = (user_signed_in? && receiver == current_user) ? "you" : receiver.full_name
 
     = "#{link_to giver_pronoun, activities_path(@user)} offered to help #{link_to receiver_pronoun, activities_path(receiver)}".html_safe
+  .pull-right.hidden-xs
+    = render "given_grid_status", :connection => connection
   - if current_user_profile_page(@user) && !connection.initial_message.blank?
     blockquote.connection-message
       = connection.initial_message
   .grid-timestamp
-      = "#{time_ago_in_words(connection.created_at)} ago"
+    = "#{time_ago_in_words(connection.created_at)} ago"
+  .visible-xs-block
+    = render "given_grid_status", :connection => connection
