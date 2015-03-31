@@ -12,7 +12,7 @@
         = render "nav_pills"
 
       .tab-content
-        .tab-pane.active role="tabpanel" id="dreams"
+        .tab-pane.active role="tabpanel" id="dreams" ng-controller="DreamGridCtrl"
           - if @dreams.any?
             - @dreams.each do |dream|
               .row
