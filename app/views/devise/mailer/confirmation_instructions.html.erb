@@ -794,13 +794,7 @@ body.outlook p {
                           <td>
                             <h1>Hi <%= @name %>,</h1>
                             <p class="lead">Please confirm your Six Degrees account.</p>
-                            <table class="tiny-button twitter">
-                              <tr>
-                                <td style="width: 50% !important; background-color: #31b0d5;">
-                                  <%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %>
-                                </td>
-                              </tr>
-                            </table>
+                            <%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %>
                           </td>
                           <td class="expander"></td>
                         </tr>

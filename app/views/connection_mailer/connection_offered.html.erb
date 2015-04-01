@@ -797,13 +797,7 @@ body.outlook p {
                             <% if !@connection.initial_message.blank? %>
                               <p>Message: <%= @connection.initial_message %></p>
                             <% end %>
-                            <table class="tiny-button twitter">
-                              <tr>
-                                <td style="width: 50% !important; background-color: #31b0d5;">
-                                  <%= link_to 'View offer', activities_url(@receiver, :anchor => "tab_received") %>
-                                </td>
-                              </tr>
-                            </table>
+                            <%= link_to 'View offer', activities_url(@receiver, :anchor => "tab_received") %>
                             <p style="margin-top: 10px;">
                               Good luck!
                             </p>
