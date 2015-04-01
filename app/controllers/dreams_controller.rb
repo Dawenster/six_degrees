@@ -6,7 +6,7 @@ class DreamsController < ApplicationController
         render :json => dreams
       end
       format.html do
-        @dreams = Dream.all
+        @dreams = Dream.all.shuffle
         render "index"
       end
     end

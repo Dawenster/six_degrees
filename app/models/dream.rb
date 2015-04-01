@@ -6,7 +6,7 @@ class Dream < ActiveRecord::Base
 
   def self.dreams_with_user_info
     dreams = []
-    Dream.all.each do |dream|
+    Dream.all.shuffle.each do |dream|
       dreams << {
         :user => dream.user,
         :content => dream
