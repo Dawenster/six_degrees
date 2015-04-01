@@ -10,32 +10,32 @@
     .col-xs-12.col-sm-4
       .panel.panel-success
         .panel-heading
-          i.fa.fa-pencil
-          | Create dreams
+          i.fa.fa-user
+          | Create Account
         .panel-body
           p
-            | You create a dream...
+            | Create your own account to browse through and share dreams with your community
 
-          = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
+          = link_to "Create an account", new_user_registration_path, :class => "btn btn-success"
 
     .col-xs-12.col-sm-4
       .panel.panel-info
         .panel-heading
-          i.fa.fa-thumbs-o-up
-          | Someone helps you
+          i.fa.fa-cloud-upload
+          | Create Dreams
         .panel-body
           p
-            | Some nice person will help...
+            | Share your personal or professional dreams with the community to get connected
 
-          = link_to "Browse dreams", dreams_path, :class => "btn btn-info"
+          = link_to "Create a dream", new_dream_path, :class => "btn btn-info"
 
     .col-xs-12.col-sm-4
       .panel.panel-warning
         .panel-heading
           i.fa.fa-heart
-          | Awesomeness ensues
+          | Help with Dreams
         .panel-body
           p
-            | Dreams come true...
+            | Reach out to help others with their dreams; once they accept the two of you are connected
 
-          = link_to "Create an account", new_user_registration_path, :class => "btn btn-warning"
+          = link_to "Browse dreams", dreams_path, :class => "btn btn-warning"
