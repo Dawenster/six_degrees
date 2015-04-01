@@ -21,10 +21,10 @@ nav.navbar.navbar-default.navbar-fixed-top role="navigation"
         a href="#{dreams_path}" 
           | Browse
         div class="#{'active-underline' if params[:action] == 'index' && params[:controller] == 'dreams'}"
-      li
-        a href="#{about_path}" 
-          | About
-        div class="#{'active-underline' if params[:action] == 'about' && params[:controller] == 'pages'}"
+      / li
+      /   a href="#{about_path}" 
+      /     | About
+      /   div class="#{'active-underline' if params[:action] == 'about' && params[:controller] == 'pages'}"
 
     ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
