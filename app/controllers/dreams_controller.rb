@@ -1,4 +1,6 @@
 class DreamsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   def index
     respond_to do |format|
       format.json do
