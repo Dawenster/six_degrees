@@ -9,7 +9,6 @@
         | your network
 
   .landing-browse-all-campaigns
-    - if user_signed_in?
-      = link_to "Browse dreams", dreams_path, :class => "btn btn-info btn-lg"
+    = link_to "Browse dreams", dreams_path, :class => "btn btn-info btn-lg"
     .how-it-works-link
       = link_to "How it works", how_it_works_path
