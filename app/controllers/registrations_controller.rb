@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
-    flash[:alert] = "You need to sign in or sign up before continuing." if params[:help]
+    flash.now[:alert] = "You need to sign in or sign up before continuing." if params[:help]
 
     super
   end
