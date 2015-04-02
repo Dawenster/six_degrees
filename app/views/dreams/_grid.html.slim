@@ -36,4 +36,4 @@
                   | Cancel
 
     - elsif !user_signed_in?
-      = link_to "Help", new_user_registration_path, :class => "btn btn-info dream-help-button"
+      = link_to "Help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"

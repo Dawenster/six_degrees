@@ -1,4 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
+  def new
+    flash[:alert] = "You need to sign in or sign up before continuing." if params[:help]
+
+    super
+  end
+
   def update
     # For Rails 4
     account_update_params = devise_parameter_sanitizer.sanitize(:account_update)
