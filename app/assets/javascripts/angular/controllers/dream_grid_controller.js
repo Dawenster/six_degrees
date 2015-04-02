@@ -21,9 +21,12 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
   })
 
   $("body").on("click", ".dream-help-button", function() {
-    $(this).siblings(".connection-form").toggle()
-    $(this).siblings(".confirm-buttons").toggle()
-    $(this).toggle()
+    var signedIn = $(".dream-grid-holder").attr("data-user-signed-in")
+    if (signedIn == true) {
+      $(this).siblings(".connection-form").toggle()
+      $(this).siblings(".confirm-buttons").toggle()
+      $(this).toggle()
+    }
   })
 
   $("body").on("click", ".cancel-link", function() {
