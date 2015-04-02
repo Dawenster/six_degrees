@@ -22,13 +22,14 @@ class User < ActiveRecord::Base
                     :s3_protocol => :https
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates :first_name, :last_name, :presence => true, allow_blank: false
 
   def to_param
     "#{id}-#{first_name.parameterize.downcase}-#{last_name.parameterize.downcase}"
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name   # assuming the user model has a name
@@ -37,6 +38,8 @@ class User < ActiveRecord::Base
       user.image = auth.info.image # assuming the user model has an image
       user.skip_confirmation!
     end
+    user.save(:validate => false)
+    return user
   end
 
   def self.new_with_session(params, session)
