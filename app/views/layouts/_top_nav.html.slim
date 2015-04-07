@@ -25,6 +25,9 @@ nav.navbar.navbar-default.navbar-fixed-top role="navigation"
       /   a href="#{about_path}" 
       /     | About
       /   div class="#{'active-underline' if params[:action] == 'about' && params[:controller] == 'pages'}"
+      li
+        a href="https://contactsixdegrees.wufoo.com/forms/z16he77e0iazmea/"
+          | Give feedback
 
     ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
