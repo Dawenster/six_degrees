@@ -57,7 +57,7 @@ class DreamsController < ApplicationController
       if @dream.save
         format.json { render :json => { :status => 200, :message => "dream updated successfully", :dream => @dream } }
         format.html do
-          flash[:notice] = "Dream successfully created."
+          flash[:notice] = "Dream successfully updated."
           redirect_to dreams_path
         end
       else
