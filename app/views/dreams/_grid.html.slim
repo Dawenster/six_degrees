@@ -1,39 +1,40 @@
-.dream-grid-holder data-user-signed-in="#{user_signed_in?}"
-  .user-section.bg-warning
-    - user = dream.user
-    span
-      = link_to avatar(user), activities_path(user)
-    span.user-name
-      = link_to user.full_name, activities_path(user)
-    .pull-right.edit-icon
-      = link_to "<i class='fa fa-edit'></i>".html_safe, edit_dream_path(dream) if dream.user == current_user
-  .dream-section
-    .dream-icon
-      = "#{dream.icon} #{dream.dream_type}".html_safe
-    h3
-      = dream.description
+- user = dream.user
+- unless user.nil?
+  .dream-grid-holder data-user-signed-in="#{user_signed_in?}"
+    .user-section.bg-warning
+      span
+        = link_to avatar(user), activities_path(user)
+      span.user-name
+        = link_to user.full_name, activities_path(user)
+      .pull-right.edit-icon
+        = link_to "<i class='fa fa-edit'></i>".html_safe, edit_dream_path(dream) if dream.user == current_user
+    .dream-section
+      .dream-icon
+        = "#{dream.icon} #{dream.dream_type}".html_safe
+      h3
+        = dream.description
 
-    - if user_signed_in? && dream.user != current_user
-      .offering-dream-section
-        - if dream.helped_by(current_user)
-          = render "dreams/connection_offered", :dream => dream
+      - if user_signed_in? && dream.user != current_user
+        .offering-dream-section
+          - if dream.helped_by(current_user)
+            = render "dreams/connection_offered", :dream => dream
 
-        - else
-          = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
-            .connection-form style="display: none;"
-              = connection.input :initial_message, :label => "Send a message to #{dream.user.first_name} (optional)"
-              = connection.input :dream_id, :as => :hidden, :input_html => { :value => dream.id }
+          - else
+            = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
+              .connection-form style="display: none;"
+                = connection.input :initial_message, :label => "Send a message to #{dream.user.first_name} (optional)"
+                = connection.input :dream_id, :as => :hidden, :input_html => { :value => dream.id }
 
-            .btn.btn-info.dream-help-button
-              | Help
+              .btn.btn-info.dream-help-button
+                | Help
 
-            .confirm-buttons style="display: none;"
-              .pull-left
-                .btn.btn-info.send-connection-button
-                  | Send
-              .pull-left.cancel-link
-                a
-                  | Cancel
+              .confirm-buttons style="display: none;"
+                .pull-left
+                  .btn.btn-info.send-connection-button
+                    | Send
+                .pull-left.cancel-link
+                  a
+                    | Cancel
 
-    - elsif !user_signed_in?
-      = link_to "Help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"
+      - elsif !user_signed_in?
+        = link_to "Help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"
