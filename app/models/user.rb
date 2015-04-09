@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :dreams
-  has_many :connections
+  has_many :dreams, :dependent => :destroy
+  has_many :connections, :dependent => :destroy
 
   s3_credentials_hash = {
     :access_key_id => ENV['AWS_ACCESS_KEY'],
