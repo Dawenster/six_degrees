@@ -35,8 +35,7 @@ class User < ActiveRecord::Base
       user.name = auth.info.name   # assuming the user model has a name
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.gender = auth.info.gender
-      user.image = auth.info.image # assuming the user model has an image
+      user.gender = auth.extra.raw_info.gender
       user.skip_confirmation!
     end
     user.save(:validate => false)

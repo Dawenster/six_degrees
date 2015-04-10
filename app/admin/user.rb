@@ -41,6 +41,7 @@ ActiveAdmin.register User do
       column :email
       column :first_name
       column :last_name
+      column "Facebook ID", :uid
       column :gender
       actions
     end
