@@ -5,7 +5,11 @@ ActiveAdmin.register Connection do
     end
     column :initial_message
     column "Dream" do |connection|
-      link_to connection.dream.description, admin_dream_path(connection.dream)
+      if connection.dream
+        link_to connection.dream.description, admin_dream_path(connection.dream)
+      else
+        "N/A"
+      end
     end
     column "Helper" do |connection|
       if connection.user.nil?
@@ -15,10 +19,14 @@ ActiveAdmin.register Connection do
       end
     end
     column "Receiver" do |connection|
-      if connection.receiver.nil?
-        "N/A"
+      if connection.dream
+        if connection.receiver.nil?
+          "N/A"
+        else
+          link_to connection.receiver.full_name, admin_user_path(connection.receiver)
+        end
       else
-        link_to connection.receiver.full_name, admin_user_path(connection.receiver)
+        "N/A"
       end
     end
     column :accepted
