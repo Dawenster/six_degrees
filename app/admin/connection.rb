@@ -29,14 +29,18 @@ ActiveAdmin.register Connection do
       end
     end
     column "Receiver" do |connection|
-      if connection.dream.user.nil?
+      if connection.receiver.nil?
         "N/A"
       else
-        link_to connection.dream.user.full_name, admin_user_path(connection.dream.user)
+        link_to connection.receiver.full_name, admin_user_path(connection.receiver)
       end
     end
     column :accepted
     column :created_at
     actions
   end
+
+  preserve_default_filters!
+  filter :user, :collection => proc { User.all.sort_by{|u|u.full_name} }, :label => "Helper"
+  filter :dream, :collection => proc { Dream.all.map{|d|d.description}.sort }
 end
