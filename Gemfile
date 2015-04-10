@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'actionview-encoded_mail_to'
+gem 'activeadmin', github: 'activeadmin'
 gem 'angularjs-rails'
 gem 'aws-sdk', '~> 1.5.7'
 gem 'coffee-rails', '~> 4.0.0'
