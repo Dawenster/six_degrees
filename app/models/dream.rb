@@ -30,4 +30,12 @@ class Dream < ActiveRecord::Base
   def connection_by(user)
     self.connections.select{|c| c.user == user}.first
   end
+
+  def num_approved
+    self.connections.select{|c|c.accepted}.count
+  end
+    
+  def num_declined
+    self.connections.select{|c|c.accepted == false}.count
+  end
 end
