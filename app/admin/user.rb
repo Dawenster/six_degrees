@@ -43,6 +43,7 @@ ActiveAdmin.register User do
       column :last_name
       column "Facebook ID", :uid
       column :gender
+      column :admin
       actions
     end
   end
