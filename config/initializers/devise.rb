@@ -230,7 +230,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
   if Rails.env.production?
-    config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], {:scope => 'email, offline_access', :client_options => {}} 
+    config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], {:scope => 'email', :client_options => {}} 
   else
     config.omniauth :facebook, ENV['FACEBOOK_DEV_APP_ID'], ENV['FACEBOOK_DEV_APP_SECRET'], {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
   end
