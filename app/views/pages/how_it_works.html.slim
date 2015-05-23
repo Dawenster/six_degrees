@@ -13,38 +13,78 @@
           | Six Degrees connects people through their dreams and aspirations with a pay-it-forward mentality.
 
         h4
-          | To share your dreams with your MBA class and see what they are dreaming about, just follow 3 simple steps:
+          | Share your dreams and start connecting with your MBA network!
 
   .row
-    .col-xs-12.col-sm-4
-      .panel.panel-success
-        .panel-heading
-          i.fa.fa-user
-          | Create Account
-        .panel-body
-          p
-            | Create an account to start sharing and browsing dreams! Don't worry, we will never post anything to your Facebook page.
+    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+      .how-it-works-box
+        .row
+          .col-xs-4.left-side
+            .number
+              | 1
+            .icon-holder
+              = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/cloud.png", :width => 60
+        
+          .col-xs-8
+            .header
+              h3
+                | Share a Dream
 
-          = link_to "Create an account", new_user_registration_path, :class => "btn btn-success"
+            .content
+              | What are your dreams and aspirations? Share with your MBA network.
 
-    .col-xs-12.col-sm-4
-      .panel.panel-info
-        .panel-heading
-          i.fa.fa-cloud-upload
-          | Create Dreams
-        .panel-body
-          p
-            | Share your your personal and professional dreams with other MBA students. Try to stick to "actionable dreams" so others can help you!
+    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+      .how-it-works-box
+        .row
+          .col-xs-4.left-side
+            .number
+              | 2
+            .icon-holder
+              = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/telescope.png", :width => 60
+        
+          .col-xs-8
+            .header
+              h3
+                | View dreams
 
-          = link_to "Create a dream", new_dream_path, :class => "btn btn-info"
+            .content
+              | Wondering what others are dreaming about? Browse through the Dream Wall.
 
-    .col-xs-12.col-sm-4
-      .panel.panel-warning
-        .panel-heading
-          i.fa.fa-heart
-          | Help with Dreams
-        .panel-body
-          p
-            | See a dream you can help with? Reach out! Once they accept, your contact information (email) will be sent to each other. Let the connecting begin! 
+    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+      .how-it-works-box
+        .row
+          .col-xs-4.left-side
+            .number
+              | 3
+            .icon-holder
+              = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/handshake.png", :width => 60
+        
+          .col-xs-8
+            .header
+              h3
+                | Reach out
 
-          = link_to "Browse dreams", dreams_path, :class => "btn btn-warning"
+            .content
+              | See a dream you can help? Reach out!
+
+    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+      .how-it-works-box
+        .row
+          .col-xs-4.left-side
+            .number
+              | 4
+            .icon-holder
+              = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/comments.png", :width => 60
+        
+          .col-xs-8
+            .header
+              h3
+                | Connect!
+
+            .content
+              | Chat about your dreams directly on the wall or connect through email
+
+  .row
+    .col-xs-12
+      .call-to-action
+        = link_to "Let's get started", new_user_registration_path, :class => "btn btn-success"

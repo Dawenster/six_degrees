@@ -4,11 +4,29 @@
     margin-bottom: 60px;
   }
 
-  .panel-heading {
-    font-size: 18px;
+  .how-it-works-box {
+    border: 3px solid #A349A4;
+    margin-bottom: 30px;
+    padding: 20px;
 
-    i {
-      margin-right: 5px;
+    .left-side {
+      text-align: center;
+
+      .number {
+        font-size: 80px;
+        margin-top: -5px;
+      }
+
+      .icon-holder {
+        i {
+          font-size: 40px;
+        }
+      }
     }
+  }
+
+  .call-to-action {
+    text-align: center;
+    margin-bottom: 30px;
   }
 }
