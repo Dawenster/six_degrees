@@ -37,4 +37,17 @@ ActiveAdmin.register Connection do
   preserve_default_filters!
   filter :user, :collection => proc { User.all.sort_by{|u|u.full_name} }, :label => "Helper"
   filter :dream, :collection => proc { Dream.all.map{|d|d.description}.sort }
+
+  csv do
+    column :id
+    column("Dream") { |connection| connection.dream.nil? ? "N/A" : connection.dream.description }
+    column("Helper name") { |connection| connection.user.nil? ? "N/A" : connection.user.full_name }
+    column("Helper ID") { |connection| connection.user.nil? ? "N/A" : connection.user.id }
+    column("Receiver name") { |connection| connection.dream && !connection.receiver.nil? ? connection.receiver.full_name : "N/A" }
+    column("Receiver ID") { |connection| connection.dream && !connection.receiver.nil? ? connection.receiver.id : "N/A" }
+    column :initial_message
+    column :accepted
+    column :created_at
+    column :updated_at
+  end
 end
