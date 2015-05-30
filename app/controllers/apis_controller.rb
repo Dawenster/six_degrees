@@ -21,9 +21,10 @@ class ApisController < ApplicationController
     end
   end
 
-  def mobile_create_user
+  def create_user
     respond_to do |format|
-      if params[:facebook_id].present?
+      if params[:uid].present?
+        params[:id] = params[:uid]
         user = User.create_user(params)
       else
         user = User.new
@@ -38,6 +39,26 @@ class ApisController < ApplicationController
         format.json { render :json => { :status => 200, :message => "User successfully created!", :user => user } }
       else
         format.json { render :json => { :status => 400, :message => user.errors.full_messages.join(". ") + "." } }
+      end
+    end
+  end
+
+  def login_user
+    respond_to do |format|
+      if params[:uid].present?
+        user = User.find_by_uid(params[:uid])
+        if user.present?
+          format.json { render :json => { :status => 200, :message => "User logged in successfully!", :user => user } }
+        else
+          format.json { render :json => { :status => 400, :message => "User with ID #{params[:uid]} not found" } }
+        end
+      else
+        user = User.find_by_email(params[:email])
+        if user && user.valid_password?(params[:password])
+          format.json { render :json => { :status => 200, :message => "User logged in successfully!", :user => user } }
+        else
+          format.json { render :json => { :status => 400, :message => "Wrong email or password." } }
+        end
       end
     end
   end

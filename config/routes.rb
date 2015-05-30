@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root :to => "pages#index"
 
   post "sign_in_via_facebook" => "apis#sign_in_via_facebook", as: :sign_in_via_facebook
-  post "mobile_create_user" => "apis#mobile_create_user", as: :mobile_create_user
+  post "api/create_user" => "apis#create_user", as: :api_create_user
+  post "api/login_user" => "apis#login_user", as: :api_login_user
   
   resources :dreams
 
