@@ -1,4 +1,5 @@
 class ApisController < ApplicationController
+  before_filter :api_authenticated?, :only => [:logout_user]
   skip_before_action :verify_authenticity_token
 
   def sign_in_via_facebook
@@ -48,6 +49,7 @@ class ApisController < ApplicationController
       if params[:uid].present?
         user = User.find_by_uid(params[:uid])
         if user.present?
+          user.save
           format.json { render :json => { :status => 200, :message => "User logged in successfully!", :user => user } }
         else
           format.json { render :json => { :status => 400, :message => "User with ID #{params[:uid]} not found" } }
@@ -55,11 +57,19 @@ class ApisController < ApplicationController
       else
         user = User.find_by_email(params[:email])
         if user && user.valid_password?(params[:password])
+          user.save
           format.json { render :json => { :status => 200, :message => "User logged in successfully!", :user => user } }
         else
           format.json { render :json => { :status => 400, :message => "Wrong email or password." } }
         end
       end
+    end
+  end
+
+  def logout_user
+    respond_to do |format|
+      current_user.update_attributes(:authentication_token => nil)
+      format.json { render :json => { :status => 200, :message => "User logged out successfully!" } }
     end
   end
 end
