@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
       :uid => results["id"],
       :email => results["email"],
       :name => results["name"],
-      :image => results["picture"]["data"]["url"],
+      # :image => results["picture"]["data"]["url"],
       :first_name => results["first_name"],
       :last_name => results["last_name"],
       :gender => results["gender"],

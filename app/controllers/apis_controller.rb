@@ -1,4 +1,6 @@
 class ApisController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def sign_in_via_facebook
     token = params[:facebook_token]
     permissions = "id,name,picture.type(large),email,first_name,last_name,gender,timezone"
@@ -16,6 +18,27 @@ class ApisController < ApplicationController
 
     respond_to do |format|
       format.json { render :json => user_data }
+    end
+  end
+
+  def mobile_create_user
+    respond_to do |format|
+      if params[:facebook_id].present?
+        user = User.create_user(params)
+      else
+        user = User.new
+        user.email = params[:email]
+        user.password = params[:password]
+        user.first_name = params[:first_name]
+        user.last_name = params[:last_name]
+        user.encrypted_password
+        user.skip_confirmation!
+      end
+      if user.save
+        format.json { render :json => { :status => 200, :message => "User successfully created!", :user => user } }
+      else
+        format.json { render :json => { :status => 400, :message => user.errors.full_messages.join(". ") + "." } }
+      end
     end
   end
 end

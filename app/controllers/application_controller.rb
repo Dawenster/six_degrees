@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if !params[:user_token].blank?
-      return User.where(:authentication_token => params[:user_token]).first
+    if !params[:authentication_token].blank?
+      return User.where(:authentication_token => params[:authentication_token]).first
     else
       super
     end   
