@@ -1,5 +1,5 @@
 class DreamsController < ApplicationController
-  # before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :api_authenticated?, :except => [:index, :show]
   skip_before_action :verify_authenticity_token
   
   def index
@@ -29,7 +29,7 @@ class DreamsController < ApplicationController
   def create
     respond_to do |format|
       @dream = Dream.new(dream_params)
-      @dream.user_id = current_user ? current_user.id : params[:dream][:user_id]
+      @dream.user_id = current_user.id
       if @dream.save
         format.json { render :json => { :status => 200, :message => "dream created successfully", :dream => @dream } }
         format.html do

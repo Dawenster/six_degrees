@@ -20,6 +20,27 @@ class ApplicationController < ActionController::Base
     ["Personal", "Professional"]
   end
 
+  def api_authenticated?
+    if current_user.nil?
+      respond_to do |format|
+        message = "Please sign in first."
+        format.json { render :json => { :status => 401, :message => message } }
+        format.html do
+          flash[:alert] = message
+          redirect_to request.referrer || new_user_session_path
+        end
+      end
+    end
+  end
+
+  def current_user
+    if !params[:user_token].blank?
+      return User.where(:authentication_token => params[:user_token]).first
+    else
+      super
+    end   
+  end
+
   protected
 
   def configure_devise_permitted_parameters
