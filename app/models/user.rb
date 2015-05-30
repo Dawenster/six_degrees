@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates :first_name, :last_name, :presence => true, allow_blank: false
 
+  before_save :ensure_authentication_token
+
   def to_param
     "#{id}-#{first_name.parameterize.downcase}-#{last_name.parameterize.downcase}"
   end
@@ -85,5 +87,20 @@ class User < ActiveRecord::Base
 
   def dreams_with_connections
     self.dreams.select{|d| d.connections.any?}
+  end
+ 
+  def ensure_authentication_token
+    if authentication_token.blank? && !authentication_token_changed?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+ 
+  private
+  
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
   end
 end
