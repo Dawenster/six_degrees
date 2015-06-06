@@ -41,14 +41,21 @@ class Dream < ActiveRecord::Base
   end
 
   def helpers_select
-    self.connections.order("created_at ASC").map{|c|[c.user.full_name, c.user.id]}
+    self.connections.order("created_at ASC").map do |c|
+      [c.user.full_name, c.user.id]
+    end
   end
 
   def messages_by_user
     messages = {}
     self.messages.order("created_at ASC").each do |message|
-      messages[message.user] ||= []
-      messages[message.user] << message
+      if message.user == self.user
+        messages[message.recipient] ||= []
+        messages[message.recipient] << message
+      else
+        messages[message.user] ||= []
+        messages[message.user] << message
+      end
     end
     return messages
   end
