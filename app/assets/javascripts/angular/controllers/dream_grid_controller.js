@@ -34,7 +34,19 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
     })
   }
 
+  $("body").on("change", ".select-private-helper", function() {
+    var userId = $(this).val()
+    var streams = $(this).parents(".owner-of-dream-messages-holder").find(".owner-of-dream-specific-user-message-stream")
+    for (var i = 0; i < streams.length; i++) {
+      if ($(streams[i]).attr("data-user-id") == userId) {
+        $(streams[i]).removeClass("hide")
+      } else {
+        $(streams[i]).addClass("hide")
+      }
+    };
+  })
+
   function showMessageStreamForUser() {
-    
+
   }
 }]);
