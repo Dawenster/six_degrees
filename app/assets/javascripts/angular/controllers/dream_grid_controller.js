@@ -28,7 +28,7 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
       data: data
     })
     .done(function(result) {
-      input.siblings(".existing-messages").append(result.message.content)
+      input.siblings(".existing-messages").append(result.message_with_html)
       input.val("")
       element.removeAttr("disabled")
     })

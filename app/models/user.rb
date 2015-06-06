@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :dreams, :dependent => :destroy
+  has_many :messages, :dependent => :destroy
   has_many :connections, :dependent => :destroy
 
   s3_credentials_hash = {

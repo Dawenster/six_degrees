@@ -17,15 +17,14 @@
       - if user_signed_in? && dream.user != current_user
         .offering-dream-section
           .existing-messages
+            - dream.messages.each do |message|
+              = render "messages/single", :message => message, :user => message.user
           input.message-box type="text" placeholder="How can you help #{user.first_name}?" data-message-url="#{messages_path}" data-dream-id="#{dream.id}"
 
           .confirm-buttons
             .pull-left
               .btn.btn-info.send-message-button
                 | Send
-            / .pull-left.cancel-link
-            /   a
-            /     | Cancel
 
       - elsif user_signed_in? && dream.user == current_user
 

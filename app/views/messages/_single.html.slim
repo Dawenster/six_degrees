@@ -1,0 +1,7 @@
+.message-holder
+  .message-creator
+    = link_to avatar(user), activities_path(user)
+  .message-content
+    = "#{link_to user.full_name, activities_path(user)} #{message.content}".html_safe
+  .bottom-info
+    = "#{time_ago_in_words(message.created_at).capitalize} ago"

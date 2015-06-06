@@ -11,10 +11,16 @@ class MessagesController < ApplicationController
       )
 
       if message.save
-        format.json { render :json => { :status => 200, :message => "message created successfully", :message => message } }
+        format.json { render :json => { :status => 200, :message => "message created successfully", :message => message, :message_with_html => put_html_around(message) } }
       else
         format.json { render :json => { :status => 500, :message => message.errors.full_messages.join(". ") + "." } }
       end
     end
+  end
+
+  private
+
+  def put_html_around(message)
+    render_to_string(partial: 'messages/single.html.slim', locals: { message: message, :user => message.user }, :layout => false)
   end
 end
