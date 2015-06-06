@@ -41,7 +41,7 @@ class Dream < ActiveRecord::Base
   end
 
   def helpers_select
-    self.connections.map{|c|[c.user.full_name, c.user.id]}
+    self.connections.order("created_at ASC").map{|c|[c.user.full_name, c.user.id]}
   end
 
   def messages_by_user
