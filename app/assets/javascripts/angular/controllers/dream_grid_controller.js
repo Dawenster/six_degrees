@@ -20,7 +20,7 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
     var recipient_id = $(input).attr("data-recipient-user-id")
     var url = $(input).attr("data-message-url")
     var method = "post"
-    
+
     var data = {
       content: $(input).val(),
       dream_id: dream_id,
@@ -40,12 +40,12 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
   }
 
   $("body").on("change", ".select-private-helper", function() {
-    showMessageStreamForUser()
+    showMessageStreamForUser($(this))
   })
 
-  function showMessageStreamForUser() {
-    var userId = $(this).val()
-    var streams = $(this).parents(".owner-of-dream-messages-holder").find(".owner-of-dream-specific-user-message-stream")
+  function showMessageStreamForUser(element) {
+    var userId = element.val()
+    var streams = element.parents(".owner-of-dream-messages-holder").find(".owner-of-dream-specific-user-message-stream")
     for (var i = 0; i < streams.length; i++) {
       if ($(streams[i]).attr("data-user-id") == userId) {
         $(streams[i]).removeClass("hide")
