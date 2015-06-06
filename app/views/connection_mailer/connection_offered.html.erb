@@ -792,7 +792,8 @@ body.outlook p {
                       <table class="twelve columns">
                         <tr>
                           <td>
-                            <h3>Hi <%= @receiver.first_name %>,</h3>
+                            <h6>Hi <%= @receiver.first_name %>,</h6>
+                            <br>
                             <p class="lead"><%= link_to @helper.full_name, activities_url(@helper) %> has offered to help you with your dream: <strong><%= @dream.description %></strong></p>
                             <% if !@connection.initial_message.blank? %>
                               <p>Message: <%= @connection.initial_message %></p>
