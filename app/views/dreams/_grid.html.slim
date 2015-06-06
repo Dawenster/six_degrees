@@ -16,25 +16,18 @@
 
       - if user_signed_in? && dream.user != current_user
         .offering-dream-section
-          - if dream.helped_by(current_user)
-            = render "dreams/connection_offered", :dream => dream
+          = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
+            .connection-form
+              = connection.input :initial_message, :label => "Send a message to #{dream.user.first_name} (optional)"
+              = connection.input :dream_id, :as => :hidden, :input_html => { :value => dream.id }
 
-          - else
-            = simple_form_for Connection.new, defaults: { input_html: { class: 'form-control' }} do |connection|
-              .connection-form style="display: none;"
-                = connection.input :initial_message, :label => "Send a message to #{dream.user.first_name} (optional)"
-                = connection.input :dream_id, :as => :hidden, :input_html => { :value => dream.id }
-
-              .btn.btn-info.dream-help-button
-                | Help
-
-              .confirm-buttons style="display: none;"
-                .pull-left
-                  .btn.btn-info.send-connection-button
-                    | Send
-                .pull-left.cancel-link
-                  a
-                    | Cancel
+            .confirm-buttons
+              .pull-left
+                .btn.btn-info.send-connection-button
+                  | Send
+              .pull-left.cancel-link
+                a
+                  | Cancel
 
       - elsif !user_signed_in?
-        = link_to "Help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"
+        = link_to "Sign in to help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"

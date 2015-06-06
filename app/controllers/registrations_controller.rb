@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
-    flash.now[:alert] = "Just a sec! You need to sign in or sign up before helping someone :)" if params[:help]
+    flash.now[:notice] = "You're so close to helping someone out :)" if params[:help]
 
     super
   end
