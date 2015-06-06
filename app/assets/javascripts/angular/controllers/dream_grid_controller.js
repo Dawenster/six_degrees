@@ -16,10 +16,15 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
     element.attr('disabled', 'disabled')
     var input = element.parents(".confirm-buttons").siblings(".message-box:visible")
     var url = $(input).attr("data-message-url")
+    var dream_id = $(input).attr("data-dream-id")
+    var recipient_id = $(input).attr("data-recipient-user-id")
+    var url = $(input).attr("data-message-url")
     var method = "post"
+    
     var data = {
       content: $(input).val(),
-      dream_id: $(input).attr("data-dream-id")
+      dream_id: dream_id,
+      recipient_id: recipient_id
     }
 
     $.ajax({
@@ -35,6 +40,10 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
   }
 
   $("body").on("change", ".select-private-helper", function() {
+    showMessageStreamForUser()
+  })
+
+  function showMessageStreamForUser() {
     var userId = $(this).val()
     var streams = $(this).parents(".owner-of-dream-messages-holder").find(".owner-of-dream-specific-user-message-stream")
     for (var i = 0; i < streams.length; i++) {
@@ -44,9 +53,5 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
         $(streams[i]).addClass("hide")
       }
     };
-  })
-
-  function showMessageStreamForUser() {
-
   }
 }]);

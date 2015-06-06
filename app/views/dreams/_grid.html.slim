@@ -24,7 +24,7 @@
             - if message.user == current_user
               = render "messages/single", :message => message, :user => message.user
 
-          = render "dreams/message_box", :dream => dream, :placeholder => "How can you help #{dream.user.first_name}"
+          = render "dreams/message_box", :dream => dream, :placeholder => "How can you help #{dream.user.first_name}", :recipient_id => dream.user.id
 
         - elsif user_signed_in? && current_user.owner_of?(dream)
           - if dream.messages.any?

@@ -9,7 +9,8 @@ class MessagesController < ApplicationController
       message = Message.new(
         :content => params[:content],
         :dream_id => dream.id,
-        :user_id => current_user.id
+        :user_id => current_user.id,
+        :recipient_id => params[:recipient_id]
       )
 
       if message.save
