@@ -15,10 +15,10 @@
         = dream.description
 
       .offering-dream-section
-        .private-message
-          = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
-
         - if user_signed_in? && !current_user.owner_of?(dream)
+          .private-message
+            = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
+
           - dream.messages.each do |message|
             - if message.user == current_user || message.recipient == current_user
               = render "messages/single", :message => message, :user => message.user
@@ -29,10 +29,13 @@
 
         - elsif user_signed_in? && current_user.owner_of?(dream)
           - if dream.messages.any?
+            .private-message
+              = "Messages below are private".html_safe
+
             = render "dreams/owner_of_dream_messages", :dream => dream
 
-        - else
-          | No help offered yet
+          - else
+            | Nobody has offered to help you... yet!
 
       - if !user_signed_in?
         = link_to "Sign in to help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"
