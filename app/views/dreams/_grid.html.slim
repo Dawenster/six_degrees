@@ -14,27 +14,24 @@
       h3
         = dream.description
 
-      - if user_signed_in? && !current_user.owner_of?(dream)
-        .offering-dream-section
-          .existing-messages
-            .private-message
-              = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
-            - dream.messages.each do |message|
-              - if message.user == current_user
-                = render "messages/single", :message => message, :user => message.user
-          input.message-box type="text" placeholder="How can you help #{user.first_name}?" data-message-url="#{messages_path}" data-dream-id="#{dream.id}"
+      .offering-dream-section
+        .existing-messages
+          .private-message
+            = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
 
-          .confirm-buttons
-            .pull-left
-              .btn.btn-info.send-message-button
-                | Send
+        - if user_signed_in? && !current_user.owner_of?(dream)
+          - dream.messages.each do |message|
+            - if message.user == current_user
+              = render "messages/single", :message => message, :user => message.user
 
-      - elsif user_signed_in? && current_user.owner_of?(dream)
-        - if dream.messages.any?
-          = render "dreams/owner_of_dream_messages", :dream => dream
+          = render "dreams/message_box", :dream => dream, :user => dream.user
+
+        - elsif user_signed_in? && current_user.owner_of?(dream)
+          - if dream.messages.any?
+            = render "dreams/owner_of_dream_messages", :dream => dream
 
         - else
           | No help offered yet
 
-      - elsif !user_signed_in?
+      - if !user_signed_in?
         = link_to "Sign in to help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"

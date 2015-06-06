@@ -14,7 +14,7 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
 
   function createMessage(element) {
     element.attr('disabled', 'disabled')
-    var input = element.parents(".confirm-buttons").siblings(".message-box")
+    var input = element.parents(".confirm-buttons").siblings(".message-box:visible")
     var url = $(input).attr("data-message-url")
     var method = "post"
     var data = {
@@ -28,9 +28,13 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
       data: data
     })
     .done(function(result) {
-      input.siblings(".existing-messages").append(result.message_with_html)
+      input.parents(".offering-dream-section").find(".existing-messages").append(result.message_with_html)
       input.val("")
       element.removeAttr("disabled")
     })
+  }
+
+  function showMessageStreamForUser() {
+    
   }
 }]);

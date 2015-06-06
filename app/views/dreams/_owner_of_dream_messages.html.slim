@@ -1,5 +1,13 @@
 .owner-of-dream-messages-holder
-  span
-    = "Helped offered by: "
-  span
-    = options_for_select([['Lisbon', 1], ['Madrid', 2], ...])
+  .help-offered-by
+    span
+      = "Helped offered by: "
+    span
+      = select_tag(:user_id, options_for_select(dream.helpers_select))
+
+  - dream.messages_by_user.each_with_index do |(user, messages), index|
+    .owner-of-dream-specific-user-message-stream data-user-id="#{user.id}" style="#{'display: none;' unless index == 0}"
+      - messages.each do |message|
+        = render "messages/single", :message => message, :user => user
+
+      = render "dreams/message_box", :dream => dream, :user => user

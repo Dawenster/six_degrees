@@ -10,6 +10,6 @@ class MessageMailer < ActionMailer::Base
     @receiver = @dream.user
     @url = activities_url(@receiver)
 
-    mail(from: "#{@helper.full_name} <#{@helper.email}>", to: "#{@receiver.full_name} <#{@receiver.email}>", subject: "#{@helper.first_name} messaged you about your dream")
+    mail(from: "#{@helper.full_name} <#{@helper.email}>", to: "#{@receiver.full_name} <#{@receiver.email}>", subject: "#{@helper.full_name} messaged you about your dream")
   end
 end

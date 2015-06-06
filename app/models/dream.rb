@@ -41,6 +41,15 @@ class Dream < ActiveRecord::Base
   end
 
   def helpers_select
-    self.messages
+    self.connections.map{|c|[c.user.full_name, c.user.id]}
+  end
+
+  def messages_by_user
+    messages = {}
+    self.messages.order("created_at ASC").each do |message|
+      messages[message.user] ||= []
+      messages[message.user] << message
+    end
+    return messages
   end
 end
