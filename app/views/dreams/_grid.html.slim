@@ -17,8 +17,11 @@
       - if user_signed_in? && dream.user != current_user
         .offering-dream-section
           .existing-messages
+            .private-message
+              = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
             - dream.messages.each do |message|
-              = render "messages/single", :message => message, :user => message.user
+              - if message.user == current_user
+                = render "messages/single", :message => message, :user => message.user
           input.message-box type="text" placeholder="How can you help #{user.first_name}?" data-message-url="#{messages_path}" data-dream-id="#{dream.id}"
 
           .confirm-buttons
