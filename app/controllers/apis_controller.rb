@@ -22,6 +22,16 @@ class ApisController < ApplicationController
     end
   end
 
+  def user
+    respond_to do |format|
+      if current_user.nil?
+        format.json { render :json => { :status => 400, :message => "User not found with that authentication_token..." } }
+      else
+        format.json { render :json => { :status => 200, :message => "User found!", :user => current_user } }
+      end
+    end
+  end
+
   def create_user
     respond_to do |format|
       if params[:uid].present?
