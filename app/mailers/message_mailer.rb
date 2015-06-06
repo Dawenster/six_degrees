@@ -6,10 +6,10 @@ class MessageMailer < ActionMailer::Base
   def message_sent(message_id)
     @message = Message.find(message_id)
     @dream = @message.dream
-    @helper = @message.user
-    @receiver = @dream.user
+    @sender = @message.user
+    @receiver = @message.recipient
     @url = activities_url(@receiver)
 
-    mail(from: "#{@helper.full_name} <#{@helper.email}>", to: "#{@receiver.full_name} <#{@receiver.email}>", subject: "#{@helper.full_name} messaged you about your dream")
+    mail(from: "#{@sender.full_name} <#{@sender.email}>", to: "#{@receiver.full_name} <#{@receiver.email}>", subject: "#{@sender.full_name} messaged you about your dream")
   end
 end
