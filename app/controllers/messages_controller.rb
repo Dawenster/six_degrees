@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
       )
 
       if message.save
-        Connection.create(:dream_id => dream.id, :user_id => current_user.id) unless dream.helped_by(current_user)
+        Connection.create(:dream_id => dream.id, :user_id => current_user.id) unless dream.helped_by(current_user) || dream.user == current_user
         MessageMailer.message_sent(message.id).deliver
         format.json { render :json => { :status => 200, :message => "message created successfully", :message => message, :message_with_html => put_html_around(message) } }
       else
