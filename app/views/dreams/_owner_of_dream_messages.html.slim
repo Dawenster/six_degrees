@@ -5,9 +5,9 @@
     span
       = select_tag(:user_id, options_for_select(dream.helpers_select), :class => "select-private-helper")
 
-  - dream.messages_by_user.each_with_index do |(user, messages), index|
-    .owner-of-dream-specific-user-message-stream data-user-id="#{user.id}" class="#{'hide' unless index == 0}"
+  - dream.messages_by_dream.each_with_index do |(dream, messages), index|
+    .owner-of-dream-specific-user-message-stream data-user-id="#{dream.id}" class="#{'hide' unless index == 0}"
       - messages.each do |message|
-        = render "messages/single", :message => message, :user => user
+        = render "messages/single", :message => message, :user => message.user
 
-      = render "dreams/message_box", :dream => dream, :user => user
+      = render "dreams/message_box", :dream => dream, :placeholder => "Reply to #{user.first_name}"
