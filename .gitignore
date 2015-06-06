@@ -16,3 +16,6 @@
 /tmp
 
 config/initializers/aaa_secrets.rb
+
+# Ignore database files
+/db/backups
