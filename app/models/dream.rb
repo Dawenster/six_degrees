@@ -39,4 +39,8 @@ class Dream < ActiveRecord::Base
   def num_declined
     self.connections.select{|c|c.accepted == false}.count
   end
+
+  def helpers_select
+    self.messages
+  end
 end

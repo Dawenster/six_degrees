@@ -1,0 +1,18 @@
+= "Hi #{@receiver.first_name}".html_safe
+br
+br
+= "#{link_to @helper.full_name, activities_url(@helper)} has messaged you about your dream: #{@dream.description}".html_safe
+br
+br
+= "Message from #{@helper.first_name}: #{@message.content}"
+br
+br
+= link_to 'View thread', activities_url(@receiver, :anchor => "tab_received")
+br
+br
+| Good luck!
+br
+br
+| Six degrees team
+br
+= link_to root_url, root_url

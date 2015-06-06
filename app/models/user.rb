@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
       self.authentication_token = generate_authentication_token
     end
   end
+
+  def owner_of?(dream)
+    return dream.user == self
+  end
  
   private
   

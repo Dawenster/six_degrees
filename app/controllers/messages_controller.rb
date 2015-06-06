@@ -4,13 +4,17 @@ class MessagesController < ApplicationController
 
   def create
     respond_to do |format|
+      dream = Dream.find(params[:dream_id])
+
       message = Message.new(
         :content => params[:content],
-        :dream_id => params[:dream_id],
+        :dream_id => dream.id,
         :user_id => current_user.id
       )
 
       if message.save
+        Connection.create(:dream_id => dream.id, :user_id => current_user.id) unless dream.helped_by(current_user)
+        MessageMailer.message_sent(message.id).deliver
         format.json { render :json => { :status => 200, :message => "message created successfully", :message => message, :message_with_html => put_html_around(message) } }
       else
         format.json { render :json => { :status => 500, :message => message.errors.full_messages.join(". ") + "." } }

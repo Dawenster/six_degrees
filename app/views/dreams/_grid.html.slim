@@ -14,7 +14,7 @@
       h3
         = dream.description
 
-      - if user_signed_in? && dream.user != current_user
+      - if user_signed_in? && !current_user.owner_of?(dream)
         .offering-dream-section
           .existing-messages
             .private-message
@@ -29,8 +29,12 @@
               .btn.btn-info.send-message-button
                 | Send
 
-      - elsif user_signed_in? && dream.user == current_user
+      - elsif user_signed_in? && current_user.owner_of?(dream)
+        - if dream.messages.any?
+          = render "dreams/owner_of_dream_messages", :dream => dream
 
+        - else
+          | No help offered yet
 
       - elsif !user_signed_in?
         = link_to "Sign in to help", new_user_registration_path(:help => true), :class => "btn btn-info dream-help-button"
