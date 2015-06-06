@@ -15,14 +15,15 @@
         = dream.description
 
       .offering-dream-section
-        .existing-messages
-          .private-message
-            = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
+        .private-message
+          = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to dream.user.first_name, activities_path(dream.user)}".html_safe
 
         - if user_signed_in? && !current_user.owner_of?(dream)
           - dream.messages.each do |message|
             - if message.user == current_user
               = render "messages/single", :message => message, :user => message.user
+              
+          .existing-messages
 
           = render "dreams/message_box", :dream => dream, :placeholder => "How can you help #{dream.user.first_name}", :recipient_id => dream.user.id
 
