@@ -1,0 +1,15 @@
+= "Hi #{@helper.first_name}".html_safe
+br
+br
+= "#{link_to @receiver.full_name, activities_url(@receiver)} has accepted your offer to help on the dream: #{@dream.description}".html_safe
+br
+br
+= "Email #{mail_to @receiver.email} to continue the conversation.".html_safe
+br
+br
+| Good luck!
+br
+br
+| Six degrees team
+br
+= link_to root_url, root_url
