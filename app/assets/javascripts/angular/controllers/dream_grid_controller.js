@@ -1,14 +1,26 @@
 var app = angular.module('sixdegrees');
 
 app.controller('DreamGridCtrl', ['$scope', function($scope) {
-  $("body").on("click", ".send-connection-button", function() {
-    var element = $(this)
-    element.attr('disabled','disabled')
-        
-    var form = $(this).parents("form")
-    var url = form.attr("action")
-    var method = form.attr("method")
-    var data = form.serializeArray()
+  $("body").on("click", ".send-message-button", function() {
+    createMessage($(this))
+  })
+
+  $(".message-box").keyup(function(e){
+    if (e.keyCode == 13) {
+      var element = $(this).siblings(".confirm-buttons").find(".send-message-button")
+      createMessage(element)
+    }
+  });
+
+  function createMessage(element) {
+    element.attr('disabled', 'disabled')
+    var input = element.parents(".confirm-buttons").siblings(".message-box")
+    var url = $(input).attr("data-message-url")
+    var method = "post"
+    var data = {
+      content: $(input).val(),
+      dream_id: $(input).attr("data-dream-id")
+    }
 
     $.ajax({
       url: url,
@@ -16,22 +28,9 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
       data: data
     })
     .done(function(result) {
-      element.parents(".offering-dream-section").html(result.connection_display)
+      input.siblings(".existing-messages").append(result.message.content)
+      input.val("")
+      element.removeAttr("disabled")
     })
-  })
-
-  $("body").on("click", ".dream-help-button", function() {
-    var signedIn = $(".dream-grid-holder").attr("data-user-signed-in")
-    if (signedIn == "true") {
-      $(this).siblings(".connection-form").toggle()
-      $(this).siblings(".confirm-buttons").toggle()
-      $(this).toggle()
-    }
-  })
-
-  $("body").on("click", ".cancel-link", function() {
-    $(this).parent().siblings(".connection-form").toggle()
-    $(this).parent().siblings(".dream-help-button").toggle()
-    $(this).parent().toggle()
-  })
+  }
 }]);
