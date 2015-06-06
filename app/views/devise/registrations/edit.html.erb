@@ -12,7 +12,19 @@
       <div class="form-group">
         <div><%= f.label :email %>
         <%= f.email_field :email, :autofocus => true, :class => "form-control" %></div>
-        <%= errors_for resource, :last_name %>
+        <%= errors_for resource, :email %>
+      </div>
+
+      <div class="form-group">
+        <div>
+          <label>
+            Email me when I receive a message:
+          </label>
+          <div>
+            <%= f.check_box :message_notification %>
+          </div>
+        </div>
+        <%= errors_for resource, :message_notification %>
       </div>
 
       <div class="form-group">
@@ -31,13 +43,13 @@
         <div class="form-group">
           <div><%= f.label :password %>
           <%= f.password_field :password, :autocomplete => "off", :class => "form-control" %></div>
-          <%= errors_for resource, :last_name %>
+          <%= errors_for resource, :password %>
         </div>
 
         <div class="form-group">
           <div><%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, :class => "form-control" %></div>
-          <%= errors_for resource, :last_name %>
+          <%= errors_for resource, :password_confirmation %>
         </div>
       </div>
 
