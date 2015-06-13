@@ -3,7 +3,6 @@ ActiveAdmin.register Connection do
     column "ID" do |connection|
       link_to connection.id, admin_connection_path(connection)
     end
-    column :initial_message
     column "Dream" do |connection|
       if connection.dream
         link_to connection.dream.description, admin_dream_path(connection.dream)
