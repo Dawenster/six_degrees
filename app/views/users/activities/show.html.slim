@@ -34,7 +34,9 @@
             - @given.each do |given_connection|
               .row
                 .col-xs-12
-                  = render "given_grid", :connection => given_connection
+                  / = render "given_grid", :connection => given_connection
+                  = render "dreams/grid", :dream => given_connection.dream
+                  
           - else
             - if current_user_profile_page(@user)
               h4.no-activity-yet
