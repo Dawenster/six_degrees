@@ -100,6 +100,26 @@ class User < ActiveRecord::Base
   def owner_of?(dream)
     return dream.user == self
   end
+
+  def small_avatar
+    if self.uid
+      return "https://graph.facebook.com/#{self.uid}/picture"
+    elsif self.avatar.url.present?
+      return self.avatar.url(:small)
+    else
+      return "https://s3-us-west-2.amazonaws.com/six-degrees-app/general/no_profile.png"
+    end
+  end
+
+  def large_avatar
+    if self.uid
+      return "https://graph.facebook.com/#{self.uid}/picture?width=350&height=350"
+    elsif self.avatar.url.present?
+      return self.avatar.url(:large)
+    else
+      return "https://s3-us-west-2.amazonaws.com/six-degrees-app/general/no_profile.png"
+    end
+  end
  
   private
   

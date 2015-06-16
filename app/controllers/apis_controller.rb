@@ -27,7 +27,7 @@ class ApisController < ApplicationController
       if current_user.nil?
         format.json { render :json => { :status => 400, :message => "User not found with that authentication_token..." } }
       else
-        format.json { render :json => { :status => 200, :message => "User found!", :user => current_user } }
+        format.json { render :json => { :status => 200, :message => "User found!", :user => current_user, :small_avatar => current_user.small_avatar, :large_avatar => current_user.large_avatar } }
       end
     end
   end
