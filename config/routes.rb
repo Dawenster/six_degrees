@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post "api/login_user" => "apis#login_user", as: :api_login_user
   post "sign_in_via_facebook" => "apis#sign_in_via_facebook", as: :sign_in_via_facebook
   delete "api/logout_user" => "apis#logout_user", as: :api_logout_user
+
+  get "api/dreams_helped_by_user" => "apis#dreams_helped_by_user", as: :dreams_helped_by_user
   
   resources :dreams
 

@@ -82,4 +82,19 @@ class ApisController < ApplicationController
       format.json { render :json => { :status => 200, :message => "User logged out successfully!" } }
     end
   end
+
+  def dreams_helped_by_user
+    respond_to do |format|
+      if current_user
+        dreams_with_messages = current_user.connections.map { |connection| connection.dream }
+        if dreams_with_messages.any?
+          format.json { render :json => { :status => 200, :message => "successful fetch of dreams", :dreams => dreams_with_messages } }
+        else
+          format.json { render :json => { :status => 200, :message => "has not helped anyone yet" } }
+        end
+      else
+        format.json { render :json => { :status => 500, :message => "no user found" } }
+      end
+    end
+  end
 end
