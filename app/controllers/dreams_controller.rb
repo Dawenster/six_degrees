@@ -5,8 +5,13 @@ class DreamsController < ApplicationController
   def index
     respond_to do |format|
       format.json do
-        dreams = Dream.dreams_with_user_info
-        render :json => dreams
+        if current_user
+          dreams = Dream.dreams_with_user_info_and_user_specific_messages(current_user)
+          render :json => dreams
+        else
+          dreams = Dream.dreams_with_user_info
+          render :json => dreams
+        end
       end
       format.html do
         @dreams = Dream.all.shuffle
@@ -17,8 +22,13 @@ class DreamsController < ApplicationController
 
   def show
     respond_to do |format|
-      dream = Dream.find(params[:id])
-      format.json { render :json => dream }
+      if current_user
+        dream = Dream.find(params[:id])
+        format.json { render :json => { :dream => dream, :messages => dream.messages_involving(current_user) } }
+      else
+        dream = Dream.find(params[:id])
+        format.json { render :json => dream }
+      end
     end
   end
 

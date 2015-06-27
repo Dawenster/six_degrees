@@ -16,6 +16,24 @@ class Dream < ActiveRecord::Base
     return dreams
   end
 
+  def self.dreams_with_user_info_and_user_specific_messages(user)
+    dreams = []
+    Dream.all.shuffle.each do |dream|
+      dreams << {
+        :user => dream.user,
+        :content => {
+          :dream => dream,
+          :messages => dream.messages_involving(user)
+        }
+      }.as_json
+    end
+    return dreams
+  end
+
+  def messages_involving(user)
+    return self.messages.select { |message| message.user == user || message.recipient == user }
+  end
+
   def icon
     if dream_type == "Personal"
       return "<i class='fa fa-heart'></i>"
