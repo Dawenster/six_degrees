@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'actionview-encoded_mail_to'
-gem 'activeadmin', github: 'activeadmin'
 gem 'angularjs-rails'
 gem 'aws-sdk', '~> 1.5.7'
 gem 'coffee-rails', '~> 4.0.0'
@@ -13,6 +12,7 @@ gem 'omniauth-facebook'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'pg'
 gem 'rails', '4.1.1'
+gem 'rails_admin'
 gem 'rest-client'
 gem 'sass-rails', '~> 4.0.3'
 gem 'simple_form'
