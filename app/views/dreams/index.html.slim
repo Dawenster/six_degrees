@@ -13,7 +13,7 @@
             .panel-body
               ul.nav.nav-pills
                 - @tags.each do |tag|
-                  li role="presentation" class="#{'active' if @tag_ids.include?(tag.id.to_s)}"
+                  li role="presentation" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
                     a href="#{dreams_path(tags: tag.id)}"
                       = tag.name
 
