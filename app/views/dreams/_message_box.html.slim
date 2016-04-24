@@ -1,4 +1,17 @@
-input.message-box type="text" placeholder="#{placeholder}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{recipient_id}"
+- credentials_placeholder ||= nil
+
+- if current_user && !dream.helped_by(current_user)
+  label.credentials-label
+    | Credentials
+
+  input.message-box-input.credentials-box type="text" placeholder="#{credentials_placeholder}"
+
+label
+  | Message
+input.message-box-input.message-box type="text" placeholder="#{placeholder}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{recipient_id}"
+
+.message-box-errors.hide
+  | Please fill everything in
 
 .confirm-buttons
   .pull-left

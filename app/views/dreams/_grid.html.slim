@@ -14,6 +14,10 @@
       h3
         = dream.description
 
+      h5
+        - dream.connections.each do |connection|
+          = connection.helper_credentials
+
       .offering-dream-section
         - if user_signed_in? && !current_user.owner_of?(dream)
           .private-message
@@ -26,7 +30,7 @@
 
           .existing-messages
 
-          = render "dreams/message_box", :dream => dream, :placeholder => response_tip_placeholder(dream.user), :recipient_id => dream.user.id
+          = render "dreams/message_box", :dream => dream, :placeholder => response_tip_placeholder(dream.user), :recipient_id => dream.user.id, credentials_placeholder: user_credentials_placeholder(dream.user)
 
         - elsif user_signed_in? && current_user.owner_of?(dream)
           - if dream.messages.any?
