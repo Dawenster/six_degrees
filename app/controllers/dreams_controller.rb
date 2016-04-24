@@ -69,6 +69,8 @@ class DreamsController < ApplicationController
       @dream = Dream.find(params[:id])
       @dream.assign_attributes(dream_params)
       if @dream.save
+        @dream.tags.delete_all
+        @dream.tags << Tag.find(params[:tag_ids])
         format.json { render :json => { :status => 200, :message => "dream updated successfully", :dream => @dream } }
         format.html do
           flash[:notice] = "Dream successfully updated."
