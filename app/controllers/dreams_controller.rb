@@ -47,8 +47,8 @@ class DreamsController < ApplicationController
     respond_to do |format|
       @dream = Dream.new(dream_params)
       @dream.user_id = current_user.id
+      @dream.tags << Tag.find(params[:tag_ids]) if params[:tag_ids].present?
       if @dream.save
-        @dream.tags << Tag.find(params[:tag_ids])
         format.json { render :json => { :status => 200, :message => "dream created successfully", :dream => @dream } }
         format.html do
           flash[:notice] = "Dream successfully created."
@@ -58,6 +58,7 @@ class DreamsController < ApplicationController
         dream_errors = @dream.errors.full_messages.join(". ") + "."
         format.json { render :json => { :status => 500, :message => dream_errors } }
         format.html do
+          @tags = Tag.alphabetical
           flash.now[:alert] = dream_errors
           render "new"
         end
@@ -74,9 +75,9 @@ class DreamsController < ApplicationController
     respond_to do |format|
       @dream = Dream.find(params[:id])
       @dream.assign_attributes(dream_params)
+      @dream.tags.delete_all
+      @dream.tags << Tag.find(params[:tag_ids]) if params[:tag_ids].present?
       if @dream.save
-        @dream.tags.delete_all
-        @dream.tags << Tag.find(params[:tag_ids])
         format.json { render :json => { :status => 200, :message => "dream updated successfully", :dream => @dream } }
         format.html do
           flash[:notice] = "Dream successfully updated."
@@ -86,6 +87,7 @@ class DreamsController < ApplicationController
         dream_errors = @dream.errors.full_messages.join(". ") + "."
         format.json { render :json => { :status => 500, :message => dream_errors } }
         format.html do
+          @tags = Tag.alphabetical
           flash.now[:alert] = dream_errors
           render "edit"
         end
