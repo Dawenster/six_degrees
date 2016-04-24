@@ -74,7 +74,7 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
 
   function hideCredentialsInputSection(credentialsInput) {
     credentialsInput.addClass("hide")
-    $(".credentials-label").addClass("hide")
+    credentialsInput.siblings(".credentials-label").addClass("hide")
   }
 
   function showErrorBox(confirmButton) {
