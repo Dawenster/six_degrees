@@ -14,7 +14,13 @@ class DreamsController < ApplicationController
         end
       end
       format.html do
-        @dreams = Dream.all.shuffle
+        if params[:tags].present?
+          @tag_ids = params[:tags].split(",")
+          @dreams = Dream.includes(:tags).where("tags.id" => @tag_ids)
+        else
+          @dreams = Dream.all.shuffle
+        end
+        @tags = Tag.alphabetical
         render "index"
       end
     end

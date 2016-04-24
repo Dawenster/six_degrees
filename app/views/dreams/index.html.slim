@@ -1,8 +1,24 @@
 .row
-  .col-xs-12.col-md-8.col-md-offset-2 ng-controller="DreamGridCtrl"
+  .col-xs-12 ng-controller="DreamGridCtrl"
     h3.page-title
       | All dreams
-    - @dreams.each do |dream|
-      .row
-        .col-xs-12
-          = render "grid", :dream => dream
+
+  .col-xs-12.col-lg-8.col-lg-offset-2
+    .row
+      .col-sm-12
+        .filter-holder
+          .panel.panel-default
+            .panel-heading
+              | Filters
+            .panel-body
+              ul.nav.nav-pills
+                - @tags.each do |tag|
+                  li role="presentation" class="#{'active' if @tag_ids.include?(tag.id.to_s)}"
+                    a href="#{dreams_path(tags: tag.id)}"
+                      = tag.name
+
+      .col-sm-12
+        - @dreams.each do |dream|
+          .row
+            .col-xs-12
+              = render "grid", :dream => dream
