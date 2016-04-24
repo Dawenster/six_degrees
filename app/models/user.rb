@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
       :provider => "facebook",
       :uid => results["id"],
       :email => results["email"],
-      :name => results["name"],
+      # :name => results["name"],
       # :image => results["picture"]["data"]["url"],
       :first_name => results["first_name"],
       :last_name => results["last_name"],
@@ -67,6 +67,11 @@ class User < ActiveRecord::Base
       :timezone => results["timezone"],
       :password => Devise.friendly_token[0,20]
     )
+  end
+
+  def name
+    # For rails admin to pick up names
+    full_name
   end
 
   def full_name
