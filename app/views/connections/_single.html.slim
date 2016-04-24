@@ -1,0 +1,12 @@
+- user = connection.user
+
+.connection-holder
+  .connection-creator
+    = link_to avatar(user), activities_path(user)
+  .connection-content
+    = "#{link_to user.full_name, activities_path(user)} offered to help".html_safe
+    .bottom-info
+      - if connection.helper_credentials
+        = "Credentials: #{connection.helper_credentials}"
+      - else
+        br

@@ -1,6 +1,6 @@
 - credentials_placeholder ||= nil
 
-- if current_user && !dream.helped_by(current_user)
+- if current_user && !dream.helped_by(current_user) && dream.user != current_user
   label.credentials-label
     | Credentials
 

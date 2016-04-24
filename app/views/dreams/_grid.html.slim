@@ -14,9 +14,10 @@
       h3
         = dream.description
 
-      h5
+      .existing-connections
         - dream.connections.each do |connection|
-          = connection.helper_credentials
+          = render "connections/single", connection: connection
+      hr
 
       .offering-dream-section
         - if user_signed_in? && !current_user.owner_of?(dream)

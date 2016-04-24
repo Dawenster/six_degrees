@@ -15,14 +15,23 @@ class MessagesController < ApplicationController
 
       if message.save
         unless dream.helped_by(current_user) || dream.user == current_user
-          Connection.create(
+          connection = Connection.create(
             dream_id: dream.id,
             user_id: current_user.id,
             helper_credentials: params[:credentials]
           )
+          connection_html = put_html_around_connection(connection)
         end
         MessageMailer.message_sent(message.id).deliver if message.recipient.message_notification
-        format.json { render :json => { :status => 200, :message => "message created successfully", :message => message, :message_with_html => put_html_around(message) } }
+        format.json {
+          render :json => {
+            :status => 200,
+            :message => "message created successfully",
+            :message => message,
+            :message_with_html => put_html_around_message(message),
+            :connection_with_html => connection_html
+          }
+        }
       else
         format.json { render :json => { :status => 500, :message => message.errors.full_messages.join(". ") + "." } }
       end
@@ -31,7 +40,11 @@ class MessagesController < ApplicationController
 
   private
 
-  def put_html_around(message)
+  def put_html_around_message(message)
     render_to_string(partial: 'messages/single.html.slim', locals: { message: message, :user => message.user }, :layout => false)
+  end
+
+  def put_html_around_connection(connection)
+    render_to_string(partial: 'connections/single.html.slim', locals: { connection: connection }, :layout => false)
   end
 end

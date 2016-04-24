@@ -49,11 +49,13 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
       })
       .done(function(result) {
         messageInput.parents(".offering-dream-section").find(".existing-messages").append(result.message_with_html)
+        if (result.connection_with_html) {
+          messageInput.parents(".dream-grid-holder").find(".existing-connections").append(result.connection_with_html)
+        }
         messageInput.val("")
         element.removeAttr("disabled")
       })
     }
-
   }
 
   $("body").on("change", ".select-private-helper", function() {
