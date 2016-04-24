@@ -47,4 +47,8 @@ module ApplicationHelper
   def current_user_profile_page(user)
     user_signed_in? && user == current_user
   end
+
+  def school_name
+    "Kellogg"
+  end
 end
