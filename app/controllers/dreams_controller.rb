@@ -34,6 +34,7 @@ class DreamsController < ApplicationController
 
   def new
     @dream = Dream.new
+    @tags = Tag.alphabetical
   end
 
   def create
@@ -41,6 +42,7 @@ class DreamsController < ApplicationController
       @dream = Dream.new(dream_params)
       @dream.user_id = current_user.id
       if @dream.save
+        @dream.tags << Tag.find(params[:tag_ids])
         format.json { render :json => { :status => 200, :message => "dream created successfully", :dream => @dream } }
         format.html do
           flash[:notice] = "Dream successfully created."
@@ -59,6 +61,7 @@ class DreamsController < ApplicationController
 
   def edit
     @dream = Dream.find(params[:id])
+    @tags = Tag.alphabetical
   end
 
   def update
@@ -107,6 +110,7 @@ class DreamsController < ApplicationController
       :created_at,
       :updated_at,
       :user_id,
+      :tag_ids,
       :_destroy
     )
   end
