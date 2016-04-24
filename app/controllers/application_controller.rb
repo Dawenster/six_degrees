@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def dream_types
-    ["Personal", "Professional"]
+    [Dream::PERSONAL_DREAM_TYPE, Dream::PROFESSIONAL_DREAM_TYPE]
   end
 
   def api_authenticated?

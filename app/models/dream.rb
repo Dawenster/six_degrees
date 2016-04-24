@@ -6,6 +6,9 @@ class Dream < ActiveRecord::Base
 
   validates :description, :dream_type, :user_id, :presence => true, allow_blank: false
 
+  PERSONAL_DREAM_TYPE = "Personal"
+  PROFESSIONAL_DREAM_TYPE = "Professional"
+
   def self.dreams_with_user_info
     dreams = []
     Dream.all.shuffle.each do |dream|
@@ -36,7 +39,7 @@ class Dream < ActiveRecord::Base
   end
 
   def icon
-    if dream_type == "Personal"
+    if dream_type == PERSONAL_DREAM_TYPE
       return "<i class='fa fa-heart'></i>"
     else
       return "<i class='fa fa-briefcase'></i>"
