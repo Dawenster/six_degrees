@@ -1,26 +1,22 @@
 .row
   .col-xs-12 ng-controller="DreamGridCtrl"
     h3.page-title
-      | All dreams
+      | Browse dreams
 
   .col-xs-12.col-lg-8.col-lg-offset-2
     .row
-      .col-sm-12
+      .col.s12.m6.offset-m3.l4.offset-l4
         .filter-holder
-          .panel.panel-default
-            .panel-heading
-              | Filters
-            .panel-body
-              ul.nav.nav-pills
-                li role="presentation" class="#{'active' if @tag_ids.nil?}"
-                  a href="#{dreams_path}"
-                    | All
-                - @tags.each do |tag|
-                  li role="presentation" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
-                    a href="#{dreams_path(tags: tag.id)}"
-                      = tag.name
+          .collection
+            a.collection-item href="#{dreams_path}" class="#{'active' if @tag_ids.nil?}"
+              | All
 
-      .col-sm-12
+            - @tags.each do |tag|
+              a.collection-item href="#{dreams_path(tags: tag.id)}" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
+                = tag.name
+
+    .row
+      .col.s12
         - @dreams.each do |dream|
           .row
             .col-xs-12
