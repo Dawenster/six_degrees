@@ -11,12 +11,12 @@
   </head>
   <body>
     <%= render "layouts/facebook" %>
-    <%= render "layouts/top_nav" %>
+    <%= render "layouts/nav" %>
     <%= render "layouts/alerts" %>
     <% unless params[:action] == 'index' && params[:controller] == 'pages' %>
       <div class="container">
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col s12">
             <div class="main-content">
               <%= yield %>
             </div>

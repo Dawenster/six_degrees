@@ -19,7 +19,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'simple_token_authentication'
 gem 'slim'
-gem 'twitter-bootstrap-rails'
+# gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 
 group :production do
