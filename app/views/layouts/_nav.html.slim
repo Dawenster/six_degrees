@@ -2,6 +2,10 @@ nav role="navigation"
   .nav-wrapper
     a.brand-logo.center.navbar-brand href="#{root_path}"
       | Six Degrees
+      
+    a.button-collapse href="#" data-activates="mobile-nav"
+      i.material-icons
+        | menu
 
     ul.left.hide-on-med-and-down
       li class="#{'active' if params[:action] == 'how_it_works' && params[:controller] == 'pages'}"
@@ -12,6 +16,7 @@ nav role="navigation"
           | Browse
 
     ul.right.hide-on-med-and-down
+
       - if user_signed_in?
         li
           a.btn href="#{new_dream_path}"
@@ -49,3 +54,5 @@ nav role="navigation"
         li
           a href="#{new_user_session_path}"
             | Login
+
+= render "layouts/mobile_nav"

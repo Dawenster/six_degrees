@@ -1,0 +1,41 @@
+ul#mobile-nav.side-nav
+  - if user_signed_in?
+
+    br
+
+    li
+      a
+        .avatar-and-name
+          span.avatar
+            = avatar(current_user)
+          span.name
+            = current_user.first_name
+
+    br
+
+    li class="#{'active' if params[:action] == 'new' && params[:controller] == 'dreams'}"
+      a href="#{new_dream_path}"
+        | Create dream
+  
+    li class="#{'active' if params[:action] == 'show' && params[:controller] == 'users/activities'}"
+      a href="#{activities_path(current_user)}"
+        | Activities
+        span.badge.notification-badge.received-badge-num
+          = pending_received_activities(current_user.dreams)
+
+    li.divider
+
+    li class="#{'active' if params[:action] == 'edit' && params[:controller] == 'registrations'}"
+      a href="#{edit_user_registration_path}"
+        | Account settings
+
+    li
+      = link_to "Logout", destroy_user_session_path, :method => :delete
+
+  - else
+    li
+      a href="#{new_user_registration_path}"
+        | Sign Up Free
+    li
+      a href="#{new_user_session_path}"
+        | Login

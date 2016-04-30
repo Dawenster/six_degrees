@@ -23,7 +23,7 @@ nav {
 
   .dropdown-button {
     min-width: 200px;
-    padding-left: 70px;
+    padding-left: 60px;
     position: relative;
   }
 
@@ -34,7 +34,21 @@ nav {
   }
 }
 
+#mobile-nav {
+  li a {
+    line-height: 3;
+  }
 
+  .avatar-and-name {
+    position: relative;
+    padding-left: 60px;
+
+    .avatar {
+      position: absolute;
+      left: 0px;
+    }
+  }
+}
 
 .navbar-center {
   position: absolute;
