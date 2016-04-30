@@ -2,6 +2,7 @@ class Dream < ActiveRecord::Base
   belongs_to :user
   has_many :connections
   has_many :messages, :dependent => :destroy
+  has_many :hearts, :dependent => :destroy
   has_and_belongs_to_many :tags, uniq: true
 
   validates :description, :dream_type, :user_id, :presence => true, allow_blank: false

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :messages, :class_name => 'Message', :foreign_key => 'user_id', :dependent => :destroy
   has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id', :dependent => :destroy
   has_many :connections, :dependent => :destroy
+  has_many :hearts, :dependent => :destroy
 
   s3_credentials_hash = {
     :access_key_id => ENV['AWS_ACCESS_KEY'],
