@@ -1,5 +1,5 @@
 <div class="row" ng-controller="UpdateUserCtrl">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
     <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -9,23 +9,15 @@
 
       <%= render "name_fields", :f => f %>
 
-      <div class="form-group">
-        <div><%= f.label :email %>
-        <%= f.email_field :email, :autofocus => true, :class => "form-control" %></div>
-        <%= errors_for resource, :email %>
-      </div>
+      <div><%= f.label :email %>
+      <%= f.email_field :email, :autofocus => true, :class => "form-control" %></div>
+      <%= errors_for resource, :email %>
 
-      <div class="form-group">
-        <div>
-          <label>
-            Email me when I receive a message:
-          </label>
-          <div>
-            <%= f.check_box :message_notification %>
-          </div>
-        </div>
-        <%= errors_for resource, :message_notification %>
-      </div>
+      <%= f.check_box :message_notification %>
+      <label for="user_message_notification">
+        Email me when I receive a message:
+      </label>
+      <%= errors_for resource, :message_notification %>
 
       <div class="form-group">
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
