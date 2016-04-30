@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require angular
+//= require materialize-sprockets
 //= require_tree .
