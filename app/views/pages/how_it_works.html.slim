@@ -1,13 +1,13 @@
 .how-it-works-page
   .row
-    .col-xs-12
+    .col.s12
       h2.page-title
         | How it works
 
   br
 
   .row
-    .col-xs-12
+    .col.s12
       .top-description-holder
         h4
           | Six Degrees connects people through their dreams and aspirations with a pay-it-forward mentality.
@@ -16,75 +16,48 @@
           | Share your dreams and start connecting with your MBA network!
 
   .row
-    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
-      .how-it-works-box
-        .row
-          .col-xs-4.left-side
-            .number
-              | 1
-            .icon-holder
+    .col.s12.m8.offset-m2.l6.offset-l3
+      .row
+        .col.s12
+          .card
+            .card-content
               = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/cloud.png", :width => 60
-        
-          .col-xs-8
-            .header
-              h3
-                | Share a Dream
+              span.card-title.black-text
+                |   1. Share a Dream
+              p
+                | What are your dreams and aspirations? Share with your MBA network.
 
-            .content
-              | What are your dreams and aspirations? Share with your MBA network.
-
-    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
-      .how-it-works-box
-        .row
-          .col-xs-4.left-side
-            .number
-              | 2
-            .icon-holder
+      .row
+        .col.s12
+          .card
+            .card-content
               = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/telescope.png", :width => 60
-        
-          .col-xs-8
-            .header
-              h3
-                | View dreams
+              span.card-title.black-text
+                |   2. View dreams
+              p
+                | Wondering what others are dreaming about? Browse through the Dream Wall.
 
-            .content
-              | Wondering what others are dreaming about? Browse through the Dream Wall.
-
-    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
-      .how-it-works-box
-        .row
-          .col-xs-4.left-side
-            .number
-              | 3
-            .icon-holder
+      .row
+        .col.s12
+          .card
+            .card-content
               = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/handshake.png", :width => 60
-        
-          .col-xs-8
-            .header
-              h3
-                | Reach out
+              span.card-title.black-text
+                |   3. Reach out
+              p
+                | See a dream you can help? Reach out!
 
-            .content
-              | See a dream you can help? Reach out!
-
-    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
-      .how-it-works-box
-        .row
-          .col-xs-4.left-side
-            .number
-              | 4
-            .icon-holder
+      .row
+        .col.s12
+          .card
+            .card-content
               = image_tag "https://s3-us-west-2.amazonaws.com/six-degrees-app/pages/how-it-works/comments.png", :width => 60
-        
-          .col-xs-8
-            .header
-              h3
-                | Connect!
-
-            .content
-              | Chat about your dreams directly on the wall or connect through email
+              span.card-title.black-text
+                |   4. Connect!
+              p
+                | Chat about your dreams directly on the wall or connect through email
 
   .row
-    .col-xs-12
+    .col.s12
       .call-to-action
         = link_to "Let's get started", new_user_registration_path, :class => "btn btn-success"
