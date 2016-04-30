@@ -5,7 +5,7 @@ class Dream < ActiveRecord::Base
   has_many :hearts, :dependent => :destroy
   has_and_belongs_to_many :tags, uniq: true
 
-  validates :description, :dream_type, :user_id, :presence => true, allow_blank: false
+  validates :description, :user_id, :presence => true, allow_blank: false
   validate :has_at_least_one_tag
 
   PERSONAL_DREAM_TYPE = "Personal"

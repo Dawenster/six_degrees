@@ -1,21 +1,28 @@
 div
   = simple_form_for @dream, defaults: { input_html: { class: 'form-control' }} do |dream|
     
-    label
-      | What is your dream?
-    .label-description
+    p
       | Help others help you! Short, clear, and most importantly, actionable dreams get the best results.
-    = dream.input :description, :label => false
+
     br
-    = dream.input :dream_type, :collection => dream_types, :selected => dream_types.first
+    
+    .input-field
+      = dream.input :description, :label => "What is your dream?", required: false
+
     br
+
+    p
+      | What categories does your dream fall into?
+
     - @tags.each do |tag|
       div
         - if @dream.tags.include?(tag)
-          input type="checkbox" value="#{tag.id}" name="tag_ids[]" checked="checked"
+          input type="checkbox" value="#{tag.id}" name="tag_ids[]" checked="checked" id="tag-#{tag.id}"
+          label for="tag-#{tag.id}"
             = " #{tag.name}"
         - else
-          input type="checkbox" value="#{tag.id}" name="tag_ids[]"
+          input type="checkbox" value="#{tag.id}" name="tag_ids[]" id="tag-#{tag.id}"
+          label for="tag-#{tag.id}"
             = " #{tag.name}"
 
     br
