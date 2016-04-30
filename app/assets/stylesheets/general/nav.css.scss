@@ -1,34 +1,39 @@
-.navbar {
-  border-radius: 0px;
-  margin-bottom: 0px;
-}
+nav {
+  .brand-logo {
+    position: absolute;
+  }
 
-.navbar-default {
-  background-color: white;
-  padding: 5px 0px 3px 0px;
-}
-
-.brand-logo {
-  position: absolute;
-}
-
-.navbar-brand {
-  font-family: 'Pacifico', cursive;
-  float: none;
-  font-size: 24px;
-}
-
-@media(min-width:992px) {
   .navbar-brand {
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    font-family: 'Pacifico', cursive;
+    float: none;
+    font-size: 24px;
+  }
+
+  @media(min-width:992px) {
+    .navbar-brand {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .dropdown-button {
+    min-width: 200px;
+    padding-left: 70px;
+    position: relative;
+  }
+
+  .navbar-avatar {
+    position: absolute;
+    left: 15px;
+    top: 11px;
   }
 }
+
 
 
 .navbar-center {
@@ -46,11 +51,6 @@
   margin-right: 0px;
 }
 
-.navbar-avatar {
-  margin-top: 5px;
-  margin-left: 10px;
-  cursor: pointer;
-}
 
 .navbar-toggle {
   z-index: 10;
