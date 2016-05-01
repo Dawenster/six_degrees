@@ -60,4 +60,7 @@
   .row
     .col.s12
       .call-to-action
-        = link_to "Let's get started", new_user_registration_path, :class => "btn btn-success"
+        - if user_signed_in?
+          = link_to "Let's get started", new_dream_path, :class => "btn btn-success"
+        - else
+          = link_to "Let's get started", new_user_registration_path, :class => "btn btn-success"
