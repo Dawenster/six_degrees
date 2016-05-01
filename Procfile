@@ -1,2 +1,2 @@
 web: bundle exec rails server -p $PORT
-worker: bundle exec sidekiq -q default -q mailers -C config/sidekiq.yml
+worker: bundle exec sidekiq -q default -q mailer -C config/sidekiq.yml
