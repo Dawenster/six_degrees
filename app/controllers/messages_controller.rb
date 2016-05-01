@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
           )
           connection_html = put_html_around_connection(connection)
         end
-        MessageMailer.message_sent(message.id).deliver if message.recipient.message_notification
+        MessageMailer.delay.message_sent(message.id).deliver if message.recipient.message_notification
         format.json {
           render :json => {
             :status => 200,
