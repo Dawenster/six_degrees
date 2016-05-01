@@ -20,6 +20,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'simple_token_authentication'
+gem 'sinatra', :require => false
 gem 'slim'
 # gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
