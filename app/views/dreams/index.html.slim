@@ -21,4 +21,4 @@
         - @dreams.each do |dream|
           - user = dream.user
           - next if user.nil?
-          = render "new_grid", dream: dream, user: user
+          = render "grid", dream: dream, user: user

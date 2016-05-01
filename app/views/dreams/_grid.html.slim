@@ -1,4 +1,4 @@
-div ng-controller="DreamGridCtrl"
+.new-grid-holder ng-controller="DreamGridCtrl" data-dream-id="#{dream.id}"
 
   - if user_signed_in?
     - if current_user.owner_of?(dream)

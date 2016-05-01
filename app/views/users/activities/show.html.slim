@@ -30,14 +30,14 @@
             - @dreams.each do |dream|
               .row
                 .col-xs-12
-                  = render "dreams/new_grid", dream: dream, user: dream.user
+                  = render "dreams/grid", dream: dream, user: dream.user
           - else
 
             - if current_user_profile_page(@user)
               h4.no-activity-yet
                 | No dreams yet... what are you waiting for?
 
-              = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
+              = link_to "Create a dream", dream_path, :class => "btn btn-success"
 
             - else
               h4.no-activity-yet
@@ -51,8 +51,7 @@
             - @given.each do |given_connection|
               .row
                 .col-xs-12
-                  / = render "given_grid", :connection => given_connection
-                  = render "dreams/new_grid", dream: given_connection.dream, user: given_connection.dream.user
+                  = render "dreams/grid", dream: given_connection.dream, user: given_connection.dream.user
                   
           - else
 
