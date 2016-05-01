@@ -15,4 +15,10 @@
  *= require_self
  */
 
+@import "materialize/components/color";
+$primary-color: color("purple", "lighten-1") !default;
+$secondary-color: color("purple", "lighten-3") !default;
 @import 'materialize';
+
+// Materialize variables
+// https://github.com/mkhairi/materialize-sass/blob/master/app/assets/stylesheets/materialize/components/_variables.scss
