@@ -1,6 +1,6 @@
 class MailerWorker
   include Sidekiq::Worker
-  sidekiq_options :queue => :mailers, :retry => false, :backtrace => true
+  sidekiq_options queue: "mailers", retry: false, backtrace: true
   
   def perform(name, count)
     # do something
