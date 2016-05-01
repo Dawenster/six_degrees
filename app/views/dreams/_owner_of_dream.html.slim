@@ -1,0 +1,33 @@
+.modal.bottom-sheet id="owner-modal-#{dream.id}"
+  - link_to_user = link_to dream.user.first_name, activities_path(dream.user)
+  .modal-content
+    .row
+      .col.s12.m6.offset-m3
+        p
+          - if dream.messages.any?
+
+            = "Private messages between you and:".html_safe
+
+            .help-offered-by.input-field
+              = select_tag(:user_id, options_for_select(dream.helpers_select), :class => "select-private-helper")
+
+            - dream.messages_by_user.each_with_index do |(user, messages), index|
+              ul.collection.existing-messages
+                .owner-of-dream-specific-user-message-stream data-user-id="#{user.id}" class="#{'hide' unless index == 0}"
+                  - messages.each do |message|
+                    = render "message", :message => message
+
+              .input-field
+                label
+                  | Message
+                input.message-box-input.message-box type="text" placeholder="Reply to #{user.first_name}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{dream.user.id}"
+
+              .message-box-errors.hide
+                | Please fill everything in
+
+              a.modal-action.modal-close.waves-effect.waves-green.btn.right.send-message-button href=""
+                | Send
+
+          - else
+
+            | Nobody has offered to help you... yet!

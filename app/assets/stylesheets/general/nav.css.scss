@@ -9,18 +9,6 @@ nav {
     font-size: 24px;
   }
 
-  @media(min-width:992px) {
-    .navbar-brand {
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-  }
-
   .dropdown-button {
     min-width: 200px;
     padding-left: 70px;

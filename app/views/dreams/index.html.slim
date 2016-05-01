@@ -1,5 +1,5 @@
 .row
-  .col-xs-12 ng-controller="DreamGridCtrl"
+  .col-xs-12
     h3.page-title
       | Browse dreams
 
@@ -16,8 +16,10 @@
                 = tag.name
 
     .row
-      .col.s12
+      .col.s12.m8.offset-m2.l6.offset-l3
+
         - @dreams.each do |dream|
-          .row
-            .col-xs-12
-              = render "grid", :dream => dream
+          - user = dream.user
+          - next if user.nil?
+          div ng-controller="DreamGridCtrl"
+            = render "new_grid", dream: dream, user: user

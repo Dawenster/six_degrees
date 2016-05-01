@@ -1,0 +1,33 @@
+.modal.bottom-sheet id="help-modal-#{dream.id}"
+  - link_to_user = link_to dream.user.first_name, activities_path(dream.user)
+  .modal-content
+    .row
+      .col.s12.m6.offset-m3
+        p
+          = "Messages below are private between #{link_to 'you', activities_path(current_user)} and #{link_to_user}. Respond to take #{link_to_user} a step closer or refer #{link_to_user} to a #{school_name} contact.".html_safe
+
+        ul.collection.existing-messages
+          - dream.messages.each do |message|
+            - if message.user == current_user || message.recipient == current_user
+              = render "message", message: message
+
+    .row
+      .col.s12.m6.offset-m3
+        .input-field
+          - if current_user && !dream.helped_by(current_user) && dream.user != current_user
+            - credentials_placeholder ||= nil
+            label.credentials-label for="credentials-box-#{dream.id}"
+              | Credentials
+
+            input.message-box-input.credentials-box type="text" placeholder="#{user_credentials_placeholder(dream.user)}" id="credentials-box-#{dream.id}"
+
+        .input-field
+          label
+            | Message
+          input.message-box-input.message-box type="text" placeholder="#{response_tip_placeholder(dream.user)}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{dream.user.id}"
+
+        .message-box-errors.hide
+          | Please fill everything in
+
+        a.modal-action.modal-cose.waves-effect.waves-green.btn.right.send-message-button href=""
+          | Send

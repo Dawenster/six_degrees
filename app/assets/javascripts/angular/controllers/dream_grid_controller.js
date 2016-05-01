@@ -1,36 +1,36 @@
 var app = angular.module('sixdegrees');
 
-app.controller('DreamGridCtrl', ['$scope', function($scope) {
-  $("body").on("click", ".send-message-button", function() {
-    createMessage($(this))
+app.controller('DreamGridCtrl', ['$scope', '$element', function($scope, $element) {
+  $element.on("click", ".send-message-button", function() {
+    createMessage()
   })
 
   $(".message-box").keyup(function(e){
     if (e.keyCode == 13) {
-      var element = $(this).siblings(".confirm-buttons").find(".send-message-button")
-      createMessage(element)
+      createMessage()
     }
   });
 
-  function createMessage(element) {
-    var confirmButton = element.parents(".confirm-buttons")
-    var credentialsInput = confirmButton.siblings(".credentials-box:visible")
+  function createMessage() {
+    var confirmButton = $element.find(".send-message-button")
+    var credentialsInput = $element.find(".credentials-box:visible")
     var credentialsText = credentialsInput.val()
-    var messageInput = confirmButton.siblings(".message-box:visible")
+    var messageInput = $element.find(".message-box:visible")
     var messageText = messageInput.val()
 
-    if (credentialsText == "" || messageText == "") {
+    if ((credentialsInput.length == 0 && credentialsText == "") || messageText == "") {
 
       showErrorBox(confirmButton)
 
     } else {
-      element.attr('disabled', 'disabled')
+
+      confirmButton.addClass('disabled')
       hideErrorBox(confirmButton)
 
-      var url = messageInput.attr("data-message-url")
-      var dream_id = messageInput.attr("data-dream-id")
-      var recipient_id = messageInput.attr("data-recipient-user-id")
-      var url = messageInput.attr("data-message-url")
+      var url = messageInput.data("message-url")
+      var dream_id = messageInput.data("dream-id")
+      var recipient_id = messageInput.data("recipient-user-id")
+      var url = messageInput.data("message-url")
       var method = "post"
 
       hideCredentialsInputSection(credentialsInput)
@@ -48,12 +48,12 @@ app.controller('DreamGridCtrl', ['$scope', function($scope) {
         data: data
       })
       .done(function(result) {
-        messageInput.parents(".offering-dream-section").find(".existing-messages").append(result.message_with_html)
+        $element.find(".existing-messages").append(result.message_with_html)
         if (result.connection_with_html) {
-          messageInput.parents(".dream-grid-holder").find(".existing-connections").append(result.connection_with_html)
+          $element.find(".existing-connections").append(result.connection_with_html)
         }
         messageInput.val("")
-        element.removeAttr("disabled")
+        confirmButton.removeClass('disabled')
       })
     }
   }

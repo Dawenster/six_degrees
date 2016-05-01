@@ -41,10 +41,10 @@ class MessagesController < ApplicationController
   private
 
   def put_html_around_message(message)
-    render_to_string(partial: 'messages/single.html.slim', locals: { message: message, :user => message.user }, :layout => false)
+    render_to_string(partial: 'dreams/message.html.slim', locals: { message: message, :user => message.user }, :layout => false)
   end
 
   def put_html_around_connection(connection)
-    render_to_string(partial: 'connections/single.html.slim', locals: { connection: connection }, :layout => false)
+    render_to_string(partial: 'connections/other_helper.html.slim', locals: { connection: connection }, :layout => false)
   end
 end
