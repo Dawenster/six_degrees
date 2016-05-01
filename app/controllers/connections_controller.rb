@@ -1,34 +1,4 @@
 class ConnectionsController < ApplicationController
-  def create
-    respond_to do |format|
-      begin
-        @connection = Connection.new(connection_params)
-        @connection.user_id = current_user.id
-        if @connection.save
-          ConnectionMailer.connection_offered(@connection.id).deliver
-
-          connection_display = render_to_string(:partial => 'dreams/connection_offered.html.slim', :layout => false, :locals => { :dream => @connection.dream })
-
-          format.json { render :json => { :status => 200, :message => "connection created successfully", :connection_display => connection_display } }
-          format.html do
-            flash[:notice] = "Help successfully offered!"
-            redirect_to dreams_path
-          end
-        else
-          connection_errors = @connection.errors.full_messages.join(". ") + "."
-          format.json { render :json => { :status => 500, :message => connection_errors } }
-          format.html do
-            flash[:alert] = connection_errors
-            redirect_to dreams_path
-          end
-        end
-      rescue => error
-        format.json { render :json => { :status => 500, :message => error } }
-        format.html { render :json => { :status => 500, :message => error } }
-      end
-    end
-  end
-
   def accept_connection
     respond_to do |format|
       begin
