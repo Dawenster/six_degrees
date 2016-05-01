@@ -12,21 +12,23 @@
               = select_tag(:user_id, options_for_select(dream.helpers_select), :class => "select-private-helper")
 
             - dream.messages_by_user.each_with_index do |(user, messages), index|
-              ul.collection.existing-messages
-                .owner-of-dream-specific-user-message-stream data-user-id="#{user.id}" class="#{'hide' unless index == 0}"
+              .owner-of-dream-specific-user-message-stream data-user-id="#{user.id}" class="#{'hide' unless index == 0}"
+                ul.collection.existing-messages
                   - messages.each do |message|
                     = render "message", :message => message
 
-              .input-field
-                label
-                  | Message
-                input.message-box-input.message-box type="text" placeholder="Reply to #{user.first_name}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{dream.user.id}"
+                .row
+                  .col.s12
+                    .input-field
+                      label
+                        | Message
+                      input.message-box-input.message-box type="text" placeholder="Reply to #{user.first_name}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{user.id}"
 
-              .message-box-errors.hide
-                | Please fill everything in
+                    .message-box-errors.hide
+                      | Please fill everything in
 
-              a.modal-action.modal-close.waves-effect.waves-green.btn.right.send-message-button href=""
-                | Send
+                    a.modal-action.waves-effect.waves-green.btn.right.send-message-button href=""
+                      | Send
 
           - else
 

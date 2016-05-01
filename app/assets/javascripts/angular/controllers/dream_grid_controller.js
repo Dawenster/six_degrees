@@ -58,20 +58,23 @@ app.controller('DreamGridCtrl', ['$scope', '$element', function($scope, $element
     }
   }
 
-  $("body").on("change", ".select-private-helper", function() {
+  $element.on("change", ".select-private-helper", function() {
     showMessageStreamForUser($(this))
   })
 
-  function showMessageStreamForUser(element) {
-    var userId = element.val()
-    var streams = element.parents(".owner-of-dream-messages-holder").find(".owner-of-dream-specific-user-message-stream")
-    for (var i = 0; i < streams.length; i++) {
-      if ($(streams[i]).attr("data-user-id") == userId) {
-        $(streams[i]).removeClass("hide")
-      } else {
-        $(streams[i]).addClass("hide")
-      }
-    };
+  function showMessageStreamForUser(selectInput) {
+    var userId = selectInput.val()
+    var streams = selectInput.parents(".modal-content").find(".owner-of-dream-specific-user-message-stream")
+
+    if (userId != "") {
+      for (var i = 0; i < streams.length; i++) {
+        if ($(streams[i]).data("user-id") == parseInt(userId)) {
+          $(streams[i]).removeClass("hide")
+        } else {
+          $(streams[i]).addClass("hide")
+        }
+      };
+    }
   }
 
   function hideCredentialsInputSection(credentialsInput) {
