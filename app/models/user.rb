@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id', :dependent => :destroy
   has_many :connections, :dependent => :destroy
   has_many :hearts, :dependent => :destroy
+  has_many :referrals
+  belongs_to :referred_by, :class_name => "User", :foreign_key => "referred_by_user_id"
+  has_many :successful_referrals, :class_name => "User", :foreign_key => "referred_by_user_id"
 
   s3_credentials_hash = {
     :access_key_id => ENV['AWS_ACCESS_KEY'],
