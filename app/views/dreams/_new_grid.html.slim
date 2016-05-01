@@ -18,12 +18,14 @@
 
     - if user_signed_in?
 
+      - text = current_user.owner_of?(dream) || dream.messages.any? ? "Messages" : "Help"
+
       - if current_user.owner_of?(dream)
         a.modal-trigger href="#owner-modal-#{dream.id}"
-          | Help
-      - else current_user.owner_of?(dream)
+          = text
+      - else
         a.modal-trigger href="#help-modal-#{dream.id}"
-          | Help
+          = text
 
       a href=""
         | Love
