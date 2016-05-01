@@ -85,6 +85,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-async (0.10.1)
+      devise (~> 3.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -289,6 +291,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.0.0)
   devise
+  devise-async
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
