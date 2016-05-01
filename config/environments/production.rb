@@ -82,7 +82,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Devise Settings
-  config.action_mailer.default_url_options = { :host => 'http://six-degrees-app.herokuapp.com' }
+  if ENV['STAGING'] == "true"
+    config.action_mailer.default_url_options = { :host => 'http://six-degrees-app.herokuapp.com' }
+  else
+    config.action_mailer.default_url_options = { :host => 'http://www.gosixdegrees.com' }
+  end
 
   # Gmail Settings
   config.action_mailer.delivery_method = :smtp
