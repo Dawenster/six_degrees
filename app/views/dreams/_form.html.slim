@@ -27,7 +27,7 @@ div ng-controller="DreamFormCtrl"
 
     br
     - button_text = @dream.id ? "Update dream" : "Create dream"
-    = dream.button :submit, button_text, :class => "btn btn-success"
+    = dream.button :submit, button_text, :class => "btn btn-success create-update-dream-button"
 
     - if @dream.id
       div style="margin-top: 10px;"

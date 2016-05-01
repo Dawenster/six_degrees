@@ -1,15 +1,22 @@
 var app = angular.module('sixdegrees');
 
 app.controller('DreamGridCtrl', ['$scope', '$element', function($scope, $element) {
+
+  var dialogTime = 4000
+
+  $(document).ready(function() {
+    $(".message-box").characterCounter();
+  });
+
   $element.on("click", ".send-message-button", function() {
     createMessage()
   })
 
-  $(".message-box").keyup(function(e){
-    if (e.keyCode == 13) {
-      createMessage()
-    }
-  });
+  // $(".message-box").keyup(function(e){
+  //   if (e.keyCode == 13) {
+  //     createMessage()
+  //   }
+  // });
 
   function createMessage() {
     var confirmButton = $element.find(".send-message-button")
@@ -17,10 +24,22 @@ app.controller('DreamGridCtrl', ['$scope', '$element', function($scope, $element
     var credentialsText = credentialsInput.val()
     var messageInput = $element.find(".message-box:visible")
     var messageText = messageInput.val()
+    var limit = parseInt(messageInput.attr("length"))
+    var messageLength = messageText.length
 
     if ((credentialsInput.length == 0 && credentialsText == "") || messageText == "") {
 
-      showErrorBox(confirmButton)
+      Materialize.toast("Please fill everything in!", dialogTime)
+      if (credentialsInput.length > 0 && credentialsText == "") {
+        credentialsInput.focus()
+      } else {
+        messageInput.focus()
+      }
+
+    } else if (messageLength > limit) {
+
+      Materialize.toast("Message is too long!", dialogTime)
+      messageInput.focus()
 
     } else {
 

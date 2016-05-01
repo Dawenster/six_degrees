@@ -24,10 +24,10 @@
         .input-field
           label
             | Message
-          input.message-box-input.message-box type="text" placeholder="#{response_tip_placeholder(dream.user)}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{dream.user.id}"
+          textarea.materialize-textarea.message-box-input.message-box type="text" placeholder="#{response_tip_placeholder(dream.user)}" data-message-url="#{messages_path}" data-dream-id="#{dream.id}" data-recipient-user-id="#{dream.user.id}" length="#{Dream::DREAM_RESPONSE_LENGTH_IN_CHARS}"
 
-        .message-box-errors.hide
-          | Please fill everything in
+        br
+        br
 
         a.modal-action.waves-effect.waves-green.btn.right.send-message-button href=""
           | Send

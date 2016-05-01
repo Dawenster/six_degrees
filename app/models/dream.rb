@@ -9,6 +9,7 @@ class Dream < ActiveRecord::Base
   validate :has_at_least_one_tag
 
   DREAM_LENGTH_IN_CHARS = 150
+  DREAM_RESPONSE_LENGTH_IN_CHARS = 500
 
   def self.dreams_with_user_info
     dreams = []
