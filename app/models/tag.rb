@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :dreams
+  has_and_belongs_to_many :dreams, uniq: true
 
   scope :alphabetical, -> { order(:name) }
 
@@ -10,5 +10,5 @@ class Tag < ActiveRecord::Base
   PERSONAL_GROWTH = "Personal Growth"
   FOR_A_BETTER_WORLD = "For A Better World"
   FAN_CLUB = "Fan Club"
-
+  
 end
