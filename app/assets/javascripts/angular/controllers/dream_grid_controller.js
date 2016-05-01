@@ -91,4 +91,44 @@ app.controller('DreamGridCtrl', ['$scope', '$element', function($scope, $element
     var errorBox = confirmButton.siblings(".message-box-errors")
     errorBox.addClass("hide")
   }
+
+  $element.on("click", ".heart-count", function() {
+    var dreamId = $element.data("dream-id")
+    var hearted = $element.find(".heart-count").data("already-hearted")
+    if (hearted) {
+      unheart()
+    } else {
+      heart(dreamId)
+    }
+  })
+
+  function heart(dreamId, heartUrl) {
+    var heartUrl = $element.find(".heart-count").data("heart-url")
+
+    $.ajax({
+      url: heartUrl,
+      method: "POST",
+      data: {
+        dream_id: dreamId
+      }
+    })
+    .done(function(result) {
+      $element.find(".fa-heart").text(" " + result.hearts)
+      $element.find(".heart-count").data("already-hearted", true)
+      $element.find(".heart-count").data("delete-heart-url", result.delete_heart_url)
+    })
+  }
+
+  function unheart() {
+    var heartUrl = $element.find(".heart-count").data("delete-heart-url")
+    $.ajax({
+      url: heartUrl,
+      method: "DELETE"
+    })
+    .done(function(result) {
+      $element.find(".fa-heart").text(" " + result.hearts)
+      $element.find(".heart-count").data("already-hearted", false)
+      $element.find(".heart-count").removeAttr("data-delete-heart-url")
+    })
+  }
 }]);

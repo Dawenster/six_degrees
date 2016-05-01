@@ -11,10 +11,19 @@ class HeartsController < ApplicationController
       )
 
       if heart.save
-        format.json { render :json => { hearts: dream.hearts.count } }
+        format.json { render :json => { hearts: dream.hearts.count, delete_heart_url: heart_path(heart) } }
       else
         format.json { render :json => { :status => 500, :message => heart.errors.full_messages.join(". ") + "." } }
       end
+    end
+  end
+
+  def destroy
+    respond_to do |format|
+      heart = Heart.find(params[:id])
+      dream = heart.dream
+      heart.destroy
+      format.json { render :json => { hearts: dream.hearts.count } }
     end
   end
 end

@@ -30,17 +30,22 @@
           a.modal-trigger href="#help-modal-#{dream.id}"
             = text
 
+        a.right.heart-count href="" data-already-hearted="#{current_user.already_hearted?(dream)}" data-heart-url="#{hearts_path}" data-delete-heart-url="#{heart_path(current_user.heart_for_dream(dream)) if current_user.already_hearted?(dream)}"
+          i.fa.fa-heart
+            = " #{dream.hearts.count}"
+
       - else
 
         = link_to "Sign in to help", new_user_registration_path(:help => true)
+
+        a.right.heart-count-not-logged-in href="#{new_user_registration_path}"
+          i.fa.fa-heart
+            = " #{dream.hearts.count}"
 
       - if dream.connections.any?
         a.activator href=""
           | Helpers
 
-      a.right.heart-count
-        i.fa.fa-heart
-          = " #{dream.hearts.count}"
 
     - if dream.connections.any?
       .card-reveal

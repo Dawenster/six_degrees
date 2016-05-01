@@ -126,6 +126,14 @@ class User < ActiveRecord::Base
       return "https://s3-us-west-2.amazonaws.com/six-degrees-app/general/no_profile.png"
     end
   end
+
+  def already_hearted?(dream)
+    dream.hearts.where(user_id: id).any?
+  end
+
+  def heart_for_dream(dream)
+    hearts.where(dream_id: dream.id).first
+  end
  
   private
   
