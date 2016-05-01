@@ -12,7 +12,7 @@ gem 'materialize-sass', :git => "https://github.com/mkhairi/materialize-sass"
 gem 'omniauth-facebook'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'pg'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.2'
 gem 'rails_admin'
 gem 'rest-client'
 gem 'sass-rails', '~> 5.0'
