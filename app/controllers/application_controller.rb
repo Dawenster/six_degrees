@@ -7,17 +7,11 @@ class ApplicationController < ActionController::Base
 
   acts_as_token_authentication_handler_for User, fallback_to_devise: false
 
-  helper_method :dream_types
-
   def authenticate_admin_user!
     unless current_user.try(:admin?)
       flash[:alert] = "You are not authorized to access this page."
       redirect_to root_path
     end
-  end
-
-  def dream_types
-    [Dream::PERSONAL_DREAM_TYPE, Dream::PROFESSIONAL_DREAM_TYPE]
   end
 
   def api_authenticated?

@@ -8,8 +8,7 @@ class Dream < ActiveRecord::Base
   validates :description, :user_id, :presence => true, allow_blank: false
   validate :has_at_least_one_tag
 
-  PERSONAL_DREAM_TYPE = "Personal"
-  PROFESSIONAL_DREAM_TYPE = "Professional"
+  DREAM_LENGTH_IN_CHARS = 150
 
   def self.dreams_with_user_info
     dreams = []
@@ -38,14 +37,6 @@ class Dream < ActiveRecord::Base
 
   def messages_involving(user)
     return self.messages.select { |message| message.user == user || message.recipient == user }
-  end
-
-  def icon
-    if dream_type == PERSONAL_DREAM_TYPE
-      return "<i class='fa fa-heart'></i>"
-    else
-      return "<i class='fa fa-briefcase'></i>"
-    end
   end
 
   def helped_by(user)

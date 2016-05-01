@@ -1,4 +1,4 @@
-div
+div ng-controller="DreamFormCtrl"
   = simple_form_for @dream, defaults: { input_html: { class: 'form-control' }} do |dream|
     
     p
@@ -7,7 +7,7 @@ div
     br
     
     .input-field
-      = dream.input :description, :label => "What is your dream?", required: false
+      = dream.input :description, :label => "What is your dream?", required: false, input_html: { length: Dream::DREAM_LENGTH_IN_CHARS }
 
     br
 
