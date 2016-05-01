@@ -30,9 +30,6 @@ div ng-controller="DreamGridCtrl"
           a.modal-trigger href="#help-modal-#{dream.id}"
             = text
 
-        a href=""
-          | Love
-
       - else
 
         = link_to "Sign in to help", new_user_registration_path(:help => true)
@@ -40,6 +37,10 @@ div ng-controller="DreamGridCtrl"
       - if dream.connections.any?
         a.activator href=""
           | Helpers
+
+      a.right.heart-count
+        i.fa.fa-heart
+          = " #{dream.hearts.count}"
 
     - if dream.connections.any?
       .card-reveal
