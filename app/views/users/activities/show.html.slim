@@ -1,24 +1,38 @@
 .row
-  .col-xs-12.col-md-8.col-md-offset-2
+  .col.s12
+    br
     .large-profile-picture
       = profile_picture(@user)
     h3.page-title
       = "#{@user.full_name}"
 
-    .activities-tabs role="tabpanel"
-      ul.nav.nav-pills.hidden-xs role="tablist"
-        = render "nav_pills"
-      ul.nav.nav-pills.visible-xs-block.nav-stacked role="tablist"
-        = render "nav_pills"
+    ul.tabs
+      li.tab.col class="#{current_user_profile_page(@user) ? 's4' : 's6'}"
+        a href="#dreams"
+          | Dreams
 
-      .tab-content
-        .tab-pane.active role="tabpanel" id="dreams" ng-controller="DreamGridCtrl"
+      li.tab.col class="#{current_user_profile_page(@user) ? 's4' : 's6'}"
+        a href="#help-given"
+          | Helped
+
+      - if current_user_profile_page(@user)
+        li.tab.col.s4
+          a href="#help-received"
+            | Received
+
+    br
+
+    #dreams.col.s12
+      .row
+        .col.s12.m8.offset-m2.l6.offset-l3
           - if @dreams.any?
+          
             - @dreams.each do |dream|
               .row
                 .col-xs-12
-                  = render "dreams/grid", :dream => dream
+                  = render "dreams/new_grid", dream: dream, user: dream.user
           - else
+
             - if current_user_profile_page(@user)
               h4.no-activity-yet
                 | No dreams yet... what are you waiting for?
@@ -29,15 +43,19 @@
               h4.no-activity-yet
                 = "#{@user.first_name} has not created any dreams yet."
 
-        .tab-pane role="tabpanel" id="given"
+    #help-given.col.s12
+      .row
+        .col.s12.m8.offset-m2.l6.offset-l3
           - if @given.any?
+
             - @given.each do |given_connection|
               .row
                 .col-xs-12
                   / = render "given_grid", :connection => given_connection
-                  = render "dreams/grid", :dream => given_connection.dream
+                  = render "dreams/new_grid", dream: given_connection.dream, user: given_connection.dream.user
                   
           - else
+
             - if current_user_profile_page(@user)
               h4.no-activity-yet
                 | You haven't offered any help yet. Feel like helping others?
@@ -48,18 +66,23 @@
               h4.no-activity-yet
                 = "#{@user.first_name} has not given help to others yet."
 
-        - if current_user_profile_page(@user)
-          .tab-pane role="tabpanel" id="received" ng-controller="HelpedReceivedGridCtrl"
-            - if @received.any?
-              - @received.each do |received_dream|
-                .row
-                  .col-xs-12
-                    = render "received_grid", :dream => received_dream
-            - elsif @dreams.empty?
-              h4.no-activity-yet
-                | Gotta dream first before you can be helped!
+    - if current_user_profile_page(@user)
+      #help-received.col.s12
+        .row
+          .col.s12.m8.offset-m2.l6.offset-l3
+            .tab-pane role="tabpanel" id="received" ng-controller="HelpedReceivedGridCtrl"
+              - if @received.any?
+                - @received.each do |received_dream|
+                  .row
+                    .col-xs-12
+                      = render "received_grid", :dream => received_dream
 
-              = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
-            - else
-              h4.no-activity-yet
-                | No help yet... sit tight :)
+              - elsif @dreams.empty?
+                h4.no-activity-yet
+                  | Gotta dream first before you can be helped!
+
+                = link_to "Create a dream", new_dream_path, :class => "btn btn-success"
+
+              - else
+                h4.no-activity-yet
+                  | No help yet... sit tight :)    

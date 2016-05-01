@@ -9,7 +9,7 @@
         ul.collection.existing-messages
           - dream.messages.each do |message|
             - if message.user == current_user || message.recipient == current_user
-              = render "message", message: message
+              = render "dreams/message", message: message
 
     .row
       .col.s12.m6.offset-m3

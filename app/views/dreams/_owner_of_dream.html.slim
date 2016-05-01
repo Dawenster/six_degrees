@@ -15,7 +15,7 @@
               .owner-of-dream-specific-user-message-stream data-user-id="#{user.id}" class="#{'hide' unless index == 0}"
                 ul.collection.existing-messages
                   - messages.each do |message|
-                    = render "message", :message => message
+                    = render "dreams/message", :message => message
 
                 .row
                   .col.s12

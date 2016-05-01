@@ -1,50 +1,52 @@
-- if current_user.owner_of?(dream)
-  = render "owner_of_dream", dream: dream
-- else
-  = render "helping_someone_else", dream: dream
+div ng-controller="DreamGridCtrl"
 
-.card.medium
-  .card-image.waves-effect.waves-block.waves-light
-    img class="activator" src="https://s3-us-west-2.amazonaws.com/six-degrees-app/general/travel.png"
-    .card-title.black-text
-      = dream.description
-      
-  .card-content
-    a.chip href="#{activities_path(user)}"
-      = image_tag user.avatar.url(:small)
-      = user.full_name
+  - if current_user.owner_of?(dream)
+    = render "dreams/owner_of_dream", dream: dream
+  - else
+    = render "dreams/helping_someone_else", dream: dream
+
+  .card.medium
+    .card-image.waves-effect.waves-block.waves-light
+      img class="activator" src="https://s3-us-west-2.amazonaws.com/six-degrees-app/general/travel.png"
+      .card-title.black-text
+        = dream.description
         
-  .card-action
+    .card-content
+      a.chip href="#{activities_path(user)}"
+        = image_tag user.avatar.url(:small)
+        = user.full_name
+          
+    .card-action
 
-    - if user_signed_in?
+      - if user_signed_in?
 
-      - text = current_user.owner_of?(dream) || dream.messages.any? ? "Messages" : "Help"
+        - text = current_user.owner_of?(dream) || dream.messages.any? ? "Messages" : "Help"
 
-      - if current_user.owner_of?(dream)
-        a.modal-trigger href="#owner-modal-#{dream.id}"
-          = text
+        - if current_user.owner_of?(dream)
+          a.modal-trigger href="#owner-modal-#{dream.id}"
+            = text
+        - else
+          a.modal-trigger href="#help-modal-#{dream.id}"
+            = text
+
+        a href=""
+          | Love
+
       - else
-        a.modal-trigger href="#help-modal-#{dream.id}"
-          = text
 
-      a href=""
-        | Love
+        = link_to "Sign in to help", new_user_registration_path(:help => true)
 
-    - else
-
-      = link_to "Sign in to help", new_user_registration_path(:help => true)
+      - if dream.connections.any?
+        a.activator href=""
+          | Helpers
 
     - if dream.connections.any?
-      a.activator href=""
-        | Helpers
+      .card-reveal
+        span.card-title.grey-text.text-darken-4
+          | Helpers
+          i.material-icons.right
+            | close
 
-  - if dream.connections.any?
-    .card-reveal
-      span.card-title.grey-text.text-darken-4
-        | Helpers
-        i.material-icons.right
-          | close
-
-      ul.collection.existing-connections
-        - dream.connections.each do |connection|
-          = render "connections/other_helper", connection: connection
+        ul.collection.existing-connections
+          - dream.connections.each do |connection|
+            = render "connections/other_helper", connection: connection

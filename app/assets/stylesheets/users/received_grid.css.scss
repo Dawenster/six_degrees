@@ -1,5 +1,10 @@
+.help-received-connection-title {
+  text-align: center;
+}
+
 .help-received-connection-holder {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 @media(max-width:767px) {
@@ -26,11 +31,5 @@
 .accepted-holder {
   .fa-envelope-o {
     margin-right: 5px;
-  }
-}
-
-@media(min-width:768px) {
-  .accepted-holder {
-    text-align: right;
   }
 }

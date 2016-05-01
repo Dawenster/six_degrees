@@ -1,21 +1,15 @@
-/ .dream-icon
-/   = "#{dream.icon} #{dream.dream_type}".html_safe
-h3
+h5.help-received-connection-title
   = dream.description
+br
 
 - dream.connections.each do |connection|
   .help-received-connection-holder
     - user = connection.user
-    span
-      = link_to avatar(user), activities_path(user)
-    span.user-name
-      = "#{link_to user.full_name, activities_path(user)} offered to help you. Accept to share your emails with each other.".html_safe
-    .pull-right.hidden-xs
-      = render "received_grid_action_buttons", :connection => connection
-    / - if !connection.initial_message.blank?
-    /   blockquote.connection-message
-    /     = connection.initial_message
-    / .grid-timestamp
-    /   = "#{time_ago_in_words(connection.created_at)} ago"
-    .visible-xs-block
-      = render "received_grid_action_buttons", :connection => connection
+    a.chip href="#{activities_path(user)}"
+      = image_tag user.avatar.url(:small)
+      = user.full_name
+
+    div
+      | Accept to share your emails with each other.
+
+    = render "received_grid_action_buttons", :connection => connection

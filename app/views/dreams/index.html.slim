@@ -21,5 +21,4 @@
         - @dreams.each do |dream|
           - user = dream.user
           - next if user.nil?
-          div ng-controller="DreamGridCtrl"
-            = render "new_grid", dream: dream, user: user
+          = render "new_grid", dream: dream, user: user
