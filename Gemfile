@@ -10,6 +10,7 @@ gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'materialize-sass', :git => "https://github.com/mkhairi/materialize-sass"
+gem 'nested_form'
 gem 'omniauth-facebook'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'pg'

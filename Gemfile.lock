@@ -297,6 +297,7 @@ DEPENDENCIES
   jquery-rails
   mailcatcher
   materialize-sass!
+  nested_form
   omniauth-facebook
   paperclip!
   pg
