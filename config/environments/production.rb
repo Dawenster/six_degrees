@@ -83,7 +83,7 @@ Rails.application.configure do
 
   # Devise Settings
   if ENV['STAGING'] == "true"
-    config.action_mailer.default_url_options = { :host => 'http://six-degrees-app.herokuapp.com' }
+    config.action_mailer.default_url_options = { :host => 'http://six-degrees-staging.herokuapp.com' }
   else
     config.action_mailer.default_url_options = { :host => 'http://www.gosixdegrees.com' }
   end
