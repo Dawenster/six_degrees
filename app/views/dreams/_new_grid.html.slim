@@ -34,15 +34,17 @@
 
       = link_to "Sign in to help", new_user_registration_path(:help => true)
 
-    a.activator href=""
-      | Other helpers
+    - if dream.connections.any?
+      a.activator href=""
+        | Helpers
 
-  .card-reveal
-    span.card-title.grey-text.text-darken-4
-      | Other helpers
-      i.material-icons.right
-        | close
+  - if dream.connections.any?
+    .card-reveal
+      span.card-title.grey-text.text-darken-4
+        | Helpers
+        i.material-icons.right
+          | close
 
-    ul.collection.existing-connections
-      - dream.connections.each do |connection|
-        = render "connections/other_helper", connection: connection
+      ul.collection.existing-connections
+        - dream.connections.each do |connection|
+          = render "connections/other_helper", connection: connection
