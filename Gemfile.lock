@@ -75,6 +75,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     concurrent-ruby (1.0.1)
+    connection_pool (2.2.0)
     daemons (1.2.2)
     debug_inspector (0.0.2)
     devise (3.5.1)
@@ -204,6 +205,7 @@ GEM
     rake (11.1.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redis (3.3.0)
     remotipart (1.2.1)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -222,6 +224,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sidekiq (4.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -298,6 +304,7 @@ DEPENDENCIES
   rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sidekiq
   simple_form
   simple_token_authentication
   slim
