@@ -1,6 +1,6 @@
 div ng-controller="DreamGridCtrl"
 
-  - if current_user.owner_of?(dream)
+  - if user_signed_in? && current_user.owner_of?(dream)
     = render "dreams/owner_of_dream", dream: dream
   - else
     = render "dreams/helping_someone_else", dream: dream
