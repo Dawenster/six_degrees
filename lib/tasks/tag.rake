@@ -6,6 +6,7 @@ task :tag_dreams => :environment do |t, args|
       dream.destroy
     else
       tag = Tag.find_by_name(tag_name)
+      next if tag.nil?
       dream.tags << tag
     end
   end
