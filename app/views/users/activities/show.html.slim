@@ -19,6 +19,8 @@
         li.tab.col.s4
           a href="#help-received"
             | Received
+            span.badge.notification-badge.received-badge-num
+              = pending_received_activities(@user.dreams)
 
     br
 

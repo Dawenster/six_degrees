@@ -20,7 +20,7 @@ ul#mobile-nav.side-nav
     li class="#{'active' if params[:action] == 'show' && params[:controller] == 'users/activities'}"
       a href="#{activities_path(current_user)}"
         | Activities
-        span.badge.notification-badge.received-badge-num
+        span.badge.notification-badge.received-badge-num.new
           = pending_received_activities(current_user.dreams)
 
     li.divider
