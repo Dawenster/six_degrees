@@ -29,6 +29,10 @@
         <%= errors_for resource, :password %>
       </div>
 
+      <div>
+        <%= f.hidden_field :referred_by_user_id, value: params[:r] %>
+      </div>
+
       <div><%= f.submit "Sign up", :class => "btn btn-success" %></div>
     <% end %>
 

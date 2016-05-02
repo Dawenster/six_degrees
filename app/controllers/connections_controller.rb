@@ -4,7 +4,7 @@ class ConnectionsController < ApplicationController
       begin
         connection = Connection.find(params[:id])
         connection.update_attributes(:accepted => true)
-        ConnectionMailer.delay.connection_made(connection.id).deliver
+        ConnectionMailer.delay.connection_made(connection.id)
         format.json { render :json => { :status => 200, :message => "connection accepted successfully", :connection => connection } }
       rescue => error
         format.json { render :json => { :status => 500, :message => error } }

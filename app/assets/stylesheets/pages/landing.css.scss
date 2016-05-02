@@ -1,10 +1,12 @@
-@media(max-width:767px) {
+@import "application";
+
+@media #{$small-and-down} {
   .landing-container {
     padding: 10px;
   }
 }
 
-@media(min-width:768px) {
+@media #{$medium-and-up} {
   .landing-container {
     padding: 10%;
   }

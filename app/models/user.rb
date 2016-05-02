@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => true, allow_blank: false
 
   before_save :ensure_authentication_token
+  before_create :check_if_referred
 
   def to_param
     "#{id}-#{first_name.parameterize.downcase}-#{last_name.parameterize.downcase}"
@@ -145,5 +146,10 @@ class User < ActiveRecord::Base
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first
     end
+  end
+
+  def check_if_referred
+    referral = Referral.find_by_email(email)
+    self.referred_by_user_id = referral.user.id if referral.present? && referral.user.present?
   end
 end

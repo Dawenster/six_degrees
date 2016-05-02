@@ -1,5 +1,6 @@
 .new-grid-holder ng-controller="DreamGridCtrl" data-dream-id="#{dream.id}"
 
+  = render "referrals/refer_dream_modal", dream: dream
   - if user_signed_in?
     - if current_user.owner_of?(dream)
       = render "dreams/owner_of_dream", dream: dream
@@ -40,7 +41,7 @@
 
       - else
 
-        = link_to "Sign in to help", new_user_registration_path(:help => true)
+        = link_to "Sign in to help", new_user_registration_path(:help => true, r: params[:r])
 
         a.right.heart-count-not-logged-in href="#{new_user_registration_path}"
           i.fa.fa-heart
@@ -49,6 +50,9 @@
       - if dream.connections.any?
         a.activator href=""
           | Helpers
+
+      a.modal-trigger href="#refer-dream-modal-#{dream.id}"
+        | Refer
 
 
     - if dream.connections.any?

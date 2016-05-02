@@ -1,5 +1,6 @@
 class Referral < ActiveRecord::Base
   belongs_to :user
+  belongs_to :dream
 
-  validates :user, :email, presence: true
+  validates :email, :referrer_name, presence: true
 end

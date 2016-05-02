@@ -1,0 +1,7 @@
+@import "application";
+
+@media #{$large-and-up} {
+  .refer-dream-modal {
+    width: 30% !important;
+  }
+}

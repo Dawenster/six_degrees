@@ -1,0 +1,21 @@
+.modal.refer-dream-modal id="refer-dream-modal-#{dream.id}" ng-controller="ReferDreamCtrl"
+  .modal-content
+    h4
+      | Refer others
+    p
+      = "Know someone else who might be able to help #{dream.user.first_name} with this dream?"
+
+    = simple_form_for Referral.new, defaults: { input_html: { class: 'input-field' }} do |r|
+      - if user_signed_in?
+        = r.input :referrer_name, as: :hidden, :input_html => { value: current_user.full_name }
+      - else
+        .input-field
+          = r.input :referrer_name, required: false, label: "Your name"
+      .input-field
+        = r.input :email, required: false
+
+      = r.input :dream_id, as: :hidden, :input_html => { :value => dream.id }
+
+      = r.submit :send, class: "btn modal-action waves-effect waves-green right send-referral-button"
+
+  .modal-footer

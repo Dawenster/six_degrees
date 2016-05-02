@@ -1,0 +1,15 @@
+= "Hi there,".html_safe
+br
+br
+= "#{@referral.referrer_name} has referred you to help #{@dream.user.full_name} on the dream: #{@dream.description}".html_safe
+br
+br
+= "#{link_to 'Go to Six Degrees', dream_url(@dream, r: @referral.user.try(:id))} to help out!".html_safe
+br
+br
+| Good luck!
+br
+br
+| Six degrees team
+br
+= link_to root_url, root_url

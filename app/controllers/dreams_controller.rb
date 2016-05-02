@@ -29,11 +29,14 @@ class DreamsController < ApplicationController
   def show
     respond_to do |format|
       if current_user
-        dream = Dream.find(params[:id])
-        format.json { render :json => { :dream => dream, :messages => dream.messages_involving(current_user) } }
+        @dream = Dream.find(params[:id])
+        format.json { render :json => { :dream => @dream, :messages => @dream.messages_involving(current_user) } }
       else
-        dream = Dream.find(params[:id])
-        format.json { render :json => dream }
+        @dream = Dream.find(params[:id])
+        format.json { render :json => @dream }
+      end
+      format.html do
+        
       end
     end
   end
