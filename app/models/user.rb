@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :referrals
   belongs_to :referred_by, :class_name => "User", :foreign_key => "referred_by_user_id"
   has_many :successful_referrals, :class_name => "User", :foreign_key => "referred_by_user_id"
+  has_many :given_kudos, :class_name => "Kudo", :foreign_key => "giver_id"
+  has_many :received_kudos, :class_name => "Kudo", :foreign_key => "receiver_id"
 
   s3_credentials_hash = {
     :access_key_id => ENV['AWS_ACCESS_KEY'],
@@ -137,6 +139,10 @@ class User < ActiveRecord::Base
 
   def heart_for_dream(dream)
     hearts.where(dream_id: dream.id).first
+  end
+
+  def already_kudos_user?(user)
+    given_kudos.where(receiver_id: user.id).any?
   end
  
   private

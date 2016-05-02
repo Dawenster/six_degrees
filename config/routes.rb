@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :referrals, :only => [:create]
 
+  resources :kudos, :only => [:create]
+
   put "accept_connection/:id" => "connections#accept_connection", as: :accept_connection
   put "decline_connection/:id" => "connections#decline_connection", as: :decline_connection
   get "email_display_as_string/:id" => "connections#email_display_as_string", as: :email_display_as_string

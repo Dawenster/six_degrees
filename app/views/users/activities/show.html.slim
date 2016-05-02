@@ -5,6 +5,10 @@
       = profile_picture(@user)
     h3.page-title
       = "#{@user.full_name}"
+    .profile-kudos-holder
+      h6
+        i.fa.fa-star
+          = " Kudos received: #{@user.received_kudos.count}"
 
     ul.tabs
       li.tab.col class="#{current_user_profile_page(@user) ? 's4' : 's6'}"

@@ -1,6 +1,6 @@
 var app = angular.module('sixdegrees');
 
-app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($scope, Connections) {
+app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", '$element', function($scope, Connections, $element) {
   $scope.updateStatus = function(url) {
     Connections.updateStatus(url)
     updateBadgeNum()
@@ -55,5 +55,20 @@ app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($sco
   $("body").on("click", ".show-email-link", function() {
     $(this).parent().hide()
     $(this).parent().siblings(".email-as-text").show()
+  });
+
+  $element.on("click", ".give-kudos-button", function() {
+    var url = $(this).data("kudos-url")
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: {
+        giver_id: $(this).data("giver-id"),
+        receiver_id: $(this).data("receiver-id")
+      }
+    })
+    .done(function(result) {
+      $element.find(".buttons-holder").addClass("hide")
+    })
   });
 }]);

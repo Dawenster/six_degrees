@@ -32,9 +32,9 @@ br
 
           br
 
-        .card-action.buttons-holder class="#{'hide' if connection.accepted == false}"
+        .card-action.buttons-holder class="#{'hide' if connection.accepted == false || current_user.already_kudos_user?(connection.user)}"
           .accepted-actions class="#{'hide' unless connection.accepted}"
-            a.tooltipped href="" data-position="right" data-delay="50" data-tooltip="Express your gratitude by giving kudos!"
+            a.give-kudos-button.tooltipped href="" data-position="right" data-delay="50" data-tooltip="Express your gratitude by giving kudos!" data-giver-id="#{current_user.id}" data-receiver-id="#{connection.user.id}" data-kudos-url="#{kudos_path}"
               | Give kudos
 
           .pre-accepted-actions class="#{'hide' if connection.accepted}"
