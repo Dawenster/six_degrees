@@ -4,7 +4,6 @@
 
 .help-received-connection-holder {
   margin-bottom: 20px;
-  text-align: center;
 }
 
 @media(max-width:767px) {
@@ -13,19 +12,8 @@
   }
 }
 
-.received-grid-action-buttons {
-  .btn-warning {
-    margin-left: 10px;
-  }
-
-  .fa-check-circle {
-    font-size: 30px;
-    color: #5cb85c;
-  }
-
-  .show-email-link {
-    cursor: pointer;
-  }
+.show-email-link {
+  cursor: pointer;
 }
 
 .accepted-holder {

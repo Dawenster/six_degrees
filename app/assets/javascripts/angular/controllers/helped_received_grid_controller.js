@@ -30,15 +30,24 @@ app.controller('HelpedReceivedGridCtrl', ['$scope', "Connections", function($sco
       method: "get"
     })
     .done(function(result) {
-      element.parent().parent().find(".display-email-section").html(result.email_display)
+      var emailSection = element.parents(".card").find(".display-email-section")
+      emailSection.removeClass("hide")
+      emailSection.html(result.email_display)
+      element.parents(".card").find(".accepted-actions").removeClass("hide")
+      element.parents(".card").find(".pre-accepted-actions").addClass("hide")
     })
   });
 
-  $("body").on("click", ".buttons-holder a", function() {
+  $("body").on("click", ".decline-button", function() {
+    $(this).parents(".card").find(".buttons-holder").addClass("hide")
+    $(this).parents(".card").find(".pre-accepted-actions").addClass("hide")
+  });
+
+  $("body").on("click", ".pre-accepted-actions a", function() {
     if ($(this).hasClass("accept-button")) {
-      $(this).parent().siblings(".accepted-holder").removeClass("hide")
+      $(this).parents(".card").find(".accepted-holder").removeClass("hide")
     } else {
-      $(this).parent().siblings(".declined-holder").removeClass("hide")
+      $(this).parents(".card").find(".declined-holder").removeClass("hide")
     }
     $(this).parent().hide()
   });

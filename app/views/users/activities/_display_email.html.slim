@@ -1,6 +1,6 @@
 .email-as-link
   i.fa.fa-envelope-o
-  = mail_to connection.user.email, "Email #{connection.user.first_name}", :encode => 'hex'
+  = mail_to connection.user.email, " Email #{connection.user.first_name}", :encode => 'hex'
   span
     |  (
   a.show-email-link

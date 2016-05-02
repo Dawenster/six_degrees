@@ -1,15 +1,45 @@
 h5.help-received-connection-title
-  = dream.description
+  = "Dream: #{dream.description}"
 br
 
 - dream.connections.each do |connection|
-  .help-received-connection-holder
-    - user = connection.user
-    a.chip href="#{activities_path(user)}"
-      = image_tag user.avatar.url(:small)
-      = user.full_name
+  - user = connection.user
+  .row
+    .col.s12
+      .card.help-received-connection-holder
+        .card-content
+          span.card-title
+            .accepted-holder class="#{'hide' unless connection.accepted}"
+              span.label.label-success
+                | Accepted
 
-    div
-      | Accept to share your emails with each other.
+            .declined-holder class="#{'hide' if connection.accepted.nil? || connection.accepted}"
+              span.label.label-warning
+                | Declined
 
-    = render "received_grid_action_buttons", :connection => connection
+          a.chip href="#{activities_path(user)}"
+            = image_tag user.avatar.url(:small)
+            = user.full_name
+
+          br
+          br
+
+          .pre-accepted-actions class="#{'hide' unless connection.accepted.nil?}"
+            | Accept to share your emails with each other.
+
+          .display-email-section class="#{'hide' unless connection.accepted}"
+            = render "display_email", :connection => connection if connection.accepted
+
+          br
+
+        .card-action.buttons-holder class="#{'hide' if connection.accepted == false}"
+          .accepted-actions class="#{'hide' unless connection.accepted}"
+            a.tooltipped href="" data-position="right" data-delay="50" data-tooltip="Express your gratitude by giving kudos!"
+              | Give kudos
+
+          .pre-accepted-actions class="#{'hide' if connection.accepted}"
+            a.accept-button ng-click="updateStatus('#{accept_connection_path(connection)}')" data-fetch-email-url="#{email_display_as_string_path(connection)}" href=""
+              | Accept
+
+            a.decline-button ng-click="updateStatus('#{decline_connection_path(connection)}')" href=""
+              | Decline
