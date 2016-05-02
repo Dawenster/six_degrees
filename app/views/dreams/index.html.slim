@@ -1,24 +1,20 @@
 .row
-  .col-xs-12
+  .col.s12
     h3.page-title
       | Browse dreams
 
-  .col-xs-12.col-lg-8.col-lg-offset-2
-    .row
-      .col.s12.m6.offset-m3.l4.offset-l4
-        .filter-holder
-          .collection
-            a.collection-item href="#{dreams_path}" class="#{'active' if @tag_ids.nil?}"
-              | All
+  .col.s12.m6.offset-m3.l4.offset-l4
+    .filter-holder
+      .collection
+        a.collection-item href="#{dreams_path}" class="#{'active' if @tag_ids.nil?}"
+          | All
 
-            - @tags.each do |tag|
-              a.collection-item href="#{dreams_path(tags: tag.id)}" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
-                = tag.name
+        - @tags.each do |tag|
+          a.collection-item href="#{dreams_path(tags: tag.id)}" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
+            = tag.name
 
-    .row
-      .col.s12.m8.offset-m2.l6.offset-l3
-
-        - @dreams.each do |dream|
-          - user = dream.user
-          - next if user.nil?
-          = render "grid", dream: dream, user: user
+  .col.s12.m8.offset-m2.l6.offset-l3
+    - @dreams.each do |dream|
+      - user = dream.user
+      - next if user.nil?
+      = render "grid", dream: dream, user: user
