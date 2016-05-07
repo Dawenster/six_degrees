@@ -22,7 +22,7 @@
 
       - if user_signed_in?
 
-        - text = current_user.owner_of?(dream) || dream.messages.any? ? "Messages" : "Help"
+        - text = current_user.owner_of?(dream) || dream.messages.where(user: current_user).any? ? "Messages" : "Help"
 
         - if current_user.owner_of?(dream)
           a.modal-trigger href="#owner-modal-#{dream.id}"
