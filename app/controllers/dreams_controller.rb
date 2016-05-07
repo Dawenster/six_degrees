@@ -103,6 +103,10 @@ class DreamsController < ApplicationController
       dream = Dream.find(params[:id])
       dream.destroy
       format.json { render :json => { :status => 200, :message => "dream destroyed successfully", :dream => dream } }
+      format.html do
+        flash[:notice] = "Dream successfully deleted"
+        redirect_to dreams_path
+      end
     end
   end
 
