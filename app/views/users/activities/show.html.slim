@@ -55,6 +55,7 @@
           - if @given.any?
 
             - @given.each do |given_connection|
+              - next if given_connection.dream.nil?
               .row
                 .col-xs-12
                   = render "dreams/grid", dream: given_connection.dream, user: given_connection.dream.user
