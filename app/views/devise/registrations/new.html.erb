@@ -9,10 +9,10 @@
       </h3>
     </div> -->
 
-    <div class="devise-facebook-link">
+    <!-- <div class="devise-facebook-link">
       <i class="fa fa-facebook-square"></i>
       <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook) %>
-    </div>
+    </div> -->
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= render "name_fields", :f => f %>
