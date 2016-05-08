@@ -5,6 +5,7 @@ class Dream < ActiveRecord::Base
   has_many :hearts, :dependent => :destroy
   has_many :referrals
   has_and_belongs_to_many :tags, uniq: true
+  has_many :summaries
 
   validates :description, :user_id, :presence => true, allow_blank: false
   validate :has_at_least_one_tag

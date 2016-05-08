@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :successful_referrals, :class_name => "User", :foreign_key => "referred_by_user_id"
   has_many :given_kudos, :class_name => "Kudo", :foreign_key => "giver_id"
   has_many :received_kudos, :class_name => "Kudo", :foreign_key => "receiver_id"
+  has_many :summaries
 
   s3_credentials_hash = {
     :access_key_id => ENV['AWS_ACCESS_KEY'],
