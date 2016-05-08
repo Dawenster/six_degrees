@@ -13,6 +13,8 @@ class Dream < ActiveRecord::Base
   DREAM_LENGTH_IN_CHARS = 150
   DREAM_RESPONSE_LENGTH_IN_CHARS = 500
 
+  paginates_per 10
+
   def self.dreams_with_user_info
     dreams = []
     Dream.all.shuffle.each do |dream|
