@@ -1,0 +1,11 @@
+.row
+  .col.s12
+    h3.page-title
+      | Write dream summary
+
+  .col.s12.m8.offset-m2.l6.offset-l3
+
+    p
+      = "How did #{link_to @helper.name, activities_path(@helper), target: '_blank'} help you with your dream: #{@dream.description}?".html_safe
+
+    = render "form", summary: @summary, dream: @dream, helper: @helper

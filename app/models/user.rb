@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :dreams, :dependent => :destroy
-  has_many :messages, :class_name => 'Message', :foreign_key => 'user_id', :dependent => :destroy
+  has_many :messages, :class_name => "Message", :foreign_key => "user_id", :dependent => :destroy
   has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id', :dependent => :destroy
   has_many :connections, :dependent => :destroy
   has_many :hearts, :dependent => :destroy
@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :given_kudos, :class_name => "Kudo", :foreign_key => "giver_id"
   has_many :received_kudos, :class_name => "Kudo", :foreign_key => "receiver_id"
   has_many :summaries
+  has_many :summaries_as_helper, :class_name => "Summary", :foreign_key => "helper_id"
 
   s3_credentials_hash = {
     :access_key_id => ENV['AWS_ACCESS_KEY'],

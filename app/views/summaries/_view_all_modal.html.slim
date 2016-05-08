@@ -1,0 +1,23 @@
+.modal.modal-fixed-footer id="summaries-for-dream-#{dream.id}"
+  .modal-content
+    h4
+      | Summaries
+    h5
+      = "Dream: #{dream.description}"
+
+    - dream.summaries.each do |summary|
+      br
+      hr
+      br
+      .summary-holder
+        | Helper: 
+        a.chip href="#{activities_path(summary.helper)}"
+          = image_tag summary.helper.avatar.url(:small)
+          = summary.helper.full_name
+
+        .summary-content-holder
+          = simple_format(summary.content)
+
+  .modal-footer
+    a.modal-action.modal-close.waves-effect.waves-green.btn-flat href=""
+      | Close

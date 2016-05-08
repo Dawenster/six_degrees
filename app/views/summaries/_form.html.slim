@@ -1,0 +1,9 @@
+= simple_form_for summary do |s|
+  .input-field
+     = s.input :content, label: "Summary", required: false, input_html: { class: "materialize-textarea" }
+  = s.input :dream_id, as: :hidden, input_html: { value: dream.id }
+  = s.input :helper_id, as: :hidden, input_html: { value: helper.id }
+  = s.submit class: "btn"
+  - if summary.id
+    div style="margin-top: 10px;"
+      = link_to "Delete", { :id => summary.id, :action => :destroy }, :method => :delete, data: { confirm: "Are you sure?  You're about to delete this summary..." }

@@ -43,6 +43,14 @@ br
             a.give-kudos-button.tooltipped href="" data-position="right" data-delay="50" data-tooltip="Express your gratitude by giving kudos!" data-giver-id="#{current_user.id}" data-receiver-id="#{connection.user.id}" data-kudos-url="#{kudos_path}"
               | Give kudos
 
+            - existing_summary = dream.summaries.select{|s| s.helper_id == connection.user.id}.first
+            - if existing_summary.present?
+              a href="#{edit_summary_path(existing_summary)}"
+                | Edit summary
+            - else
+              a href="#{new_summary_path(dream_id: connection.dream.id, helper_id: connection.user.id)}"
+                | Write summary
+
           .pre-accepted-actions class="#{'hide' if connection.accepted}"
             a.accept-button ng-click="updateStatus('#{accept_connection_path(connection)}')" data-fetch-email-url="#{email_display_as_string_path(connection)}" href=""
               | Accept

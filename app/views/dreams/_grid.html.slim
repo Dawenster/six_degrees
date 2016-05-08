@@ -17,12 +17,18 @@
       a.chip href="#{activities_path(user)}"
         = image_tag user.avatar.url(:small)
         = user.full_name
+
+      - if dream.summaries.any?
+        .summary-link-holder
+          a.modal-trigger.purple-text.text-darken-2 href="#summaries-for-dream-#{dream.id}"
+            | Read dream summaries
+          = render "summaries/view_all_modal", dream: dream
           
     .card-action
 
       - if user_signed_in?
 
-        - text = current_user.owner_of?(dream) || dream.messages.where(user: current_user).any? ? "Messages" : "Help"
+        - text = current_user.owner_of?(dream) || dream.messages.where(user: current_user).any? ? "Messages (#{dream.messages.where(user: current_user).count})" : "Help"
 
         - if current_user.owner_of?(dream)
           a.modal-trigger href="#owner-modal-#{dream.id}"
@@ -49,7 +55,7 @@
 
       - if dream.connections.any?
         a.activator href=""
-          | Helpers
+          = "Helpers (#{dream.connections.count})"
 
       a.modal-trigger href="#refer-dream-modal-#{dream.id}"
         | Refer
