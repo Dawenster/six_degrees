@@ -1,5 +1,6 @@
 class SummariesController < ApplicationController
 
+  before_action :authenticate_user!
   before_filter :check_for_valid_params, only: [:new]
   before_filter :check_current_user_can_edit_summary, only: [:edit]
 
