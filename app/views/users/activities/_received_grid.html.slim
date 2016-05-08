@@ -48,7 +48,7 @@ br
               a href="#{edit_summary_path(existing_summary)}"
                 | Edit summary
             - else
-              a href="#{new_summary_path(dream_id: connection.dream.id, helper_id: connection.user.id)}"
+              a href="#{new_summary_path(dream_id: dream.id, helper_id: connection.user.id)}"
                 | Write summary
 
           .pre-accepted-actions class="#{'hide' if connection.accepted}"
