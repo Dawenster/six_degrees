@@ -12,7 +12,7 @@
       .summary-holder
         | Helper: 
         a.chip href="#{activities_path(summary.helper)}"
-          = image_tag summary.helper.avatar.url(:small)
+          = avatar(summary.helper)
           = summary.helper.full_name
 
         .summary-content-holder

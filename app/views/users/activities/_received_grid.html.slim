@@ -18,7 +18,7 @@ br
                 | Declined
 
           a.chip href="#{activities_path(user)}"
-            = image_tag user.avatar.url(:small)
+            = avatar(user)
             = user.full_name
 
           br
