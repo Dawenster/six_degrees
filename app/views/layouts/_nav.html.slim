@@ -36,8 +36,9 @@
               li class="#{'highlighted-dropdown' if params[:action] == 'new' && params[:controller] == 'dreams'}"
                 a href="#{activities_path(current_user)}"
                   | Activities
-                  span.badge.notification-badge.received-badge-num.new
-                    = pending_received_activities(current_user.dreams)
+                  - if pending_received_activities(current_user.dreams)
+                    span.badge.notification-badge.received-badge-num.new
+                      = pending_received_activities(current_user.dreams)
 
               li.divider
 
