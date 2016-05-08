@@ -17,13 +17,17 @@
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= render "name_fields", :f => f %>
 
-      <div class="input-field">
-        <div><%= f.label :email %>
-        <%= f.email_field :email, :class => "form-control" %></div>
+      <div class="">
+        <div>
+          <label for="user_email">
+            Email (must end in "<%= User::KELLOGG_DOMAIN %>")
+          </label>
+          <%= f.email_field :email, :class => "form-control" %>
+        </div>
         <%= errors_for resource, :email %>
       </div>
 
-      <div class="input-field">
+      <div class="">
         <div><%= f.label :password %>
         <%= f.password_field :password, :class => "form-control", :placeholder => "At least 8 characters" %></div>
         <%= errors_for resource, :password %>

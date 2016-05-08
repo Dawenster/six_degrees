@@ -31,9 +31,12 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates :first_name, :last_name, :presence => true, allow_blank: false
+  validate :kellogg_email, on: :create
 
   before_save :ensure_authentication_token
   before_create :check_if_referred
+
+  KELLOGG_DOMAIN = "@kellogg.northwestern.edu"
 
   def to_param
     "#{id}-#{first_name.parameterize.downcase}-#{last_name.parameterize.downcase}"
@@ -157,5 +160,10 @@ class User < ActiveRecord::Base
   def check_if_referred
     referral = Referral.find_by_email(email)
     self.referred_by_user_id = referral.user.id if referral.present? && referral.user.present?
+  end
+
+  def kellogg_email
+    email_domain = email.split("@").last
+    errors.add(:email, "must end in #{KELLOGG_DOMAIN}") if email_domain != KELLOGG_DOMAIN
   end
 end
