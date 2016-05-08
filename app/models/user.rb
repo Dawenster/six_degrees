@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
 
   def small_avatar
-    if self.uid
+    if self.uid.present?
       return "https://graph.facebook.com/#{self.uid}/picture"
     elsif self.avatar.url.present?
       return self.avatar.url(:small)
@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   end
 
   def large_avatar
-    if self.uid
+    if self.uid.present?
       return "https://graph.facebook.com/#{self.uid}/picture?width=350&height=350"
     elsif self.avatar.url.present?
       return self.avatar.url(:large)

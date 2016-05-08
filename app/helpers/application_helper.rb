@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def profile_picture(user)
-    if user.uid
+    if user.uid.present?
       image_tag "https://graph.facebook.com/#{user.uid}/picture?width=350&height=350", :class => "user-profile-picture"
     else
       image_tag user.avatar.url(:large), :class => "user-profile-picture"
