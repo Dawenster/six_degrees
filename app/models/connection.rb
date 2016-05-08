@@ -4,6 +4,10 @@ class Connection < ActiveRecord::Base
 
   validates :dream_id, :user_id, :presence => true, allow_blank: false
 
+  scope :accepted, -> {
+    where(accepted: true)
+  }
+
   def receiver
     self.dream.user
   end

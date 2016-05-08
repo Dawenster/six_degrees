@@ -1,0 +1,18 @@
+= "Hi #{@dreamer.first_name},".html_safe
+br
+br
+= "A while back, you accepted help from #{@helper.full_name} on your dream: #{@dream.description}".html_safe
+br
+br
+= "It'd be great if you could write a short summary on how #{@helper.first_name} was able to help you! It helps our community see the benefits of Six Degrees - not to mention it'll make #{@helper.first_name} proud to have helped you!".html_safe
+br
+br
+= link_to "Write summary", new_summary_url(dream_id: @dream.id, helper_id: @helper.id)
+br
+br
+| Thank you!
+br
+br
+| Six degrees team
+br
+= link_to root_url, root_url
