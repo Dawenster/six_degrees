@@ -1,6 +1,6 @@
 span
   = avatar(current_user)
-- if current_user.uid
+- if current_user.uid.present?
   span.avatar-explanation
     | Using your Facebook profile image
 - else

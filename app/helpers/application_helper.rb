@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def avatar(user)
-    if user.uid
+    if user.uid.present?
       image_tag "https://graph.facebook.com/#{user.uid}/picture", :class => "user-avatar"
     else
       image_tag user.avatar.url(:small), :class => "user-avatar"
