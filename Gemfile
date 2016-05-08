@@ -20,6 +20,7 @@ gem 'rails_admin'
 gem 'rest-client'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'simple_form'
 gem 'simple_token_authentication'
 gem 'sinatra', :require => false
