@@ -9,6 +9,7 @@ gem 'devise-async'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'materialize-sass', :git => "https://github.com/mkhairi/materialize-sass"
 gem 'nested_form'
 gem 'omniauth-facebook'
