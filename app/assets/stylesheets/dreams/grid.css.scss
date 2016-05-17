@@ -1,3 +1,5 @@
+@import "application";
+
 .dream-grid-holder {
   width: 100%;
   margin-top: 30px;
@@ -75,4 +77,10 @@
 
 .summary-link-holder {
   margin-top: 10px;
+}
+
+@media #{$small-and-down} {
+  .card-action {
+    font-size: 12px;
+  }
 }
