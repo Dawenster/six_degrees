@@ -1,0 +1,12 @@
+.filter-dropdown-holder.hide-on-med-and-up
+  a.dropdown-button.btn href='#' data-activates='filter-dropdown'
+    | Filter
+
+  ul#filter-dropdown.dropdown-content
+    li
+      a href="#{dreams_path}" class="#{'active' if @tag_ids.nil?}"
+        | All
+    - @tags.each do |tag|
+      li
+        a href="#{dreams_path(tags: tag.id)}" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
+          = tag.name

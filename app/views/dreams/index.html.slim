@@ -3,8 +3,7 @@
     h3.page-title
       | Browse dreams
 
-  .col.s12.m6.offset-m3.l4.offset-l4
-    .filter-holder
+    .filter-holder.hide-on-small-only
       .collection
         a.collection-item href="#{dreams_path}" class="#{'active' if @tag_ids.nil?}"
           | All
@@ -13,7 +12,10 @@
           a.collection-item href="#{dreams_path(tags: tag.id)}" class="#{'active' if @tag_ids && @tag_ids.include?(tag.id.to_s)}"
             = tag.name
 
+
   .col.s12.m8.offset-m2.l6.offset-l3
+    = render "mobile_filter"
+
     .pagination-holder
       = paginate @dreams
 
@@ -24,3 +26,5 @@
 
     .pagination-holder
       = paginate @dreams
+
+    = render "mobile_filter"

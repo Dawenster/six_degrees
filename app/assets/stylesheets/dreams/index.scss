@@ -1,5 +1,14 @@
 .filter-holder {
-  margin-top: 28px;
+  position: fixed;
+  left: 0;
+}
+
+.filter-dropdown-holder {
+  text-align: center;
+
+  .dropdown-button {
+    width: 200px;
+  }
 }
 
 .pagination-holder {
