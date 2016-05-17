@@ -166,6 +166,6 @@ class User < ActiveRecord::Base
 
   def kellogg_email
     email_domain = email.split("@").last
-    errors.add(:email, "must end in #{KELLOGG_DOMAIN}") if email_domain != KELLOGG_DOMAIN
+    errors.add(:email, "must end in #{KELLOGG_DOMAIN}") if email_domain.downcase != KELLOGG_DOMAIN
   end
 end

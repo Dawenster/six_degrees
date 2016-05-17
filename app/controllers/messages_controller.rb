@@ -26,9 +26,10 @@ class MessagesController < ApplicationController
         format.json {
           render :json => {
             :status => 200,
-            :message => "message created successfully",
             :message => message,
+            :messages_count => dream.messages.where(user: current_user).count,
             :message_with_html => put_html_around_message(message),
+            :helpers_count => dream.connections.count,
             :connection_with_html => connection_html
           }
         }

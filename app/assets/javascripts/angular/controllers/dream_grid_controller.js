@@ -73,6 +73,9 @@ app.controller('DreamGridCtrl', ['$scope', '$element', function($scope, $element
         }
         messageInput.val("")
         confirmButton.removeClass('disabled')
+        $element.find(".help-dream-link").text("MESSAGES (" + result.messages_count + ")")
+        $element.find(".helpers-count-link").removeClass("hide")
+        $element.find(".helpers-count-link").text("HELPERS (" + result.helpers_count + ")")
       })
     }
   }
