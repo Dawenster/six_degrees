@@ -23,6 +23,9 @@ app.controller('ReferDreamCtrl', ['$scope', '$element', function($scope, $elemen
     } else if (!validateEmail(email)) {
       emailInput.focus()
       Materialize.toast("Please enter a correct email", dialogDuration)
+    } else if (!validateKellogg(email.toLowerCase())) {
+      emailInput.focus()
+      Materialize.toast("Please enter a @kellogg.northwestern.edu address", dialogDuration)
     } else {
       var form = $element.find("form")
       var url = form.attr("action")
@@ -41,6 +44,11 @@ app.controller('ReferDreamCtrl', ['$scope', '$element', function($scope, $elemen
 
   function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function validateKellogg(email) {
+    var re = /@kellogg.northwestern.edu\s*$/
     return re.test(email);
   }
 }]);

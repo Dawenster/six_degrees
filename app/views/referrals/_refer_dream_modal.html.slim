@@ -5,6 +5,9 @@
     p
       = "Know someone else who might be able to help #{dream.user.first_name} with this dream?"
 
+    p
+      = "For now, you can only refer emails that end in #{User::KELLOGG_DOMAIN}".html_safe
+
     = simple_form_for Referral.new, defaults: { input_html: { class: 'input-field' }} do |r|
       - if user_signed_in?
         = r.input :referrer_name, as: :hidden, :input_html => { value: current_user.full_name }
