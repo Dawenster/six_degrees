@@ -1,8 +1,8 @@
-.modal.bottom-sheet id="owner-modal-#{dream.id}"
+.modal id="owner-modal-#{dream.id}"
   - link_to_user = link_to dream.user.first_name, activities_path(dream.user)
   .modal-content
     .row
-      .col.s12.m6.offset-m3
+      .col.s12
         p
           - if dream.messages.any?
 
