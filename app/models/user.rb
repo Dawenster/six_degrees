@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   before_create :check_if_referred
 
-  KELLOGG_DOMAIN = "@kellogg.northwestern.edu"
+  KELLOGG_DOMAIN = "kellogg.northwestern.edu"
 
   def to_param
     "#{id}-#{first_name.parameterize.downcase}-#{last_name.parameterize.downcase}"
@@ -166,6 +166,6 @@ class User < ActiveRecord::Base
 
   def kellogg_email
     email_domain = email.split("@").last
-    errors.add(:email, "must end in #{KELLOGG_DOMAIN}") if email_domain.downcase != KELLOGG_DOMAIN
+    errors.add(:email, "must end in @#{KELLOGG_DOMAIN}") if email_domain.downcase != KELLOGG_DOMAIN
   end
 end
