@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <%= render "layouts/google_analytics" %>
+    <%= render "layouts/google_analytics" if ENV['PRODUCTION'] == "true" %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
