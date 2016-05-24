@@ -1,4 +1,6 @@
 class ReferralMailer < ActionMailer::Base
+  include SendGrid
+  sendgrid_enable :ganalytics, :opentrack
   helper :application # gives access to all helpers defined within `application_helper`.
 
   default from: '"Six Degrees Team" <contactsixdegrees@gmail.com>'

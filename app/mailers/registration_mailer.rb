@@ -1,7 +1,6 @@
 class RegistrationMailer < Devise::Mailer
   include SendGrid
   sendgrid_enable :ganalytics, :opentrack
-
   helper :application # gives access to all helpers defined within `application_helper`.
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
 
