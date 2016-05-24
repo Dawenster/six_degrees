@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates :first_name, :last_name, :presence => true, allow_blank: false
-  validate :kellogg_email, on: :create
+  # validate :kellogg_email, on: :create
 
   before_save :ensure_authentication_token
   before_create :check_if_referred
