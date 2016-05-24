@@ -100,20 +100,20 @@ Rails.application.configure do
   #   enable_starttls_auto: true
   # }
 
-  # if ENV['STAGING'] == "true"
-  #   domain = "six-degrees-staging.herokuapp.com"
-  # else
-  #   domain = "gosixdegrees.com"
-  # end
+  if ENV['STAGING'] == "true"
+    domain = "six-degrees-staging.herokuapp.com"
+  else
+    domain = "gosixdegrees.com"
+  end
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :user_name => ENV["SENDGRID_USERNAME"],
     :password => ENV["SENDGRID_PASSWORD"],
-    :domain => "heroku.com",
+    :domain => domain,
     :address => 'smtp.sendgrid.net',
     :port => 587,
-    :authentication => :plain,
+    :authentication => "login",
     :enable_starttls_auto => true
   }
 
