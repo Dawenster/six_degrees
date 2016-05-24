@@ -103,7 +103,7 @@ Rails.application.configure do
   if ENV['STAGING'] == "true"
     domain = "six-degrees-staging.herokuapp.com"
   else
-    domain = "gosixdegrees.com"
+    domain = "six-degrees-app.herokuapp.com"
   end
 
   config.action_mailer.delivery_method = :smtp
