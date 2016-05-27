@@ -8,7 +8,8 @@ class ReferralMailer < ActionMailer::Base
   def referred(referral_id)
     @referral = Referral.find(referral_id)
     @dream = @referral.dream
+    email = @referral.user.try(:email) || "contactsixdegrees@gmail.com"
 
-    mail(from: "#{@referral.referrer_name}", to: "<#{@referral.email}>", subject: "#{@referral.referrer_name} referred you to help #{@dream.user.full_name}")
+    mail(from: "<#{email}>", to: "<#{@referral.email}>", subject: "#{@referral.referrer_name} referred you to help #{@dream.user.full_name}")
   end
 end
